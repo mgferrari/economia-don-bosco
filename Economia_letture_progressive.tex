@@ -1,0 +1,1988 @@
+% !TeX program = xelatex
+% ECONOMIA: LEGGERE E CAPIRE - versione di lavoro, settembre 2026
+% FILE AUTONOMO: nessun input o immagine esterna.
+% Compilare con XeLaTeX due volte (anche su Overleaf).
+% Font: Latin Modern Roman; arabo: Amiri se disponibile, altrimenti DejaVu Sans.
+% Per togliere una lettura, cambiare {1} in {0} nel relativo blocco
+% \\begin{lettura}{1}{Titolo} ... \\end{lettura}.
+% La numerazione delle letture attive e l'indice si aggiornano automaticamente.
+% Le citazioni rinviano alla bibliografia finale: nessun file .bib necessario.
+\documentclass[11pt,a4paper]{article}
+\usepackage[margin=18mm,top=20mm,bottom=20mm,headheight=15pt]{geometry}
+\usepackage{fontspec}
+\setmainfont{Latin Modern Roman}
+\usepackage{polyglossia}
+\setdefaultlanguage{italian}
+\TeXXeTstate=1
+\newcommand{\textarabic}[1]{\begingroup\arabicfont\beginR#1\endR\endgroup}
+\IfFontExistsTF{Amiri}{\newfontfamily\arabicfont[Script=Arabic,Scale=1.05]{Amiri}}{\newfontfamily\arabicfont[Script=Arabic,Scale=.92]{DejaVu Sans}}
+\usepackage{amsmath,amssymb}
+\usepackage{microtype,multicol,enumitem,booktabs,tabularx,array}
+\usepackage{xcolor,tikz,pgfplots,caption}
+\usetikzlibrary{arrows.meta,positioning}
+\pgfplotsset{compat=1.18}
+\usepackage{titlesec,fancyhdr,needspace,xparse}
+\usepackage[unicode,hidelinks]{hyperref}
+\hypersetup{pdftitle={Economia: leggere e capire},pdfauthor={Materiale didattico di Marco Giovanni Ferrari}}
+\definecolor{accent}{HTML}{25556B}
+\setlength{\columnsep}{8mm}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{4.5pt plus 1pt}
+\setlength{\emergencystretch}{2em}
+\linespread{1.04}
+\setlist[enumerate]{leftmargin=*,itemsep=4pt,topsep=4pt}
+\titleformat{\section}{\Large\bfseries\color{accent}}{\thesection.}{.6em}{}
+\titleformat{\subsection}{\normalsize\bfseries}{\thesubsection}{.5em}{}
+\titlespacing*{\section}{0pt}{0pt}{8pt}
+\titlespacing*{\subsection}{0pt}{11pt}{4pt}
+\captionsetup{font=small,labelfont=bf,skip=5pt}
+\pagestyle{fancy}\fancyhf{}
+\fancyhead[L]{\small Economia: leggere e capire}
+\fancyhead[R]{\small Letture e lessico}
+\fancyfoot[C]{\thepage}
+\renewcommand{\headrulewidth}{.3pt}
+\newcommand{\fonte}[1]{\textsuperscript{[\ref{src:#1}]}}
+\newcommand{\voce}[3]{\par\smallskip\noindent\begin{minipage}{\linewidth}\textbf{#1}\quad\textarabic{#3}\\[2pt]{\small #2.}\end{minipage}\par}
+\NewDocumentEnvironment{lettura}{m m +b}{%
+\ifnum#1=1\relax
+\clearpage\section{#2}\begin{multicols}{2}\raggedcolumns
+#3
+\end{multicols}
+\fi}{}
+\newcommand{\attivita}{\small\setlength{\parskip}{3pt}\par\medskip\noindent\rule{\linewidth}{.4pt}\subsection*{Comprendere il testo}}
+\newcommand{\lessico}{\subsection*{Parole da riutilizzare}}
+\newcommand{\lingua}{\subsection*{Lavorare sulla lingua}}
+\newcommand{\scrittura}{\subsection*{Rielaborare}}
+\newcommand{\righe}{\par\vspace{3pt}\noindent\rule{\linewidth}{.2pt}\par\vspace{10pt}\noindent\rule{\linewidth}{.2pt}\par}
+\begin{document}
+\begin{titlepage}
+\vspace*{22mm}
+{\large Materiali di economia\par}
+\vspace{12mm}
+{\Huge\bfseries Economia:\\[5mm]leggere e capire\par}
+\vspace{10mm}
+{\Large Letture progressive per un anno scolastico\par}
+\vspace{12mm}
+\rule{\textwidth}{.5pt}
+\vspace{5mm}
+{\large Scuola secondaria superiore\\Italiano, lessico economico e comprensione del testo\par}
+\vfill
+{\large Materiali di Marco Giovanni Ferrari\par}
+\vspace{4mm}
+Versione di lavoro --- settembre 2026\\
+Sedici letture con esempi, grafici e attività.
+\end{titlepage}
+\section*{Come usare il libretto}
+Questo percorso utilizza l'economia per imparare parole nuove, leggere testi sempre più lunghi e ricostruire un ragionamento. Le prime letture partono da situazioni quotidiane; le ultime collegano più argomenti e possono essere affrontate in diverse lezioni.
+
+Leggi una prima volta per comprendere l'argomento generale. Poi torna ai paragrafi, cerca il significato delle parole nel contesto e utilizza il glossario. Infine rispondi alle domande e scrivi con parole tue. Non è necessario conoscere ogni parola prima di iniziare: molti significati diventano più chiari durante la lettura.
+
+Le traduzioni arabe sono aiuti al significato usato nel testo, non sostituiscono tutte le possibili traduzioni di una parola. Dopo averle lette, prova a formulare la definizione in italiano. Le parole già incontrate ritornano nelle letture successive.
+
+I numeri inventati per gli esercizi sono sempre presentati come esempi didattici. I pochi dati reali hanno una fonte e un periodo di riferimento. Le note numerate rinviano ai riferimenti finali. Le cifre storiche non sono quotazioni o aggiornamenti in tempo reale.
+
+\subsection*{Tre abitudini di lettura}
+\begin{enumerate}
+\item Per ogni paragrafo, individua l'idea principale e una parola che la esprime.
+\item Distingui un fatto, un esempio, un obiettivo e una previsione.
+\item Quando leggi un numero, cerca l'unità, il periodo e il termine di confronto.
+\end{enumerate}
+\subsection*{Per il docente}
+La progressione delle lunghezze riguarda il solo testo delle letture, esclusi titoli, attività e glossari. I testi più lunghi sono unità da distribuire su più incontri. Le consegne di scrittura possono essere svolte sul quaderno. Il sorgente permette di disattivare una lettura senza alterare manualmente l'indice. La suddivisione trimestrale è orientativa e non impone di completare una lettura in una singola lezione.
+
+La raccolta riprende e rielabora i nuclei dei materiali del corso precedente: settori economici, reddito e patrimonio, beni pubblici, rischio e interesse, inflazione, crescita e attività su prestiti e religione. Le altre letture sono raccordi e ampliamenti. Non è una trascrizione diplomatica dei fogli originali.
+\clearpage
+\tableofcontents
+\clearpage\phantomsection\addcontentsline{toc}{part}{Primo trimestre --- Le parole fondamentali dell’economia}
+
+% =================================================================
+% INIZIO LETTURA 01 - circa 525 parole di testo
+
+\begin{lettura}{1}{Bisogni, beni e servizi}
+
+
+\subsection*{Una giornata di scelte}
+Ogni mattina abbiamo bisogno di alcune cose. Beviamo acqua, mangiamo, indossiamo vestiti e ci spostiamo. Abbiamo anche bisogno di imparare, di parlare con altre persone e di riposare. Un \textbf{bisogno} è qualcosa che sentiamo necessario per la nostra vita o per il nostro benessere. Alcuni bisogni sono comuni a tutti. Altri cambiano con l'età, con le abitudini e con la situazione in cui viviamo.
+
+Per soddisfare i bisogni usiamo delle \textbf{risorse}. Il tempo è una risorsa. Anche il denaro, l'acqua, la terra e il lavoro sono risorse. Le risorse disponibili non sono infinite. Una famiglia non può comprare tutto. Uno studente non può usare la stessa ora per fare due attività diverse. Per questo dobbiamo scegliere. L'economia studia anche come le persone usano risorse limitate per soddisfare bisogni diversi.
+
+\subsection*{Beni e servizi}
+Un \textbf{bene} materiale è un oggetto che possiamo utilizzare. Il pane, una penna e una bicicletta sono beni. Un \textbf{servizio} è un'attività svolta per soddisfare un bisogno. Una lezione, un taglio di capelli e un viaggio in autobus sono servizi. Quando compriamo il pane, riceviamo un bene. Quando paghiamo il biglietto dell'autobus, riceviamo un servizio di trasporto. In entrambi i casi soddisfiamo un bisogno.
+
+Una stessa attività può offrire beni e servizi insieme. In un ristorante mangiamo del cibo, ma riceviamo anche un servizio: alcune persone cucinano, portano i piatti e puliscono il tavolo. Per capire la differenza dobbiamo osservare che cosa viene offerto. La distinzione è utile, anche quando nella vita quotidiana beni e servizi sono collegati.
+
+\subsection*{Come usiamo i beni}
+Un \textbf{bene di consumo} soddisfa direttamente un bisogno. Il pane che mangiamo è un bene di consumo. Un \textbf{bene strumentale} serve per produrre altri beni o servizi. Il forno di un panificio è un bene strumentale. Il panettiere usa il forno per preparare il pane che vende ai clienti.
+
+La distinzione dipende dall'uso. Un computer usato per guardare un film a casa è un bene di consumo. Un computer usato in un ufficio per organizzare il lavoro è un bene strumentale. L'oggetto può essere simile, ma cambia la sua funzione. Per classificare un bene chiediamo quindi: chi lo usa e per fare che cosa?
+
+\subsection*{Beni usati insieme o in alternativa}
+Due beni sono \textbf{complementari} quando vengono usati insieme. Una stampante e le sue cartucce sono complementari. Anche una torcia e le batterie adatte sono complementari. Comprare una torcia senza avere le batterie può non essere sufficiente per ottenere la luce.
+
+Due beni sono \textbf{sostituti} quando possiamo usare uno al posto dell'altro per soddisfare un bisogno simile. Due marche di quaderni possono essere sostitute. Per bere qualcosa durante la pausa possiamo scegliere tra due bibite diverse. Non è necessario comprare entrambe.
+
+Immaginiamo infine che Mariam abbia denaro sufficiente per un quaderno oppure per una bibita. Mariam sceglie il quaderno perché deve scrivere durante la lezione. Rinuncia alla bibita, almeno per quel momento. La sua scelta mostra un'idea semplice: utilizzare una risorsa per uno scopo può impedire di utilizzarla per un altro. Nelle prossime letture incontreremo famiglie, imprese e Stati che devono compiere scelte di questo tipo.
+
+
+Quando leggiamo una descrizione, cerchiamo prima il bisogno e poi il mezzo utilizzato per soddisfarlo. In questo modo possiamo riconoscere la stessa relazione anche quando cambiano gli oggetti dell'esempio.
+
+
+\attivita
+\begin{enumerate}
+
+\item Quali risorse vengono nominate nella prima sezione?
+
+\item Spiega la differenza tra il pane e un viaggio in autobus.
+
+\item Perché il forno del panificio è un bene strumentale?
+
+\item Quando due beni sono complementari? Trova l’esempio nel testo.
+
+\end{enumerate}
+\lessico
+
+\voce{bisogno}{qualcosa sentito come necessario}{حاجة}
+
+\voce{risorsa}{mezzo disponibile per fare qualcosa}{مورد}
+
+\voce{bene}{oggetto utile a soddisfare un bisogno}{سلعة}
+
+\voce{servizio}{attività svolta per soddisfare un bisogno}{خدمة}
+
+\voce{consumo}{uso di beni e servizi per i propri bisogni}{استهلاك}
+
+\voce{strumentale}{che serve per produrre}{إنتاجي}
+
+\voce{complementari}{utilizzati insieme}{متكاملة}
+
+\voce{sostituti}{utilizzabili uno al posto dell’altro}{بديلة}
+
+\lingua
+Completa con \emph{bene, servizio, risorsa}: il tempo è una \ldots; una lezione è un \ldots; una penna è un \ldots. Poi scrivi tre frasi con la struttura «\ldots serve per \ldots».
+\scrittura
+Scrivi 60--80 parole su una tua mattina. Nomina due beni, due servizi e una scelta che devi fare.
+
+\end{lettura}
+% FINE LETTURA 01
+
+% =================================================================
+% INIZIO LETTURA 02 - circa 614 parole di testo
+
+\begin{lettura}{1}{La produzione e i settori economici}
+
+
+\subsection*{Da una risorsa a un prodotto}
+Il pane che troviamo in un negozio non compare da solo. Prima qualcuno coltiva il grano. Poi qualcuno trasforma il grano in farina. Un panettiere usa la farina per preparare il pane. Altre persone trasportano e vendono il prodotto. Tutte queste attività sono collegate. La \textbf{produzione} è l'insieme delle attività con cui otteniamo beni e servizi utili.
+
+Per produrre servono risorse naturali, lavoro e strumenti. Il lavoro comprende attività manuali e attività intellettuali. Un agricoltore lavora la terra; un tecnico controlla una macchina; una persona organizza le consegne. Nessuna di queste attività basta sempre da sola. Le persone collaborano e svolgono compiti diversi.
+
+\subsection*{Il settore primario}
+Per descrivere le attività economiche le dividiamo in \textbf{settori}. Il settore primario comprende, nella classificazione scolastica tradizionale, attività che utilizzano direttamente le risorse naturali. L'agricoltura, l'allevamento, la pesca e la silvicoltura appartengono a questo settore. La silvicoltura riguarda la cura e l'utilizzo dei boschi. In questa classificazione anche l'estrazione di minerali viene spesso inserita nel primario.
+
+I prodotti di queste attività possono essere consumati direttamente oppure diventare \textbf{materie prime}. Una materia prima viene utilizzata per ottenere un altro prodotto. Il cotone, per esempio, può diventare un tessuto. Il latte può essere bevuto oppure usato per produrre formaggio. L'uso successivo collega il settore primario agli altri settori.
+
+\subsection*{Il settore secondario}
+Il settore secondario comprende soprattutto la \textbf{trasformazione} delle materie prime e la costruzione di edifici e infrastrutture. Una fabbrica che produce tessuti e un'impresa che costruisce case operano in questo settore. Anche molte attività artigianali, come la produzione di mobili, appartengono al secondario.
+
+Le macchine aiutano a trasformare i materiali, ma richiedono energia, manutenzione e persone preparate. In una fabbrica non lavorano soltanto gli operai che utilizzano le macchine. Servono anche tecnici, progettisti e persone che controllano la qualità. Il prodotto finale dipende dalla collaborazione tra questi lavoratori.
+
+\subsection*{Il settore terziario}
+Il settore terziario comprende i \textbf{servizi}. Trasporti, commercio, turismo, istruzione, sanità e attività bancarie sono esempi. Un autista offre un servizio anche se non produce un nuovo oggetto. Una scuola offre un servizio che permette agli studenti di imparare. I servizi hanno quindi valore economico e sociale.
+
+Con l'espressione \textbf{terziario avanzato} indichiamo servizi che utilizzano molta conoscenza specialistica, come la ricerca e alcuni servizi informatici. Si tratta di una parte del terziario, non di un gruppo da sommare di nuovo al totale dei servizi. Inoltre, un'impresa tecnologica può svolgere attività differenti: produrre computer e progettare programmi non sono la stessa attività.
+
+\subsection*{Una filiera e un paese}
+La sequenza di attività necessarie per arrivare a un prodotto si chiama \textbf{filiera}. Nella filiera di una maglietta troviamo la coltivazione del cotone, la produzione del tessuto, la confezione, il trasporto e la vendita. Alcune attività possono avvenire in paesi diversi. Un oggetto semplice collega quindi molti lavoratori.
+
+Anche in Egitto possiamo riconoscere attività agricole, industriali e di servizio: una coltivazione nella valle del Nilo, un laboratorio di mobili, un albergo o un servizio di trasporto. Questi esempi mostrano attività presenti nel paese; non indicano quale settore abbia il peso maggiore.
+
+Per misurare il peso di un settore dobbiamo scegliere un indicatore. Possiamo contare i lavoratori oppure misurare il valore prodotto. Le due percentuali possono essere diverse. Inoltre, nelle statistiche internazionali l'estrazione mineraria è spesso compresa nell'industria. Prima di confrontare due grafici dobbiamo quindi leggere la classificazione e l'unità utilizzata. Una buona lettura dei dati comincia sempre dalle parole che li accompagnano.
+
+
+Un'attività può inoltre cambiare nel tempo. Un negozio può iniziare a vendere anche attraverso internet e organizzare consegne. Il servizio resta collegato al commercio, ma richiede nuove competenze e nuovi strumenti. Le categorie aiutano a orientarsi; la descrizione concreta permette di capire quali lavori vengono svolti e come collaborano tra loro le persone. Per questo, negli esercizi, alla classificazione accompagneremo sempre una breve spiegazione.
+
+
+
+\begin{center}\begin{minipage}{\linewidth}\centering
+\begin{tikzpicture}[node distance=5mm, every node/.style={draw,rounded corners,align=center,text width=.82\linewidth,font=\small,inner sep=5pt}]
+\node (a) {Coltivazione del cotone\\Settore primario};
+\node[below=of a] (b) {Tessitura e confezione\\Settore secondario};
+\node[below=of b] (c) {Trasporto e vendita\\Settore terziario};
+\draw[-{Stealth}] (a)--(b);\draw[-{Stealth}] (b)--(c);
+\end{tikzpicture}
+\captionof{figure}{Una filiera semplificata: la maglietta.}
+\end{minipage}\end{center}
+
+
+\attivita
+\begin{enumerate}
+
+\item Ricostruisci il percorso del pane dalla coltivazione alla vendita.
+
+\item Quali attività del secondario vengono nominate?
+
+\item Perché il terziario avanzato non va contato due volte?
+
+\item Perché un grafico sui lavoratori può essere diverso da un grafico sul valore prodotto?
+
+\end{enumerate}
+\lessico
+
+\voce{produzione}{attività che permette di ottenere beni e servizi}{إنتاج}
+
+\voce{settore}{gruppo di attività economiche}{قطاع}
+
+\voce{materia prima}{materiale utilizzato per ottenere un prodotto}{مادة خام}
+
+\voce{trasformazione}{passaggio da un materiale a un prodotto diverso}{تحويل}
+
+\voce{filiera}{sequenza di attività collegate a un prodotto}{سلسلة الإنتاج}
+
+\voce{manutenzione}{attività che mantiene un bene funzionante}{صيانة}
+
+\voce{indicatore}{misura che descrive un fenomeno}{مؤشر}
+
+\lingua
+Trova nel testo i verbi collegati a queste parole: coltivazione, produzione, trasformazione, costruzione. Scrivi una frase con ciascun verbo.
+\scrittura
+Descrivi in 80--100 parole la filiera di un mobile. Usa «prima», «poi», «infine» e indica almeno un servizio.
+
+\end{lettura}
+% FINE LETTURA 02
+
+% =================================================================
+% INIZIO LETTURA 03 - circa 699 parole di testo
+
+\begin{lettura}{1}{Reddito, patrimonio e risparmio}
+
+
+\subsection*{Una fotografia e un periodo}
+Quando diciamo che una persona ha molto denaro, possiamo riferirci a situazioni diverse. La persona può ricevere uno stipendio elevato ogni mese. Oppure può possedere una casa e molti risparmi, anche senza lavorare. Per descrivere queste situazioni usiamo due parole: \textbf{reddito} e \textbf{patrimonio}. Le parole sono collegate, ma non hanno lo stesso significato.
+
+Il reddito è un flusso: si riferisce a un periodo. Possiamo parlare del reddito di un mese o di un anno. Il patrimonio, invece, si osserva in un momento preciso. È simile a una fotografia di ciò che una persona possiede. Dire «guadagna diecimila lire egiziane» non basta: dobbiamo sapere se le riceve ogni mese, ogni anno oppure una sola volta.
+
+\subsection*{Da dove arriva il reddito}
+Il \textbf{reddito da lavoro} deriva dall'attività svolta da una persona. Lo stipendio di un insegnante e il salario di un operaio sono esempi. Anche un professionista riceve un compenso per il proprio lavoro. Le somme possono essere diverse perché cambiano le ore lavorate, le competenze richieste, il tipo di contratto e molte altre condizioni.
+
+Il \textbf{reddito da capitale} deriva dal possesso di risorse impiegate economicamente. Gli interessi su un deposito, i dividendi di un'impresa e gli affitti ricevuti sono esempi. Possedere una risorsa, però, non garantisce sempre un guadagno. Una casa può restare vuota e un'impresa può non distribuire dividendi. Il reddito da capitale può quindi variare.
+
+Esistono anche entrate che non sono un pagamento per un lavoro svolto oggi o per un capitale investito. Una pensione o un sostegno pubblico sono esempi di \textbf{trasferimenti}. Nel bilancio di una famiglia queste somme sono entrate importanti. Per comprendere la loro origine è utile distinguerle dagli stipendi e dagli interessi. Un piccolo imprenditore, invece, può ricevere un reddito che combina il proprio lavoro e l'uso dei propri strumenti.
+
+\subsection*{Che cosa comprende il patrimonio}
+Nel patrimonio troviamo beni e diritti con valore economico: una casa, un terreno, un deposito bancario o una partecipazione in un'impresa. Per descrivere la situazione completa dobbiamo considerare anche i \textbf{debiti}, cioè somme che devono essere restituite. Il patrimonio netto è il valore delle attività possedute meno il valore dei debiti.
+
+Immaginiamo una persona con una casa che vale un milione di lire egiziane, risparmi per centomila lire e un debito di quattrocentomila lire. Il valore delle attività è un milione e centomila lire. Sottraendo il debito otteniamo un patrimonio netto di settecentomila lire. Sono valori inventati per capire il calcolo, non prezzi di mercato.
+
+Una casa ha valore, ma non può sempre essere trasformata rapidamente in denaro. Il denaro disponibile su un conto è generalmente più \textbf{liquido}. La liquidità riguarda la possibilità di usare una risorsa per pagare, oppure di convertirla in denaro senza grandi difficoltà e perdite. Una persona può avere un patrimonio elevato e poco denaro immediatamente disponibile.
+
+\subsection*{Un mese con una spesa imprevista}
+Riprendiamo la famiglia con duemila lire di risparmio mensile. Se deve pagare una riparazione straordinaria di tremila lire, quel mese le uscite aumentano. Può utilizzare una parte dei risparmi precedenti senza aver perso necessariamente il proprio reddito. La spesa imprevista modifica il bilancio del periodo. Per descriverla dobbiamo specificare se è occasionale oppure se si ripeterà ogni mese. Una difficoltà temporanea e una differenza stabile tra entrate e uscite richiedono infatti analisi diverse. Il bilancio aiuta a riconoscere questa distinzione prima di prendere nuove decisioni.
+
+\subsection*{Consumo e risparmio}
+Una famiglia usa le proprie entrate per pagare alimenti, trasporti, abitazione e altri consumi. La parte di reddito disponibile che non viene consumata costituisce il \textbf{risparmio}. Se le entrate disponibili sono dodicimila lire e i consumi sono diecimila, il risparmio è duemila lire. Il reddito disponibile è quello che resta dopo le imposte dirette e comprende i trasferimenti ricevuti.
+
+Il risparmio può aumentare il patrimonio finanziario oppure servire a ridurre un debito. Tuttavia, il patrimonio cambia anche per altre ragioni: il valore di un immobile può salire o scendere. Perciò l'aumento del patrimonio non coincide sempre con il risparmio dell'anno.
+
+Una famiglia può anche consumare più del reddito disponibile. In questo caso utilizza risparmi precedenti oppure si indebita. La scelta può essere temporanea, per esempio durante un periodo senza lavoro. Per capire la situazione non basta osservare un solo mese: bisogna conoscere le entrate, le spese, i debiti e la loro durata. Tenere un \textbf{bilancio} significa registrare queste informazioni e metterle in relazione.
+
+
+
+\begin{center}\begin{minipage}{\linewidth}\centering\small
+\begin{tabular}{lr}\toprule
+Bilancio mensile immaginario & LE\\\midrule
+Reddito disponibile & 12\,000\\
+Consumi & 10\,000\\\midrule
+Risparmio & 2\,000\\\bottomrule
+\end{tabular}
+\captionof{table}{Esempio didattico; LE indica lire egiziane.}
+\end{minipage}\end{center}
+
+
+\attivita
+\begin{enumerate}
+
+\item Perché il reddito ha bisogno di un periodo di riferimento?
+
+\item Qual è la differenza tra stipendio, interesse e pensione?
+
+\item Calcola il patrimonio netto dell’esempio.
+
+\item Come può una famiglia avere un patrimonio elevato e poca liquidità?
+
+\item Se una famiglia risparmia, il valore totale del suo patrimonio aumenta necessariamente della stessa somma?
+
+\end{enumerate}
+\lessico
+
+\voce{reddito}{flusso di risorse ricevute in un periodo}{دخل}
+
+\voce{patrimonio}{insieme di beni e diritti con valore economico}{ثروة}
+
+\voce{debito}{somma da restituire}{دَين}
+
+\voce{risparmio}{reddito disponibile non consumato}{ادخار}
+
+\voce{trasferimento}{entrata senza una produzione corrente in cambio}{تحويل}
+
+\voce{liquidità}{disponibilità di mezzi utilizzabili per pagare}{سيولة}
+
+\voce{bilancio familiare}{registrazione delle entrate e delle uscite}{ميزانية الأسرة}
+
+\lingua
+Completa quattro frasi usando «mentre»: «Il reddito si misura in un periodo, mentre…». Poi trova nel testo tre coppie di parole di significato opposto.
+\scrittura
+Scrivi 100 parole per descrivere un bilancio familiare immaginario. Dichiara il periodo e distingui entrate, consumi e risparmio.
+
+\end{lettura}
+% FINE LETTURA 03
+
+% =================================================================
+% INIZIO LETTURA 04 - circa 829 parole di testo
+
+\begin{lettura}{1}{La ricchezza di un paese: il PIL}
+
+
+\subsection*{Dalla famiglia all'economia nazionale}
+Nella lettura precedente abbiamo osservato il reddito di una famiglia. Ora allarghiamo lo sguardo a un paese. In un anno, milioni di persone producono beni e servizi. Alcune coltivano, altre costruiscono, insegnano o trasportano merci. Per descrivere questa attività economica utilizziamo il \textbf{prodotto interno lordo}, chiamato PIL. In inglese troviamo la sigla GDP, che significa \emph{Gross Domestic Product}.
+
+Il PIL misura il valore dei beni e servizi finali prodotti all'interno di un paese durante un periodo, generalmente un anno o un trimestre. Ogni parola è importante. «Prodotto» indica che osserviamo un'attività di produzione. «Interno» indica il territorio economico considerato. «Lordo» significa che non abbiamo sottratto il consumo del capitale fisso: macchinari, edifici e altri strumenti si usurano durante la produzione.\fonte{pil}
+
+Il PIL non è il patrimonio del paese e non è il denaro posseduto dal governo. È una misura della produzione in un periodo. Se una casa costruita molti anni fa viene venduta oggi, il suo intero prezzo non rappresenta una nuova produzione di quest'anno. Possono invece entrare nel PIL i servizi prodotti oggi per realizzare la vendita.
+
+\subsection*{Perché non sommiamo tutto}
+Consideriamo una filiera semplificata. Un agricoltore vende grano per venti lire a un mulino. Il mulino vende farina per trenta lire a un panificio. Il panificio vende il pane ai consumatori per cinquanta lire. Se sommiamo venti, trenta e cinquanta, otteniamo cento. Ma stiamo contando più volte il valore del grano e della farina contenuti nel pane.
+
+In questo esempio, senza altri acquisti intermedi e senza imposte sui prodotti, il valore del bene finale è cinquanta. Possiamo ottenere lo stesso risultato sommando il \textbf{valore aggiunto} delle tre attività. L'agricoltore aggiunge venti, il mulino aggiunge dieci e il panificio aggiunge venti. Il valore aggiunto è la differenza tra il valore della produzione e quello dei beni e servizi intermedi utilizzati.
+
+Questa differenza non coincide con il profitto. Il valore aggiunto deve anche remunerare il lavoro e comprende altre componenti. Gli stipendi, per esempio, non sono acquisti intermedi come la farina. Distinguere queste parole permette di capire perché un'impresa può creare molto valore e avere comunque costi elevati.
+
+\subsection*{Il PIL per abitante}
+Un paese molto popoloso può produrre più di un paese piccolo. Per confrontare la produzione media per persona calcoliamo il \textbf{PIL pro capite}: dividiamo il PIL totale per il numero di abitanti. L'espressione latina «pro capite» significa «per persona». Il risultato è una media, non la somma ricevuta effettivamente da ogni abitante.
+
+Immaginiamo due paesi. Il paese A produce cento miliardi di unità monetarie e ha dieci milioni di abitanti. Il suo PIL pro capite è diecimila. Il paese B produce sessanta miliardi e ha tre milioni di abitanti: il PIL pro capite è ventimila. A produce di più in totale; B produce di più per abitante. Sono due risposte diverse a due domande diverse.
+
+Anche all'interno di un paese la media può nascondere grandi differenze. Se due persone ricevono rispettivamente due e diciotto unità, la media è dieci. Nessuna delle due riceve dieci. Per conoscere la distribuzione dobbiamo aggiungere altre informazioni. Il PIL pro capite, da solo, non descrive le disuguaglianze.
+
+\subsection*{Quantità, prezzi e confronti}
+Il valore della produzione può aumentare perché produciamo più beni oppure perché aumentano i prezzi. Se un laboratorio produce cento sedie a cento lire, il valore è diecimila. Se l'anno successivo produce ancora cento sedie a centoventi lire, il valore sale a dodicimila, ma il numero di sedie non cambia.
+
+Il \textbf{PIL nominale} utilizza i prezzi del periodo osservato. Il \textbf{PIL reale} cerca di separare la variazione delle quantità da quella dei prezzi. Quando leggiamo che un'economia cresce, dobbiamo verificare quale misura viene usata. Nelle analisi della crescita si osserva generalmente una misura reale.
+
+Anche il confronto tra paesi richiede attenzione. I paesi possono usare monete differenti e avere prezzi differenti. Convertire tutto in dollari è utile, ma il tasso di cambio può cambiare molto. Esistono anche confronti che tengono conto delle differenze nel costo di un insieme di beni e servizi: sono confronti a parità di potere d'acquisto.
+
+\subsection*{Il periodo e il confine}
+Un servizio prodotto in un paese entra nella sua produzione interna anche se l'impresa appartiene a proprietari esteri, secondo le regole della contabilità nazionale. La nazionalità del proprietario e il luogo della produzione sono informazioni diverse. Anche il periodo conta: confrontare un trimestre con un anno intero senza adattare le misure può portare a un errore. Prima di leggere il valore, controlliamo sempre il titolo della tabella e le note.
+
+\subsection*{Produzione e benessere}
+Il PIL fornisce informazioni importanti, ma non misura ogni aspetto della vita. Non descrive direttamente la salute, la qualità dell'aria, il tempo libero o la sicurezza. Inoltre, molte attività domestiche non pagate, come prendersi cura di un familiare, non sono comprese nello stesso modo dei servizi venduti sul mercato.
+
+Per valutare il \textbf{benessere} affianchiamo quindi al PIL altri indicatori. Possiamo osservare l'accesso alla scuola, le condizioni delle abitazioni e la distribuzione dei redditi. Non dobbiamo scegliere una sola misura per rispondere a tutte le domande. Dobbiamo scegliere la misura adatta alla domanda che stiamo facendo e leggere con attenzione ciò che quella misura include.
+
+
+
+\begin{center}\begin{minipage}{\linewidth}\centering\small
+\begin{tabular}{lrr}\toprule
+ & Paese A & Paese B\\\midrule
+PIL (miliardi) & 100 & 60\\
+Abitanti (milioni) & 10 & 3\\
+PIL pro capite & 10\,000 & 20\,000\\\bottomrule
+\end{tabular}
+\captionof{table}{Due paesi immaginari, stessa unità monetaria.}
+\end{minipage}\end{center}
+
+
+\attivita
+\begin{enumerate}
+
+\item Che cosa misura il PIL e che cosa non misura?
+
+\item Perché nell’esempio del pane non dobbiamo sommare 20, 30 e 50?
+
+\item Quale paese immaginario ha il PIL totale maggiore? Quale ha il PIL pro capite maggiore?
+
+\item Nell’esempio delle sedie aumenta la quantità prodotta?
+
+\item Indica due aspetti del benessere che richiedono informazioni ulteriori.
+
+\end{enumerate}
+\lessico
+
+\voce{PIL}{valore della produzione finale interna in un periodo}{الناتج المحلي الإجمالي}
+
+\voce{valore aggiunto}{valore prodotto meno acquisti intermedi}{قيمة مضافة}
+
+\voce{pro capite}{per abitante}{للفرد}
+
+\voce{media}{totale diviso per il numero di osservazioni}{متوسط}
+
+\voce{nominale}{misurato ai prezzi del periodo}{اسمي}
+
+\voce{reale}{corretto per la variazione dei prezzi}{حقيقي}
+
+\voce{benessere}{condizione di vita delle persone}{رفاه}
+
+\lingua
+Riscrivi con parole tue «una media non descrive la distribuzione». Poi completa: «Il valore aumenta perché…, ma la quantità…».
+\scrittura
+In 100--120 parole spiega a un compagno perché «il paese con il PIL più alto è quello dove tutti vivono meglio» non è una conclusione sufficiente.
+
+\end{lettura}
+% FINE LETTURA 04
+
+% =================================================================
+% INIZIO LETTURA 05 - circa 935 parole di testo
+
+\begin{lettura}{1}{Beni pubblici e ruolo dello Stato}
+
+
+\subsection*{Un servizio per molte persone}
+Pensiamo a una strada illuminata. La luce permette a molte persone di camminare con maggiore sicurezza. Chi passa per primo non porta via tutta la luce: anche chi arriva dopo può utilizzarla. Inoltre, è difficile illuminare soltanto il percorso delle persone che hanno pagato. Queste caratteristiche ci aiutano a comprendere il significato economico di \textbf{bene pubblico}.
+
+Un bene pubblico puro presenta due proprietà: non rivalità e non escludibilità. La \textbf{non rivalità} significa che l'utilizzo da parte di una persona non riduce la possibilità di utilizzo da parte delle altre. La \textbf{non escludibilità} significa che impedire l'accesso a chi non paga è impossibile o molto difficile e costoso. Le due caratteristiche devono essere considerate insieme.
+
+\subsection*{Pubblico non significa soltanto statale}
+Un panino è rivale: se lo mangio io, un'altra persona non può mangiare lo stesso panino. È anche escludibile: il venditore può consegnarlo soltanto a chi paga. Una trasmissione a pagamento può invece essere non rivale, entro certi limiti tecnici, ma escludibile attraverso un abbonamento. Questi esempi mostrano che rivalità ed escludibilità sono proprietà differenti.
+
+Un servizio offerto dallo Stato non è necessariamente un bene pubblico puro. Una visita medica richiede il tempo di un medico. Se il medico visita una persona, nello stesso momento non può visitare molte altre persone. Anche i posti in una classe sono limitati. Sanità e istruzione possono essere finanziate pubblicamente per molte ragioni, ma non diventano per questo beni perfettamente non rivali.
+
+Le caratteristiche possono inoltre cambiare con le condizioni. Una strada poco frequentata permette a molti veicoli di passare senza ostacolarsi. Se il traffico aumenta molto, ogni automobile rallenta le altre. Compare la \textbf{congestione}. Per classificare correttamente un bene dobbiamo osservare la situazione concreta, non soltanto il suo nome.
+
+\subsection*{Chi paga per qualcosa che tutti possono usare?}
+Immaginiamo un quartiere che voglia finanziare l'illuminazione di una piazza. Ogni famiglia beneficia della luce, ma una famiglia può pensare: «Non contribuisco; forse pagheranno gli altri». Se molte famiglie ragionano così, i contributi non bastano. La piazza rimane buia anche se molte persone vorrebbero averla illuminata.
+
+Questo comportamento viene chiamato problema del \textbf{free rider}, cioè di chi beneficia di qualcosa senza contribuire al suo finanziamento. Non significa che ogni persona si comporti sempre in questo modo. Significa che la non escludibilità può rendere difficile raccogliere contributi volontari sufficienti. Le associazioni e la collaborazione possono aiutare, ma non eliminano automaticamente il problema.
+
+Quando le risorse destinate a un'attività sono inferiori a quelle utili per la collettività, parliamo di \textbf{sottoinvestimento}. Un'impresa privata può avere difficoltà a vendere un bene se non può escludere chi non paga. Per questo lo Stato e gli enti locali possono organizzare il finanziamento e la produzione di alcuni beni pubblici. Il finanziamento pubblico può anche accompagnarsi alla produzione affidata a imprese esterne.
+
+\subsection*{Entrate pubbliche e spesa pubblica}
+Per finanziare servizi e attività lo Stato raccoglie entrate. Una parte importante deriva dalle \textbf{imposte}, pagamenti obbligatori stabiliti dalle norme. Nel linguaggio quotidiano la parola «tasse» viene spesso usata per tutti questi pagamenti. Nel lessico tributario italiano, invece, una tassa è collegata a uno specifico servizio o atto pubblico, mentre un'imposta non è il prezzo diretto di un servizio individuale. Le denominazioni giuridiche possono variare tra paesi.
+
+La \textbf{spesa pubblica} comprende impieghi diversi delle risorse: stipendi, acquisti, infrastrutture e trasferimenti. Una strada richiede materiali e lavoro oggi, ma può offrire servizi per molti anni. Un sostegno a una famiglia è invece un trasferimento: permette alla famiglia di disporre di risorse senza vendere direttamente un nuovo bene allo Stato.
+
+Le risorse pubbliche sono limitate. Finanziare un progetto può ridurre le risorse disponibili per un altro. Per questo un bilancio pubblico deve considerare costi, obiettivi e persone coinvolte. Non basta dire che un servizio è utile. Bisogna chiedere quanto costa, come viene finanziato e se raggiunge le persone per cui è stato previsto.
+
+\subsection*{Effetti su persone esterne allo scambio}
+Un'officina e un cliente possono accordarsi sul prezzo di una riparazione. Se l'officina produce molto rumore, anche i vicini subiscono una conseguenza. I vicini, però, non partecipano allo scambio. Un effetto su persone esterne alla transazione, non pienamente considerato nel prezzo, si chiama \textbf{esternalità}.
+
+L'esternalità può essere negativa, come il rumore, oppure positiva. La cura di un giardino, per esempio, può rendere più piacevole anche la strada vicina. La parola «esterna» non significa che l'effetto avviene fuori dal paese. Significa che coinvolge qualcuno esterno alla decisione o allo scambio considerato.
+
+Pensiamo al traffico in una grande città come il Cairo. Un viaggio offre un beneficio a chi si sposta. I gas di scarico e il rumore possono però influenzare anche altre persone. Per discutere il problema dobbiamo distinguere il beneficio individuale dai costi collettivi. Torneremo su questa distinzione nella lettura sull'ambiente.
+
+\subsection*{Dalla domanda al progetto}
+Torniamo alla piazza iniziale. Le famiglie possono discutere non soltanto se desiderano la luce, ma anche quante lampade servono e quali orari sono utili. Un progetto richiede una scelta tecnica e una scelta di finanziamento. Dopo l'installazione occorre pagare energia e manutenzione. Il costo iniziale non esaurisce quindi l'impegno. Se una lampada si rompe, qualcuno deve essere responsabile della riparazione. Questo esempio mostra che garantire un servizio significa organizzare un'attività nel tempo: raccogliere risorse, utilizzare strumenti, controllare il funzionamento e intervenire quando serve.
+
+\subsection*{Osservare gli strumenti}
+Le autorità possono utilizzare regole, controlli, imposte, incentivi o servizi alternativi. Una regola può limitare un'attività inquinante; un trasporto pubblico affidabile può offrire un'alternativa. Strumenti diversi agiscono in modi diversi. La loro efficacia dipende anche dalla possibilità di applicarli e dalle condizioni delle persone.
+
+Studiare il ruolo dello Stato significa quindi riconoscere problemi, strumenti e risultati. Dobbiamo distinguere l'obiettivo di una politica dagli effetti che produce realmente. Possiamo comprendere perché un intervento viene proposto e, allo stesso tempo, chiedere quali informazioni servano per valutarlo. Questa distinzione sarà utile anche quando leggeremo delle riforme economiche egiziane.
+
+
+\attivita
+\begin{enumerate}
+
+\item Quali due proprietà definiscono un bene pubblico puro?
+
+\item Perché una visita medica non è un bene pubblico puro?
+
+\item Ricostruisci il problema del quartiere che deve finanziare la luce.
+
+\item Che cosa significa esternalità?
+
+\item Distingui un obiettivo pubblico da uno strumento per raggiungerlo.
+
+\end{enumerate}
+\lessico
+
+\voce{rivalità}{l’uso di uno limita l’uso degli altri}{تزاحم في الاستهلاك}
+
+\voce{escludibilità}{possibilità di impedire l’accesso}{إمكانية الاستبعاد}
+
+\voce{congestione}{eccesso di utilizzatori che si ostacolano}{ازدحام}
+
+\voce{imposta}{pagamento obbligatorio non legato a un singolo servizio}{ضريبة}
+
+\voce{spesa pubblica}{risorse spese dalle amministrazioni pubbliche}{إنفاق عام}
+
+\voce{esternalità}{effetto su soggetti esterni allo scambio}{أثر خارجي}
+
+\voce{incentivo}{strumento che incoraggia un comportamento}{حافز}
+
+\lingua
+Trova le frasi costruite con «se». Riscrivine due cambiando l’esempio ma conservando la relazione di causa e conseguenza.
+\scrittura
+Scrivi 120--150 parole su un servizio del tuo quartiere: chi lo usa, chi lo finanzia, quali risorse richiede? Evita di chiamarlo bene pubblico senza verificare le due proprietà.
+
+\end{lettura}
+% FINE LETTURA 05
+
+\clearpage\phantomsection\addcontentsline{toc}{part}{Secondo trimestre --- Moneta, scelte economiche e caso egiziano}
+
+% =================================================================
+% INIZIO LETTURA 06 - circa 510 parole di testo
+
+\begin{lettura}{1}{La moneta, le banche e il credito}
+
+
+\subsection*{La moneta facilita gli scambi}
+Immaginiamo un falegname che voglia comprare del pane. Senza moneta dovrebbe offrire in cambio una sedia e trovare un panettiere interessato proprio a quella sedia. Lo scambio sarebbe difficile: le due persone dovrebbero desiderare, nello stesso momento, ciò che l'altra offre.
+
+La moneta evita questo problema perché è accettata da molte persone come \textbf{mezzo di scambio}. Il falegname può vendere la sedia a un cliente, ricevere moneta e usare una parte della somma per comprare il pane. Il panettiere accetta il pagamento perché sa che potrà utilizzare quella moneta per altri acquisti. La moneta collega quindi scambi diversi, tra persone diverse e in momenti diversi.
+
+La moneta può essere anche una \textbf{riserva di valore}. Chi la riceve non deve spenderla immediatamente: può conservarla per un acquisto futuro. Questa funzione non è perfetta. Se nel tempo i prezzi aumentano, la stessa somma permette di comprare meno beni. Approfondiremo questo problema nella lettura sull'inflazione.
+
+\subsection*{Risparmiatori e investitori}
+Non tutte le persone utilizzano il proprio denaro nello stesso momento. Un \textbf{risparmiatore} rinuncia a spendere oggi una parte del proprio reddito e la conserva per il futuro. Può anche decidere di mettere questa somma a disposizione di altri, con l'obiettivo di ricevere un interesse. In questo caso accetta un rischio: il denaro potrebbe non essere restituito completamente o nei tempi previsti.
+
+Un \textbf{investitore}, per esempio un'impresa, può invece avere bisogno di denaro oggi. Vuole acquistare una macchina, aprire un negozio o aumentare la produzione, ma non possiede ancora tutte le risorse necessarie. Può chiedere un prestito e accettare di restituire in futuro la somma ricevuta, aggiungendo un interesse. L'interesse rappresenta quindi un guadagno per chi mette a disposizione il risparmio e un costo per chi riceve il finanziamento.
+
+\subsection*{La banca come intermediario}
+Risparmiatori e investitori spesso non si conoscono. Inoltre, un singolo risparmiatore può avere una somma piccola, mentre un'impresa può aver bisogno di un finanziamento più grande. La banca svolge una funzione di \textbf{intermediazione}: raccoglie risorse dai risparmiatori e concede prestiti a famiglie e imprese.
+
+La banca deve valutare il rischio che un prestito non venga restituito. Anche il risparmiatore, quando sceglie come utilizzare il proprio denaro, deve considerare il rapporto tra possibile guadagno e rischio. L'intermediazione non elimina l'incertezza, ma permette di organizzare il passaggio di risorse da chi vuole conservarle e farle fruttare a chi vuole utilizzarle per un progetto.
+
+Pensiamo a un panificio che abbia bisogno di 100.000 LE per acquistare un nuovo forno. Molti risparmiatori depositano in banca somme più piccole. La banca utilizza le risorse disponibili per finanziare il panificio, dopo aver esaminato la sua richiesta. Il panificio paga un interesse sul prestito; la banca può riconoscere un interesse ai risparmiatori. Una parte della differenza serve alla banca per sostenere i propri costi e affrontare i rischi dell'attività.
+
+Il percorso può essere riassunto così: alcune persone risparmiano, la banca raccoglie e organizza le risorse, altre persone le usano per investire. Il denaro si sposta verso un progetto che potrebbe produrre nuovi beni, servizi e redditi. Il risultato, però, non è garantito: proprio per questo il rischio e l'interesse saranno il centro della prossima lettura.
+
+
+
+
+
+\attivita
+\begin{enumerate}
+
+\item Perché la moneta facilita lo scambio tra il falegname e il panettiere?
+
+\item Che cosa significa riserva di valore?
+
+\item Quali esigenze differenti hanno il risparmiatore e l’investitore?
+
+\item Quale funzione svolge la banca tra questi due soggetti?
+
+\item Chi paga l’interesse e chi può riceverlo?
+
+\item Perché l’intermediazione non elimina il rischio?
+
+\end{enumerate}
+\lessico
+
+\voce{moneta}{mezzo accettato per pagare e conservare valore}{نقود}
+
+\voce{risparmiatore}{chi conserva una parte del proprio reddito}{مدّخر}
+
+\voce{investitore}{chi impiega risorse in un progetto}{مستثمر}
+
+\voce{intermediazione}{collegamento tra soggetti con esigenze diverse}{وساطة}
+
+\voce{prestito}{somma ricevuta che deve essere restituita}{قرض}
+
+\voce{interesse}{somma pagata o ricevuta per un finanziamento}{فائدة}
+
+\voce{rischio}{possibilità che il risultato sia diverso da quello previsto}{مخاطرة}
+
+\lingua
+Completa quattro frasi usando correttamente «oggi», «in futuro», «perché» e «quindi». Poi costruisci la famiglia di parole: risparmiare, risparmio, risparmiatore.
+\scrittura
+Riassumi il caso del panificio in 100--130 parole. Usa le parole risparmiatore, banca, investitore, prestito, interesse e rischio.
+
+\end{lettura}
+% FINE LETTURA 06
+
+% =================================================================
+% INIZIO LETTURA 07 - circa 545 parole di testo
+
+\begin{lettura}{1}{Interesse, rischio e rendimento}
+
+
+\subsection*{Un titolo annuale senza cedola}
+Un'impresa ha bisogno di denaro e decide di emettere un \textbf{titolo} della durata di un anno. Un risparmiatore acquista il titolo pagando 1.000 LE. In questo modo presta 1.000 LE all'impresa. Dopo un anno l'impresa si impegna a restituire 1.050 LE.
+
+Il titolo è \textbf{senza cedola}: durante l'anno non sono previsti pagamenti intermedi. L'intera somma viene pagata alla scadenza. Le 1.000 LE versate all'inizio sono il \textbf{capitale iniziale}. Le 50 LE aggiuntive sono l'\textbf{interesse}. La somma finale di 1.050 LE è il \textbf{montante}.
+
+Il \textbf{tasso di interesse} misura l'interesse in percentuale rispetto al capitale iniziale. Nell'esempio:
+\[
+\begin{aligned}
+I&=C\cdot i=1.000\cdot 0{,}05=50\text{ LE},\\
+M&=C+I=1.050\text{ LE}.
+\end{aligned}
+\]
+Il capitale è indicato con $C$, l'interesse con $I$, il tasso con $i$ e il montante con $M$. Dire che il tasso è del 5\% annuo significa che, per ogni 100 LE di capitale, sono previste 5 LE di interesse dopo un anno.
+
+Facciamo un secondo esempio. Un titolo annuale ha un capitale iniziale di 2.000 LE e un tasso del 4\%. L'interesse è $2.000\cdot 0{,}04=80$ LE; il montante è quindi 2.080 LE. Se invece conosciamo un capitale di 5.000 LE e un montante di 5.300 LE, l'interesse è 300 LE e il tasso è $300/5.000=0{,}06$, cioè 6\%.
+
+\subsection*{Rischio e interesse}
+Il pagamento finale è previsto dal titolo, ma non è sempre certo. L'impresa potrebbe avere difficoltà e non riuscire a restituire tutto il denaro. Questa possibilità rappresenta un \textbf{rischio} per chi acquista il titolo.
+
+In generale, un investitore accetta un rischio maggiore soltanto se può ottenere un interesse maggiore. Per esempio, tra due titoli annuali simili, uno considerato più sicuro potrebbe offrire il 4\% e uno considerato più rischioso il 7\%. Il maggiore interesse è una compensazione per il maggiore rischio. Non è però una garanzia di guadagno: proprio il titolo che promette di più potrebbe non essere rimborsato completamente.
+
+\subsection*{Lo spread: misurare una differenza}
+Lo \textbf{spread} è la differenza tra due tassi o rendimenti confrontabili. Se il titolo A offre il 7\% e il titolo B offre il 4\%, lo spread è $7\%-4\%=3$ punti percentuali. Si può anche dire che lo spread è di 300 punti base, perché un punto percentuale corrisponde a 100 punti base.
+
+Un altro esempio: tra un tasso dell'8,5\% e uno del 6\% lo spread è di 2,5 punti percentuali, cioè 250 punti base. Uno spread maggiore può indicare che il mercato percepisce un rischio maggiore, ma misura soltanto una differenza: non spiega da solo tutte le sue cause.
+
+\subsection*{Titolo e azione: due posizioni diverse}
+Chi compra un titolo presta denaro ed è un creditore. Chi compra un'\textbf{azione}, invece, diventa proprietario di una piccola parte dell'impresa e partecipa ai suoi risultati. L'azionista può ricevere dividendi, ma questi dipendono dalle decisioni e dai risultati dell'impresa; non sono un interesse stabilito come nel nostro esempio.
+
+La differenza è importante anche quando un'impresa non riesce a pagare tutti. In generale, i creditori hanno la priorità nel rimborso rispetto agli azionisti. Prima vengono soddisfatti i crediti secondo l'ordine stabilito dalle regole; gli azionisti ricevono soltanto ciò che eventualmente rimane. Per questo un'azione può offrire un guadagno elevato quando l'impresa va bene, ma sopporta per ultima le perdite quando le risorse non bastano.
+
+
+
+
+
+\attivita
+\begin{enumerate}
+
+\item Nel primo esempio, quali sono capitale iniziale, interesse, tasso e montante?
+
+\item Calcola interesse e montante di 3.000 LE al 5\% per un anno.
+
+\item Perché un titolo con interesse maggiore può essere più rischioso?
+
+\item Calcola lo spread tra 9\% e 6,5\% in punti percentuali e punti base.
+
+\item Qual è la differenza principale tra un titolo e un’azione?
+
+\item Chi ha generalmente priorità nel rimborso: il creditore o l’azionista?
+
+\end{enumerate}
+\lessico
+
+\voce{titolo}{documento finanziario che rappresenta un rapporto economico}{ورقة مالية}
+
+\voce{capitale iniziale}{somma impiegata all’inizio}{رأس المال الابتدائي}
+
+\voce{interesse}{somma aggiuntiva pagata sul capitale}{فائدة}
+
+\voce{tasso di interesse}{interesse espresso in percentuale del capitale}{سعر الفائدة}
+
+\voce{montante}{capitale iniziale più interesse}{المبلغ المتراكم}
+
+\voce{rischio}{possibilità di non ottenere il risultato previsto}{مخاطرة}
+
+\voce{spread}{differenza tra due tassi o rendimenti}{فارق}
+
+\voce{azione}{quota di proprietà di un’impresa}{سهم}
+
+\voce{priorità}{diritto di essere soddisfatto prima di altri}{أولوية}
+
+\lingua
+Trova nel testo le espressioni «dopo un anno», «durante l’anno», «alla scadenza» e «all’inizio». Usale per descrivere in ordine il primo esempio.
+\scrittura
+Spiega in 100--130 parole il primo titolo e il rapporto tra rischio e interesse. Concludi distinguendo il creditore dall’azionista.
+
+\end{lettura}
+% FINE LETTURA 07
+
+% =================================================================
+% INIZIO LETTURA 08 - circa 1239 parole di testo
+
+\begin{lettura}{1}{Prestiti, religione e società}
+
+
+\subsection*{Una domanda economica e morale}
+Un prestito mette in relazione persone che hanno disponibilità e bisogni differenti. Una persona può avere denaro da utilizzare più tardi; un'altra può averne bisogno subito. La relazione comprende un calcolo economico, ma anche domande morali: quali condizioni sono accettabili? Come si protegge chi si trova in difficoltà? Quali responsabilità assume chi riceve un prestito?
+
+Le religioni hanno affrontato queste domande in epoche e contesti diversi. In questa lettura consideriamo alcuni riferimenti del cristianesimo e dell'islam. Lo scopo è comprendere parole, problemi e forme di relazione economica. Per descrivere una tradizione dobbiamo distinguere i testi, le interpretazioni e le pratiche delle persone. Non possiamo supporre che tutti i credenti adottino comportamenti identici.
+
+Anche una stessa parola può cambiare significato tra epoche e discipline. «Interesse» indica una remunerazione in un contratto economico. «Usura» può avere significati storici, morali e giuridici differenti. Prima di confrontare due testi dobbiamo quindi capire come ciascun testo utilizza questi termini e a quale situazione si riferisce.
+
+\subsection*{Aiutare e finanziare}
+Immaginiamo due situazioni. Nella prima, una famiglia ha bisogno di cibo dopo una perdita improvvisa di reddito. Nella seconda, un imprenditore vuole acquistare una macchina per ampliare la produzione. Entrambi chiedono risorse, ma i bisogni e le prospettive sono diversi. Nel primo caso è centrale l'assistenza immediata; nel secondo si valuta anche un'attività capace di generare entrate future.
+
+Una \textbf{donazione} trasferisce risorse senza prevedere la restituzione. Un prestito prevede invece un rimborso. Un investimento con partecipazione ai risultati può prevedere una divisione degli utili e delle perdite. Non dobbiamo chiamare tutte queste operazioni «aiuto» senza specificare le condizioni. La stessa somma iniziale può creare relazioni e obblighi molto differenti.
+
+Anche chi desidera aiutare deve comprendere la situazione. Un debito impossibile da rimborsare può aggravare le difficoltà. D'altra parte, un finanziamento adatto a un progetto può rendere possibile un'attività. Perciò la discussione morale non riguarda soltanto l'intenzione del finanziatore, ma anche gli effetti e la chiarezza degli impegni.
+
+\subsection*{Alcuni riferimenti cristiani}
+Nei testi cristiani troviamo richiami alla generosità e alla responsabilità verso chi è in difficoltà. Nel Vangelo secondo Luca, al capitolo sei, il discorso sull'amore verso gli altri comprende anche il prestare senza fondare ogni rapporto sull'attesa di ricevere qualcosa in cambio. È un insegnamento morale inserito in un discorso più ampio; non è un moderno contratto bancario.\fonte{luca}
+
+Per il cattolicesimo, il Catechismo condanna pratiche usurarie che portano altre persone alla fame e alla morte. Questo riferimento mette al centro le conseguenze umane di un rapporto economico. Non permette, da solo, di ricostruire tutte le posizioni cristiane sul credito in ogni epoca.\fonte{catechismo}
+
+Il cristianesimo comprende tradizioni cattoliche, ortodosse e protestanti, con storie e istituzioni differenti. Un testo cattolico non può essere presentato automaticamente come documento ufficiale di tutte le Chiese. Nel lavoro di ricerca dovremo indicare chi parla, a quale comunità si riferisce e quando è stato scritto il documento.
+
+\subsection*{Alcuni riferimenti islamici}
+Nel Corano il commercio viene distinto dal \textbf{ribā}; la sura due, versetto 275, è uno dei riferimenti centrali di questa distinzione. Nei sistemi contemporanei di finanza islamica il divieto del ribā orienta la costruzione dei contratti. La spiegazione precisa del termine richiede attenzione alla tradizione interpretativa e non può essere ridotta semplicemente all'idea di un tasso molto alto.\fonte{corano}
+
+La finanza islamica utilizza forme contrattuali collegate, tra l'altro, a vendite, locazioni e partecipazioni economiche. Nel caso della \emph{murābaḥa}, in forma semplificata, un intermediario acquista un bene e lo rivende al cliente con un margine dichiarato, eventualmente con pagamento differito. Una \emph{ijāra} riguarda invece l'utilizzo di un bene attraverso una locazione. Esistono inoltre accordi di partecipazione ai risultati. Le regole concrete dipendono dal contratto.\fonte{islam}
+
+L'assenza di un prestito convenzionale a interesse non significa che ogni finanziamento sia gratuito o privo di rischio. Possono esistere margini, canoni e obblighi. Per capire l'operazione dobbiamo osservare chi possiede il bene, chi lo utilizza, quali pagamenti sono previsti e chi sopporta i rischi.
+
+\subsection*{Confrontare operazioni concrete}
+Immaginiamo che un piccolo laboratorio abbia bisogno di un forno. Una possibilità è ricevere denaro in prestito, comprare il forno e rimborsare il finanziatore. Un'altra possibilità è acquistare il forno con pagamento differito da un soggetto che lo ha prima comprato. Una terza è utilizzare un forno in locazione. Una quarta è accogliere un socio che partecipa al progetto.
+
+Queste descrizioni sono esempi generali per distinguere rapporti economici; non certificano la conformità religiosa di un contratto. In ciascun caso dobbiamo leggere proprietà, prezzo, durata e responsabilità. Se il forno si rompe, chi deve intervenire? Se il laboratorio non vende abbastanza, quali pagamenti restano dovuti? Le risposte dipendono dagli accordi.
+
+Possiamo confrontare due operazioni senza affermare che una sia sempre migliore dell'altra. Il costo totale è importante, ma non è l'unico elemento. Contano anche la distribuzione del rischio, le garanzie e la possibilità di comprendere le condizioni. Un confronto serio descrive prima gli elementi e solo dopo formula un'eventuale valutazione motivata.
+
+\subsection*{Testi, interpretazioni e comportamenti}
+Una norma religiosa, una legge dello Stato e il comportamento di una persona sono tre oggetti diversi. Una persona può conoscere una norma e applicarla in modi differenti, oppure non applicarla. Un'istituzione può dichiarare di seguire principi che richiedono controlli specifici. Perciò una singola esperienza personale non descrive un'intera religione.
+
+Anche le condizioni storiche cambiano. Prestare a un agricoltore dopo un raccolto perduto non è identico a finanziare un'impresa attraverso un sistema bancario contemporaneo. Cambiano le informazioni disponibili, le tutele, i rischi e le istituzioni. Per interpretare una posizione dobbiamo ricostruire almeno una parte del contesto in cui è stata formulata.
+
+Nel leggere una fonte è utile distinguere descrizione e prescrizione. «Questa comunità utilizza un certo contratto» descrive una pratica. «Questo contratto dovrebbe essere utilizzato» esprime una prescrizione. Confondere le due frasi può farci attribuire a un autore un'affermazione che non ha fatto.
+
+\subsection*{Un dialogo da preparare}
+Immaginiamo due studenti che discutano il caso del forno. Il primo dice: «In entrambi i contratti il laboratorio paga una somma». Il secondo risponde: «È vero, ma dobbiamo capire che cosa remunera quella somma e chi possiede il bene». La conversazione prosegue confrontando durata, proprietà e responsabilità. Nessuno dei due deve parlare a nome di tutti i credenti di una religione.
+
+Questo modo di discutere permette di mantenere vicine precisione e rispetto. Se non sappiamo come una determinata autorità religiosa valuta il contratto, possiamo dichiararlo e cercare una fonte pertinente. Non dobbiamo riempire il vuoto con una generalizzazione. Il rispetto non consiste nell'evitare tutte le differenze, ma nel descriverle con parole corrette e riferimenti identificabili.
+
+Nella presentazione finale distinguiamo quindi ciò che abbiamo letto, ciò che abbiamo compreso attraverso un esempio e ciò che resta da approfondire. Anche riconoscere una domanda aperta è un risultato di una buona lettura.
+
+\subsection*{Preparare una ricerca rispettosa}
+Una buona ricerca parte da una domanda precisa. Possiamo chiedere come una specifica istituzione spiega il prestito, quali testi cita e quali strumenti propone. Registriamo il titolo della fonte, l'autore o l'istituzione, la data e il collegamento. Se utilizziamo una traduzione, indichiamo quale versione abbiamo letto.
+
+Le citazioni devono essere brevi e accompagnate da una spiegazione con parole nostre. Copiare un paragrafo difficile non dimostra di averlo compreso. È più utile spiegare un concetto attraverso un esempio e riconoscere ciò che la fonte non permette di concludere. Quando due fonti differiscono, possiamo descrivere la differenza senza trasformarla in uno scontro tra persone.
+
+Nel lavoro di gruppo ciascuno deve comprendere l'intero percorso, anche se presenta soltanto una sezione. Le domande dei compagni possono riguardare il significato di «rimborso», «margine», «donazione» o «responsabilità». Il risultato atteso è una lettura più precisa del rapporto tra economia e valori, insieme a un uso più consapevole del linguaggio.
+
+
+\attivita
+\begin{enumerate}
+
+\item Distingui donazione, prestito e partecipazione ai risultati.
+
+\item Perché bisogna specificare la tradizione cristiana a cui appartiene una fonte?
+
+\item Perché finanziamento senza interesse convenzionale non significa necessariamente finanziamento gratuito?
+
+\item Quali domande permettono di confrontare i quattro casi del forno?
+
+\item Distingui descrizione e prescrizione con due esempi.
+
+\end{enumerate}
+\lessico
+
+\voce{donazione}{trasferimento senza restituzione prevista}{تبرع}
+
+\voce{rimborso}{restituzione della somma dovuta}{سداد}
+
+\voce{margine}{differenza aggiunta al costo di acquisto}{هامش}
+
+\voce{locazione}{uso di un bene in cambio di un canone}{إيجار}
+
+\voce{interpretazione}{spiegazione del significato di un testo}{تفسير}
+
+\voce{responsabilità}{obbligo di rispondere delle proprie azioni}{مسؤولية}
+
+\voce{fonte}{documento da cui ricaviamo un’informazione}{مصدر}
+
+\lingua
+Riscrivi tre affermazioni generiche iniziando con «Secondo questa fonte…», «In questo contratto…», «In questa tradizione…». Indica perché le nuove frasi sono più precise.
+\scrittura
+In gruppo preparate 6--8 slide: una domanda iniziale, due fonti identificate, un esempio economico e una conclusione descrittiva. Presentazione di 5--7 minuti. Tutti devono poter spiegare le parole principali.
+
+\end{lettura}
+% FINE LETTURA 08
+
+% =================================================================
+% INIZIO LETTURA 09 - circa 1315 parole di testo
+
+\begin{lettura}{1}{Capitalismo, liberismo e intervento dello Stato}
+
+
+\subsection*{Tre domande per organizzare la produzione}
+Ogni società deve affrontare alcune domande economiche. Quali beni e servizi produrre? Come produrli? A chi saranno destinati? Le risposte coinvolgono risorse, tecnologie, proprietà e regole. Una scelta individuale, come aprire un negozio, avviene sempre dentro un'organizzazione più ampia. Esistono contratti, moneta, infrastrutture e istituzioni che rendono possibile l'attività.
+
+Un \textbf{sistema economico} è un insieme di relazioni e istituzioni attraverso cui una società organizza produzione, distribuzione e consumo. Non coincide soltanto con le decisioni del governo. Comprende anche le famiglie, le imprese e i rapporti tra chi lavora, chi possiede risorse e chi acquista prodotti. Per descriverlo dobbiamo osservare sia le regole sia il loro funzionamento concreto.
+
+Nella realtà i sistemi cambiano nel tempo e combinano elementi diversi. I concetti servono a riconoscere caratteristiche, non a collocare ogni paese in una scatola immutabile. Un paese può avere molte imprese private e un importante sistema pubblico di istruzione. Un altro può mantenere imprese pubbliche in alcuni settori e favorire investimenti privati in altri.
+
+\subsection*{Che cosa significa capitalismo}
+Con \textbf{capitalismo} indichiamo un'organizzazione economica nella quale la proprietà privata dei mezzi di produzione, il lavoro salariato e la produzione per il mercato hanno un ruolo centrale. I mezzi di produzione comprendono, per esempio, macchinari, edifici e strumenti utilizzati per produrre. Il capitale non indica qui soltanto una somma di denaro.
+
+Un imprenditore può impiegare risorse proprie o raccolte da altri per avviare un'attività. Acquista strumenti, organizza il lavoro e vende prodotti. Se i ricavi superano i costi, realizza un \textbf{profitto}; se sono inferiori, subisce una perdita. Il profitto può essere distribuito oppure reinvestito. Il risultato dipende dalle vendite, dai costi e dalle condizioni in cui opera l'impresa.
+
+La proprietà privata non implica che ogni persona possieda un'impresa. Molte persone offrono lavoro in cambio di una remunerazione. I rapporti tra proprietari e lavoratori sono regolati da contratti e norme. Anche dentro economie capitalistiche possono esistere cooperative e imprese pubbliche. La presenza di forme diverse non elimina l'utilità del concetto, ma richiede di usarlo con precisione.
+
+\subsection*{Il mercato come relazione}
+Un \textbf{mercato} è l'insieme delle relazioni tra chi offre e chi domanda un bene o servizio. Non deve essere necessariamente una piazza o un edificio. Una piattaforma di vendita e una rete di contratti tra imprese possono costituire mercati. Le transazioni possono essere vicine oppure collegare paesi lontani.
+
+La \textbf{domanda} indica le quantità che gli acquirenti desiderano e possono acquistare a diverse condizioni di prezzo. L'\textbf{offerta} indica le quantità che i venditori sono disposti a vendere. Il desiderio da solo non costituisce una domanda effettiva: per acquistare servono anche risorse. Un bisogno importante può quindi non tradursi in un acquisto sul mercato.
+
+Immaginiamo un quartiere con diversi panifici. Se molti clienti cercano un certo pane, alcuni produttori possono aumentare la produzione. Se un panificio offre un prodotto poco apprezzato, può cambiare ricetta o prezzo. I prezzi e le vendite trasmettono informazioni, ma tali informazioni non descrivono automaticamente tutti i bisogni sociali o tutti gli effetti ambientali.
+
+\subsection*{Concorrenza e potere di mercato}
+La \textbf{concorrenza} esiste quando più soggetti cercano di attirare gli stessi clienti o di ottenere le stesse opportunità. Può incoraggiare le imprese a migliorare qualità, organizzazione e prezzi. Perché questa pressione funzioni, però, i clienti devono poter scegliere e le imprese devono poter entrare nel mercato a condizioni effettivamente praticabili.
+
+Se un solo fornitore controlla un servizio difficile da sostituire, possiede un forte \textbf{potere di mercato}. Può avere maggiore capacità di imporre condizioni. Anche informazioni incomplete e costi elevati di cambiamento possono limitare la scelta. Dire che esiste un prezzo non basta quindi per concludere che ci sia una concorrenza intensa.
+
+Pensiamo a un cliente che non riesce a confrontare due contratti perché i costi sono scritti in modo poco chiaro. Formalmente può scegliere, ma la sua scelta è ostacolata dalle informazioni. Regole sulla trasparenza possono aiutare il mercato a funzionare. L'intervento pubblico e il mercato non sono sempre due attività che si escludono a vicenda.
+
+\subsection*{Che cosa significa liberismo}
+Il \textbf{liberismo} è un orientamento che attribuisce un ruolo importante alla libertà di iniziativa, agli scambi e ai meccanismi di mercato, sostenendo un intervento economico pubblico limitato. È quindi una prospettiva sul modo in cui l'economia dovrebbe essere organizzata. Il capitalismo descrive invece caratteristiche di un sistema economico. Le due parole sono collegate, ma non sono sinonimi.
+
+Esistono diverse posizioni favorevoli al mercato. Alcune attribuiscono allo Stato soprattutto la tutela della proprietà e dei contratti. Altre riconoscono anche compiti più ampi, per esempio nella concorrenza o nei beni pubblici. Non è corretto attribuire a tutte queste posizioni l'idea che ogni regola debba scomparire.
+
+La parola «liberismo» va inoltre distinta da «liberalismo», termine più ampio che riguarda anche diritti, libertà e limiti del potere politico. Le tradizioni storiche sono complesse. Per il nostro percorso è sufficiente comprendere la distinzione di base ed evitare di usare le parole come etichette generiche per approvare o criticare qualcuno.
+
+\subsection*{Le ragioni dell'intervento pubblico}
+Abbiamo già incontrato beni pubblici ed esternalità. In questi casi, le decisioni individuali possono non considerare tutti i benefici e tutti i costi collettivi. Le autorità possono intervenire attraverso finanziamenti, regole, imposte e servizi. Possono anche cercare di rendere accessibili istruzione e sanità o di sostenere persone con redditi insufficienti.
+
+Un'altra funzione riguarda l'andamento complessivo dell'economia. Quando la spesa diminuisce e molte imprese riducono la produzione, può aumentare la disoccupazione. Nella prospettiva associata a Keynes, la domanda complessiva può essere insufficiente a sostenere l'occupazione e l'intervento pubblico può contribuire a stabilizzare l'attività. Questo non equivale a proporre sempre la proprietà statale di tutte le imprese.
+
+Ogni intervento richiede risorse e capacità amministrativa. Un obiettivo utile non garantisce un risultato utile. Possono esistere ritardi, sprechi, informazioni incomplete o incentivi mal progettati. Anche per lo Stato dobbiamo quindi distinguere intenzioni, strumenti e risultati, come abbiamo imparato nella lettura sui beni pubblici.
+
+\subsection*{Economia mista e riforme}
+Parliamo di \textbf{economia mista} quando iniziativa privata e intervento pubblico convivono in forme significative. Lo Stato può fornire servizi, regolare attività e possedere alcune imprese, mentre altre decisioni sono affidate a soggetti privati. La combinazione può variare tra settori e nel tempo.
+
+Una \textbf{nazionalizzazione} trasferisce un'attività alla proprietà dello Stato. Una \textbf{privatizzazione} trasferisce proprietà pubblica a soggetti privati. Una \textbf{liberalizzazione} modifica regole per consentire maggiore accesso o concorrenza in un'attività. Sono operazioni differenti: aprire un settore a nuovi concorrenti non significa necessariamente vendere un'impresa pubblica.
+
+Consideriamo un servizio di trasporto immaginario. Le autorità possono gestirlo direttamente, affidarlo a un'impresa con un contratto oppure consentire l'ingresso di più operatori. In ciascun caso restano domande su prezzi, qualità, sicurezza e accesso. La scelta della proprietà è importante, ma non risponde da sola a tutte queste domande.
+
+\subsection*{Una scelta non riguarda una sola dimensione}
+Immaginiamo che un comune voglia affidare la raccolta dei rifiuti a un operatore. La prima domanda riguarda chi svolge il servizio. La seconda riguarda chi paga. La terza riguarda chi controlla qualità e continuità. Le tre risposte possono coinvolgere soggetti diversi: un'impresa può svolgere il lavoro mentre il comune finanzia e verifica.
+
+Dire soltanto «servizio privato» oppure «servizio pubblico» potrebbe quindi lasciare informazioni importanti nascoste. Per essere precisi possiamo scrivere: «Il servizio è finanziato dal comune e realizzato da un'impresa sulla base di un contratto». La frase è più lunga, ma chiarisce i rapporti.
+
+Questo esercizio di descrizione è importante prima di un confronto tra prospettive. Se i termini cambiano significato durante il discorso, sembra che due persone discutano la stessa questione mentre stanno considerando aspetti differenti. Definire proprietà, finanziamento e controllo permette di costruire un confronto comprensibile.
+
+\subsection*{Leggere una riforma}
+Per capire una riforma economica chiediamo quale problema si voleva affrontare, quale strumento è stato scelto e quali condizioni ne hanno influenzato l'applicazione. Dobbiamo anche distinguere effetti immediati e conseguenze di lungo periodo. Un cambiamento può avere risultati diversi per lavoratori, consumatori e proprietari.
+
+Nella prossima lettura applicheremo questo metodo a due fasi della storia egiziana. Non cercheremo un modello perfetto o un vincitore. Useremo i concetti per descrivere come cambia il ruolo dello Stato e come vengono incoraggiati investimenti differenti. Comprendere il linguaggio delle riforme è il primo passo per leggere un testo storico senza ridurlo a poche etichette.
+
+
+\attivita
+\begin{enumerate}
+
+\item Quali sono le tre domande iniziali?
+
+\item Distingui capitalismo e liberismo.
+
+\item Perché un bisogno non diventa sempre un acquisto?
+
+\item Quali condizioni possono limitare la concorrenza?
+
+\item Che cosa distingue liberalizzazione e privatizzazione?
+
+\item Quali domande userai per leggere una riforma?
+
+\end{enumerate}
+\lessico
+
+\voce{proprietà}{diritto di possedere e utilizzare un bene}{ملكية}
+
+\voce{profitto}{ricavi meno costi}{ربح}
+
+\voce{concorrenza}{competizione tra operatori economici}{منافسة}
+
+\voce{domanda}{quantità che gli acquirenti vogliono e possono comprare}{طلب}
+
+\voce{offerta}{quantità che i produttori sono disposti a vendere}{عرض}
+
+\voce{riforma}{cambiamento organizzato di regole o istituzioni}{إصلاح}
+
+\voce{nazionalizzazione}{passaggio di attività alla proprietà statale}{تأميم}
+
+\voce{privatizzazione}{passaggio dalla proprietà pubblica a quella privata}{خصخصة}
+
+\lingua
+Individua nel testo «può», «non necessariamente», «dipende». Riscrivi tre affermazioni assolute rendendole coerenti con le condizioni spiegate nella lettura.
+\scrittura
+In 180--220 parole confronta gestione pubblica e privata di un servizio immaginario, usando le stesse domande per entrambi i casi.
+
+\end{lettura}
+% FINE LETTURA 09
+
+% =================================================================
+% INIZIO LETTURA 10 - circa 1395 parole di testo
+
+\begin{lettura}{1}{Le riforme economiche in Egitto: Nasser e Sadat}
+
+
+\subsection*{Dai concetti a un caso storico}
+Le parole incontrate nella lettura precedente possono aiutarci a osservare la storia economica dell'Egitto. Ci concentreremo su due fasi: il rafforzamento del ruolo dello Stato durante la presidenza di Gamal Abdel Nasser e la politica di apertura economica associata ad Anwar Sadat. L'obiettivo è comprendere cambiamenti e motivazioni generali, senza formulare giudizi personali sui protagonisti.
+
+Una riforma nasce dentro condizioni storiche precise. Il governo deve considerare risorse, bisogni, rapporti sociali e relazioni internazionali. Una stessa misura può assumere significati diversi in paesi o periodi differenti. Per questo non basta leggere «più Stato» o «più mercato»: dobbiamo spiegare quali attività cambiano e quali obiettivi vengono dichiarati.
+
+Il percorso egiziano non può essere ridotto a una sostituzione istantanea di un modello con un altro. Le imprese, le infrastrutture e le amministrazioni costruite in un periodo continuano a esistere nel successivo. Le riforme modificano una realtà già presente, con tempi e strumenti differenti. Questa continuità è importante quanto il cambiamento.
+
+\subsection*{Il contesto delle riforme}
+Dopo il cambiamento politico del 1952, tra le priorità economiche delle nuove autorità vi erano la trasformazione della struttura agraria, l'industrializzazione e una maggiore autonomia economica. La distribuzione della proprietà e la disponibilità di risorse produttive erano questioni centrali. Nasser divenne presidente nel 1956, in un percorso politico iniziato negli anni precedenti.\fonte{egittostato}
+
+La parola \textbf{industrializzazione} indica lo sviluppo delle attività industriali e delle capacità necessarie a sostenerle. Non significa soltanto costruire edifici chiamati fabbriche. Servono energia, trasporti, tecnici, macchine, finanziamenti e mercati. Un progetto industriale collega quindi molte decisioni diverse e richiede investimenti che possono produrre risultati soltanto dopo anni.
+
+L'espressione \textbf{autonomia economica} riguarda la capacità di prendere decisioni e disporre di risorse riducendo determinate dipendenze. Non coincide necessariamente con l'assenza di rapporti esteri. Un paese può cercare maggiore autonomia e, allo stesso tempo, acquistare tecnologie o collaborare con altri Stati. Dobbiamo osservare quali dipendenze si vogliono ridurre e con quali mezzi.
+
+\subsection*{La terra e la riforma agraria}
+Nel 1952 fu introdotta una riforma agraria che limitava la grande proprietà terriera e prevedeva la redistribuzione di una parte delle terre. Negli anni successivi furono adottati ulteriori provvedimenti. Tra gli obiettivi dichiarati vi erano modificare la concentrazione della proprietà e migliorare la condizione dei piccoli coltivatori.\fonte{terra}
+
+Per comprendere la parola \textbf{redistribuzione}, immaginiamo in modo astratto una risorsa inizialmente concentrata in poche mani. Una riforma può modificare chi possiede quella risorsa o chi ha diritto di utilizzarla. La distribuzione iniziale e quella successiva possono quindi essere diverse. L'esempio spiega il concetto, ma non fornisce una misura dei risultati storici egiziani.
+
+Possedere terra non risolve da solo ogni problema agricolo. Servono acqua, strumenti, conoscenze e accesso ai mercati. Perciò, quando leggiamo di una riforma agraria, distinguiamo la proprietà dalla capacità di produrre. Una modifica della proprietà è una parte dell'organizzazione economica, non l'intera organizzazione.
+
+\subsection*{Nasser e il settore pubblico}
+Nel 1956 fu nazionalizzata la società che gestiva il Canale di Suez. All'inizio degli anni Sessanta si ampliarono le nazionalizzazioni, coinvolgendo banche, assicurazioni e importanti imprese. La pianificazione e il settore pubblico assunsero un ruolo centrale nell'organizzazione economica. Questo orientamento fu presentato attraverso la prospettiva del socialismo arabo.\fonte{nasser}
+
+\textbf{Nazionalizzare} significa trasferire un'attività alla proprietà dello Stato. Il termine descrive un cambiamento di proprietà. Per capire le conseguenze occorre poi osservare la gestione, gli investimenti e le regole applicate. Un'impresa pubblica deve comunque organizzare lavoratori, acquistare materiali, mantenere impianti e offrire beni o servizi.
+
+La \textbf{pianificazione} consiste nel definire obiettivi e coordinare l'impiego delle risorse attraverso programmi. Immaginiamo un piano che colleghi una centrale elettrica, una linea di trasporto e nuovi stabilimenti. Il beneficio atteso nasce anche dalla loro complementarità: una fabbrica senza energia affidabile non può funzionare come previsto.
+
+Questo esempio non descrive un singolo piano storico egiziano. Serve a comprendere la logica del coordinamento pubblico. Gli obiettivi possono riguardare produzione, occupazione e infrastrutture. Per sapere se sono stati raggiunti occorrono dati e confronti: l'annuncio di un piano e la sua realizzazione non coincidono.
+
+\subsection*{Perché cercare un'apertura}
+Sadat divenne presidente nel 1970. Negli anni Settanta, in un contesto segnato da esigenze di investimento e da difficoltà economiche, promosse una maggiore apertura ai capitali privati ed esteri. Nel 1974 questa direzione fu espressa nella politica chiamata \textbf{infitāḥ}, cioè apertura. Tra gli obiettivi vi era mobilitare nuove risorse per l'economia.\fonte{sadat}
+
+Il termine \textbf{capitale estero} indica risorse finanziarie e investimenti provenienti da soggetti di altri paesi. Un investitore estero può partecipare a un'impresa o finanziare un progetto. La provenienza estera non dice, da sola, in quale settore verranno impiegate le risorse né quali risultati produrranno.
+
+Per attirare investimenti, un governo può modificare autorizzazioni, condizioni di accesso e regole economiche. Chi investe considera costi, ricavi attesi, infrastrutture e stabilità delle condizioni. Il governo può sperare di ottenere produzione, posti di lavoro e tecnologie. Le aspettative delle due parti si incontrano, ma non sono necessariamente identiche.
+
+\subsection*{Sadat e l'infitāḥ}
+L'infitāḥ favoriva una maggiore partecipazione privata e l'ingresso di risorse dall'estero. L'apertura non significò la scomparsa immediata del settore pubblico costruito nei decenni precedenti. Le attività pubbliche continuarono a convivere con nuove possibilità per soggetti privati. È quindi più preciso parlare di cambiamento dell'orientamento economico che di passaggio totale e istantaneo a un'economia senza intervento statale.\fonte{sadat}
+
+Per distinguere gli strumenti, riprendiamo tre parole. Un'autorizzazione a investire riguarda l'accesso a un'attività. Una privatizzazione riguarda la proprietà di un'impresa pubblica. Un'importazione riguarda l'acquisto di un bene o servizio dall'estero. Queste operazioni possono essere collegate, ma non sono la stessa cosa.
+
+Immaginiamo un investitore che costruisca un nuovo albergo. Si tratta di un investimento, non necessariamente di una privatizzazione, perché l'albergo potrebbe non essere mai appartenuto allo Stato. Se compra macchinari esteri, realizza anche importazioni. L'esempio mostra perché descrivere l'operazione è più utile che applicare una sola etichetta a tutto il processo.
+
+\subsection*{Obiettivi, strumenti e vincoli}
+Possiamo confrontare le due fasi utilizzando le stesse domande. Quale ruolo viene assegnato allo Stato? Quali soggetti devono investire? Quali risorse si cercano di mobilitare? La prospettiva di Nasser attribuisce un ruolo centrale all'iniziativa pubblica; quella di Sadat amplia lo spazio per iniziativa privata e risorse estere. Entrambe vanno comprese nel proprio contesto.\fonte{egittostato}
+
+Un \textbf{vincolo} è una condizione che limita le possibilità di scelta. La scarsità di risorse finanziarie è un vincolo. Anche la disponibilità di tecnici o di energia può esserlo. I rapporti internazionali e gli eventi politici possono modificare le condizioni economiche. Nessun governo decide dentro uno spazio privo di limiti.
+
+I risultati non dipendono soltanto dal nome della politica. Due progetti possono essere entrambi pubblici e funzionare in modo diverso. Due investimenti privati possono avere effetti differenti sull'occupazione o sulle importazioni. Per collegare una riforma a un risultato dobbiamo seguire i passaggi concreti attraverso cui dovrebbe agire.
+
+\subsection*{Un piccolo dizionario della riforma}
+Rileggiamo alcune frasi come farebbe uno studente che prepara un riassunto. «Il governo favorisce investimenti» indica un orientamento. Per completarla possiamo chiedere quali investimenti e attraverso quali strumenti. «La proprietà passa allo Stato» descrive invece un cambiamento nel titolare di un'attività. Non dice ancora chi dirige ogni operazione quotidiana o quali risultati vengono ottenuti.
+
+Anche «apertura» richiede una specificazione. Può riguardare risorse finanziarie, prodotti o accesso a certe attività. Un paese può aprire un ambito e mantenere regole in un altro. La parola non descrive da sola l'intera economia. Questa attenzione permette di leggere il caso egiziano conservando le differenze tra periodi e settori.
+
+Nel confronto finale possiamo utilizzare una tabella con tre colonne: situazione, obiettivo e strumento. Nella prima registriamo una condizione iniziale; nella seconda ciò che si vuole ottenere; nella terza la misura scelta. Lasciamo separati i risultati, che richiedono dati specifici. La struttura evita di trasformare automaticamente una motivazione dichiarata in un successo dimostrato e aiuta a mantenere il testo descrittivo.
+
+\subsection*{Come raccontare il cambiamento}
+Una frase descrittiva può dire: «Il governo ampliò la proprietà pubblica in alcuni settori». Una frase sugli obiettivi può dire: «Il governo intendeva sostenere l'industrializzazione». Una frase sui risultati richiede invece prove: «La produzione aumentò di una certa quantità in un certo periodo». Le tre frasi svolgono funzioni diverse.
+
+Anche la sequenza temporale non basta a dimostrare una causa. Se un indicatore cambia dopo una riforma, possono aver contribuito altri eventi. Per una prima lettura è sufficiente riconoscere il problema e usare espressioni precise: «mirava a», «favoriva», «fu introdotto», «continuò a esistere».
+
+La storia egiziana ci permette così di ritrovare concetti generali in un contesto vicino. Abbiamo incontrato proprietà, investimento, pianificazione, apertura e vincoli. Non abbiamo costruito una graduatoria tra presidenti o tra epoche. Abbiamo imparato a descrivere come possono cambiare gli strumenti scelti per affrontare problemi economici, distinguendo ciò che una politica propone da ciò che possiamo documentare sui suoi effetti.
+
+
+
+\begin{center}\begin{minipage}{\linewidth}\centering\small
+\begin{tabularx}{\linewidth}{lX}\toprule
+Anno & Riferimento essenziale\\\midrule
+1952 & Avvio della riforma agraria\\
+1956 & Nazionalizzazione della società del Canale di Suez\\
+1961 & Ampliamento delle nazionalizzazioni\\
+1970 & Inizio della presidenza di Sadat\\
+1974 & Politica di apertura: infitāḥ\\\bottomrule
+\end{tabularx}
+\captionof{table}{Cronologia essenziale. Fonti: riferimenti storici della lettura.}
+\end{minipage}\end{center}
+
+
+\attivita
+\begin{enumerate}
+
+\item Quali priorità vengono indicate per il periodo successivo al 1952?
+
+\item Che cosa cambia con una nazionalizzazione?
+
+\item Perché industrializzazione non significa soltanto costruzione di fabbriche?
+
+\item Che cosa significa infitāḥ nel testo?
+
+\item Perché l’apertura non coincide con la scomparsa dello Stato?
+
+\item Distingui una frase su un fatto, una su un obiettivo e una su un risultato.
+
+\end{enumerate}
+\lessico
+
+\voce{industrializzazione}{sviluppo delle attività e capacità industriali}{تصنيع}
+
+\voce{autonomia}{capacità di decidere con minori dipendenze}{استقلالية}
+
+\voce{riforma agraria}{cambiamento delle regole sulla terra agricola}{إصلاح زراعي}
+
+\voce{redistribuzione}{modifica della distribuzione delle risorse}{إعادة توزيع}
+
+\voce{pianificazione}{coordinamento attraverso obiettivi e programmi}{تخطيط}
+
+\voce{apertura}{ampliamento dell’accesso a scambi e investimenti}{انفتاح}
+
+\voce{vincolo}{condizione che limita una scelta}{قيد}
+
+\lingua
+Scrivi sei frasi usando «mirava a», «prevedeva», «favoriva», «continuava a». Non attribuire un risultato certo a una frase che esprime soltanto un obiettivo.
+\scrittura
+Riassumi le due fasi in 180--220 parole. Usa una struttura simmetrica: contesto, obiettivi e strumenti. Mantieni un registro descrittivo.
+
+\end{lettura}
+% FINE LETTURA 10
+
+\clearpage\phantomsection\addcontentsline{toc}{part}{Terzo trimestre --- Comprendere fenomeni economici più complessi}
+
+% =================================================================
+% INIZIO LETTURA 11 - circa 1607 parole di testo
+
+\begin{lettura}{1}{Le disuguaglianze economiche}
+
+
+\subsection*{Una media non è una distribuzione}
+Due quartieri possono avere lo stesso reddito medio e presentare condizioni molto diverse. Nel primo, le famiglie ricevono somme abbastanza simili. Nel secondo, alcune dispongono di risorse elevate e altre hanno difficoltà a pagare le spese essenziali. Il totale e la media non bastano a descrivere questa differenza. Dobbiamo osservare la \textbf{distribuzione}, cioè il modo in cui le risorse sono ripartite.
+
+La \textbf{disuguaglianza economica} riguarda differenze nelle risorse e nelle condizioni economiche delle persone. Può riferirsi al reddito, al patrimonio o all'accesso a servizi e opportunità. Prima di usare la parola dobbiamo chiarire quale dimensione stiamo osservando. Una persona può avere un reddito temporaneamente basso e un patrimonio elevato; un'altra può lavorare molto senza possedere risparmi.
+
+Consideriamo due gruppi immaginari di cinque persone. Nel gruppo A ciascuna riceve dieci unità. Nel gruppo B quattro persone ricevono cinque e una riceve trenta. Entrambi i gruppi hanno cinquanta unità complessive e una media di dieci. La distribuzione è però diversa. Nel secondo gruppo la persona con il reddito maggiore riceve più della metà del totale.
+
+\subsection*{Reddito e patrimonio: due dimensioni}
+Il reddito è un flusso durante un periodo, mentre il patrimonio riguarda attività e debiti in un momento. Le due dimensioni possono rafforzarsi reciprocamente. Un reddito elevato può permettere di risparmiare; il patrimonio accumulato può generare redditi da capitale. Tuttavia, il collegamento non è automatico e dipende da consumi, prezzi, rendimenti e rischi.
+
+Un'eredità può modificare il patrimonio senza derivare dal lavoro svolto dal destinatario in quell'anno. Una perdita di valore di un'attività può ridurlo anche quando la persona continua a lavorare. Per descrivere le differenze economiche dobbiamo quindi distinguere ciò che viene guadagnato, ciò che viene ricevuto e ciò che cambia valore.
+
+La presenza di un debito può inoltre rendere due patrimoni lordi molto diversi dal punto di vista netto. Due persone possiedono case dello stesso valore, ma una ha quasi terminato il rimborso del prestito e l'altra deve ancora restituire una somma elevata. Guardare soltanto l'abitazione non permette di conoscere la loro intera situazione.
+
+\subsection*{Perché i redditi da lavoro differiscono}
+Le differenze nei redditi da lavoro possono dipendere dalle ore lavorate, dall'esperienza e dalle competenze. Alcune attività richiedono una formazione lunga o assumono responsabilità particolari. Anche la domanda di certe competenze può cambiare: se molte imprese cercano pochi tecnici disponibili, la loro remunerazione può aumentare.
+
+Ma la spiegazione non si esaurisce nell'impegno individuale. Due persone ugualmente preparate possono incontrare opportunità diverse perché vivono in territori con infrastrutture e imprese differenti. Possono avere contratti diversi o una diversa capacità di negoziare. Possono anche subire discriminazioni, cioè trattamenti sfavorevoli legati a caratteristiche non pertinenti al lavoro.
+
+Consideriamo due tecnici con competenze simili. Il primo può raggiungere facilmente un'area industriale; il secondo vive lontano e dispone di trasporti poco affidabili. La possibilità di accettare un lavoro non dipende soltanto dalla volontà. Il tempo del viaggio, il costo e gli obblighi familiari possono cambiare le scelte praticabili.
+
+La \textbf{produttività} riguarda quanto viene prodotto rispetto alle risorse utilizzate. Può influenzare le remunerazioni, ma salario e produttività non coincidono necessariamente. Contano anche regole, contratti e potere contrattuale. Per questo è prudente evitare frasi come «chi guadagna di più lavora sempre di più» o «chi guadagna meno si impegna meno».
+
+\subsection*{Opportunità e risultati}
+Le \textbf{opportunità} sono possibilità concrete di studiare, lavorare e realizzare progetti. I \textbf{risultati} sono gli esiti effettivamente raggiunti. Le due parole non sono sinonimi. Anche con opportunità simili, persone diverse possono fare scelte diverse. Tuttavia, opportunità molto diseguali possono influenzare fortemente i risultati.
+
+Immaginiamo due studenti interessati alla stessa professione. Uno dispone di una connessione affidabile, uno spazio tranquillo e tempo per studiare. L'altro deve condividere un dispositivo e svolgere molte ore di lavoro familiare. Dire che entrambi possono formalmente iscriversi a un corso non descrive tutte le condizioni necessarie per seguirlo.
+
+L'istruzione pubblica, i trasporti e alcuni servizi possono ridurre ostacoli di partenza. L'effetto dipende però dalla qualità e dall'accessibilità. Una scuola esistente sulla carta ma difficile da raggiungere non offre la stessa opportunità di una scuola vicina e funzionante. Per studiare le opportunità dobbiamo quindi osservare anche l'utilizzo reale dei servizi.
+
+\subsection*{Povertà e disuguaglianza}
+La \textbf{povertà} riguarda l'insufficienza di risorse rispetto a determinati bisogni o criteri. La disuguaglianza riguarda invece le differenze nella distribuzione. Sono concetti collegati, ma distinti. Se tutti ricevono la stessa somma molto bassa, la disuguaglianza monetaria può essere ridotta mentre la povertà è diffusa.
+
+Immaginiamo che in un gruppo tutti i redditi raddoppino. Le persone possono acquistare più beni, se i prezzi non cambiano. Alcune misure relative della disuguaglianza possono però restare uguali, perché i rapporti tra redditi non cambiano. Il miglioramento delle condizioni materiali non implica necessariamente una distribuzione più uniforme.
+
+Esistono diversi modi di definire una soglia di povertà. Alcuni partono dal costo di bisogni essenziali; altri considerano la posizione rispetto al livello di vita della società. Quando leggiamo una percentuale dobbiamo verificare il criterio, l'anno e la popolazione osservata. Due numeri costruiti con metodi diversi non sono automaticamente confrontabili.
+
+\subsection*{Le differenze tra paesi}
+Anche i paesi presentano livelli diversi di produzione media e di accesso ai servizi. Le differenze possono essere collegate a infrastrutture, istruzione, salute, tecnologie, istituzioni e vicende storiche. Le risorse naturali hanno un ruolo, ma non spiegano da sole l'organizzazione e i risultati di un'economia.
+
+Un confronto tra paesi richiede attenzione ai prezzi e alla moneta. Una somma convertita con il tasso di cambio può acquistare quantità diverse di beni in luoghi diversi. Per confrontare condizioni materiali si possono utilizzare misure a parità di potere d'acquisto. Anche queste, però, sono medie e non sostituiscono l'analisi della distribuzione interna.
+
+Inoltre, «paese ricco» non significa che ogni abitante abbia un reddito elevato. Una media nazionale può convivere con differenze territoriali e sociali. Per leggere una notizia dobbiamo capire se descrive il paese nel suo insieme, un gruppo di famiglie oppure una specifica zona. Passare da un livello all'altro senza segnalarlo può produrre conclusioni sbagliate.
+
+\subsection*{Mobilità economica}
+La \textbf{mobilità economica} riguarda il cambiamento della posizione di una persona o di una famiglia nel tempo. Possiamo osservare il percorso di una persona durante la vita oppure confrontare generazioni. Una fotografia della distribuzione non mostra, da sola, quanto sia facile cambiare posizione.
+
+Una persona giovane può avere reddito e patrimonio bassi perché sta studiando. Dopo alcuni anni può lavorare e accumulare risparmi. Un'altra può perdere il lavoro o affrontare una spesa imprevista. Il tempo aiuta quindi a interpretare le differenze, ma non annulla gli ostacoli che possono ripetersi da una generazione all'altra.
+
+Per distinguere le prospettive possiamo formulare due domande: «Quanto sono diversi i redditi oggi?» e «Quanto dipende la posizione futura dalle condizioni di partenza?». Le domande richiedono dati differenti. Una risposta alla prima non risolve automaticamente la seconda.
+
+\subsection*{Politiche e redistribuzione}
+Le amministrazioni pubbliche possono intervenire attraverso imposte, trasferimenti e servizi. La \textbf{redistribuzione} modifica la distribuzione delle risorse rispetto a quella prodotta inizialmente dai redditi di mercato. Un sostegno a una famiglia può aumentare il suo reddito disponibile; un'imposta può ridurre quello di chi la paga.
+
+Anche un servizio gratuito al momento dell'utilizzo può avere effetti distributivi. Una biblioteca o una scuola permettono di accedere a risorse senza acquistarle individualmente. Per valutarne l'effetto bisogna però osservare chi utilizza il servizio e con quale qualità. Una spesa uguale per tutti non produce sempre un beneficio uguale per tutti.
+
+Le politiche possono agire anche prima della distribuzione dei redditi, migliorando formazione, accesso al lavoro e condizioni contrattuali. In questo caso non si tratta soltanto di trasferire somme dopo che i redditi sono stati prodotti. Si cerca di modificare le condizioni in cui le persone partecipano all'economia.
+
+Ogni strumento presenta costi, requisiti amministrativi e possibili conseguenze sui comportamenti. Un programma deve essere finanziato e deve raggiungere i destinatari. Una valutazione richiede quindi obiettivi chiari: ridurre una difficoltà immediata, ampliare opportunità oppure modificare una distribuzione sono finalità collegate ma differenti.
+
+\subsection*{Una seconda misura: il valore centrale}
+Torniamo al gruppo B: cinque, cinque, cinque, cinque e trenta. Se mettiamo i redditi in ordine, il valore centrale è cinque. Questo valore si chiama mediana. La media è dieci, mentre la mediana è cinque. Le due misure raccontano aspetti differenti: la media utilizza tutto il totale, la mediana individua una posizione nella distribuzione ordinata.
+
+Ora supponiamo che il reddito maggiore passi da trenta a cinquanta e gli altri restino invariati. La media aumenta, mentre la mediana rimane cinque. Possiamo quindi leggere «il reddito medio è aumentato» anche quando la maggioranza del gruppo non ha ricevuto un aumento. L'esempio non dimostra che questo accada sempre; dimostra che la frase, da sola, non basta a escluderlo.
+
+Quando i dati riguardano famiglie, bisogna inoltre considerare il numero dei componenti. Una stessa entrata complessiva sostiene bisogni diversi in una famiglia di due persone e in una di sei. Esistono misure che tengono conto della composizione familiare. Per il nostro percorso è sufficiente riconoscere la domanda: il numero riguarda una persona, una famiglia o una misura adattata ai suoi componenti? Anche questa informazione può cambiare il significato di un confronto.
+
+\subsection*{Descrivere e discutere}
+Le domande sulla disuguaglianza possono essere descrittive oppure normative. «Quale quota di reddito riceve un gruppo?» è una domanda descrittiva. «Quali differenze riteniamo accettabili?» richiede anche valori e criteri di giustizia. I dati aiutano la discussione, ma non eliminano la necessità di esplicitare quei criteri.
+
+Possiamo ritenere importante premiare alcune attività e, nello stesso tempo, garantire bisogni essenziali e opportunità. Le diverse priorità devono essere argomentate. Un esempio personale può rendere comprensibile un problema, ma non prova che tutte le situazioni siano uguali. La lettura economica richiede di passare dall'esempio alla domanda generale senza cancellare le differenze.
+
+Quando incontriamo una frase sulle disuguaglianze, chiediamo dunque: quali risorse, quali persone, quale periodo e quale misura? Poi distinguiamo le cause proposte dalle prove disponibili. Questo metodo permette di discutere un argomento vicino alla vita quotidiana utilizzando un linguaggio preciso, rispettoso e capace di riconoscere più di una dimensione.
+
+
+
+\begin{center}\begin{minipage}{\linewidth}\centering\begin{tikzpicture}
+\begin{axis}[ybar,bar width=5pt,width=.98\linewidth,height=5cm,ymin=0,ymax=35,xlabel={Persona},ylabel={Unità di reddito},xtick={1,2,3,4,5},legend style={font=\scriptsize,at={(.02,.98)},anchor=north west},tick label style={font=\scriptsize},label style={font=\small},grid=major]
+\addplot[fill=black!25] coordinates {(1,10)(2,10)(3,10)(4,10)(5,10)};\addlegendentry{Gruppo A}
+\addplot[fill=accent!65] coordinates {(1,5)(2,5)(3,5)(4,5)(5,30)};\addlegendentry{Gruppo B}
+\end{axis}\end{tikzpicture}
+\captionof{figure}{Dati immaginari: stesso totale e stessa media, distribuzione diversa.}
+\end{minipage}\end{center}
+
+
+\attivita
+\begin{enumerate}
+
+\item Perché i due gruppi iniziali hanno la stessa media ma distribuzioni diverse?
+
+\item Individua quattro possibili cause di differenze nei redditi da lavoro.
+
+\item Distingui opportunità e risultati.
+
+\item Una società eguale è necessariamente priva di povertà?
+
+\item Qual è la differenza tra una fotografia e un’analisi della mobilità?
+
+\item Distingui una domanda descrittiva da una normativa.
+
+\end{enumerate}
+\lessico
+
+\voce{distribuzione}{modo in cui le risorse sono ripartite}{توزيع}
+
+\voce{disuguaglianza}{differenza nelle condizioni economiche}{عدم مساواة}
+
+\voce{opportunità}{possibilità concreta di agire o migliorare}{فرصة}
+
+\voce{povertà}{insufficienza di risorse rispetto a un criterio}{فقر}
+
+\voce{soglia}{valore che separa due condizioni}{عتبة}
+
+\voce{mobilità}{cambiamento di posizione nel tempo}{حراك}
+
+\voce{discriminazione}{trattamento sfavorevole non pertinente}{تمييز}
+
+\lingua
+Raccogli i connettivi di opposizione del testo. Scrivi un paragrafo con «tuttavia», «mentre» e «anche se», senza cambiare il significato dei concetti.
+\scrittura
+Scrivi un riassunto di 220--260 parole che distingua reddito, patrimonio, opportunità e povertà. Inserisci un esempio numerico originale.
+
+\end{lettura}
+% FINE LETTURA 11
+
+% =================================================================
+% INIZIO LETTURA 12 - circa 1765 parole di testo
+
+\begin{lettura}{1}{Inflazione e potere d’acquisto}
+
+
+\subsection*{Lo stesso denaro, acquisti diversi}
+Una famiglia entra in un negozio con una somma che, alcuni mesi prima, bastava per acquistare tutti i prodotti abituali. Ora deve rinunciare a qualcosa. Non ha meno unità monetarie, ma quelle unità permettono di comprare meno. Per comprendere questa situazione dobbiamo distinguere la somma di denaro dal suo \textbf{potere d'acquisto}, cioè dalla quantità di beni e servizi che può acquistare.
+
+L'\textbf{inflazione} è un aumento del livello generale dei prezzi. Non significa che ogni prezzo aumenti nella stessa misura, né che tutti i prezzi debbano salire contemporaneamente. Alcuni possono rimanere stabili o diminuire mentre l'indice complessivo aumenta. Il rincaro di un singolo prodotto, da solo, non basta a descrivere l'inflazione di un'intera economia.\fonte{inflazione}
+
+La parola «generale» richiede quindi una misura che raccolga molti prezzi. Inoltre, quando leggiamo un tasso di inflazione, dobbiamo conoscere il periodo di confronto. Un aumento rispetto al mese precedente è diverso da un aumento rispetto allo stesso mese dell'anno precedente. Il numero diventa comprensibile soltanto insieme alla sua definizione.
+
+\subsection*{Costruire un paniere}
+Per misurare i prezzi al consumo gli istituti statistici osservano un insieme di beni e servizi, chiamato \textbf{paniere}. Il paniere comprende categorie diverse di spesa. Non tutti i prodotti hanno lo stesso peso: quelli che rappresentano una quota maggiore della spesa influenzano maggiormente l'indice.
+
+Immaginiamo, per esercitarci, un paniere molto piccolo: dieci unità di pane, due confezioni di latte e un viaggio. Nel periodo iniziale il pane costa dieci lire per unità, il latte venti per confezione e il viaggio sessanta. Il costo complessivo è duecento lire. Nel secondo periodo il pane costa dodici, il latte venticinque e il viaggio resta a sessanta. Il costo diventa duecentotrenta.
+
+L'aumento è trenta lire su una base di duecento, quindi il quindici per cento. Non otteniamo il risultato facendo semplicemente la media delle tre variazioni percentuali. Il paniere contiene quantità differenti e ciascuna voce ha un diverso peso nella spesa iniziale. Questo esempio semplifica il metodo e non rappresenta un paniere ufficiale egiziano.
+
+\subsection*{Indici e percentuali}
+Possiamo assegnare al costo iniziale il valore indice cento. Se il costo passa da duecento a duecentotrenta, l'indice passa da cento a centoquindici. L'\textbf{indice} permette di osservare la variazione rispetto a una base comune. Non è il prezzo di un singolo prodotto e non indica una somma da pagare.
+
+Per calcolare una variazione percentuale sottraiamo il valore iniziale da quello finale, dividiamo per il valore iniziale e moltiplichiamo per cento. La base del confronto è importante. Passare da cento a centoventi è un aumento del venti per cento. Tornare da centoventi a cento è una diminuzione di circa il sedici virgola sette per cento.
+
+Anche variazioni successive richiedono attenzione. Se i prezzi aumentano del dieci per cento e poi di un altro dieci per cento, un indice iniziale di cento arriva prima a centodieci e poi a centoventuno. L'aumento complessivo è ventuno per cento. Il secondo aumento si applica infatti a una base già più alta.
+
+\subsection*{Inflazione più bassa non significa prezzi più bassi}
+Supponiamo che l'inflazione annua passi dal dieci al cinque per cento. Il ritmo di aumento dei prezzi diminuisce, ma il livello dei prezzi continua a salire. Questo rallentamento si chiama \textbf{disinflazione}. Una diminuzione del livello generale dei prezzi è invece chiamata \textbf{deflazione}.
+
+Immaginiamo un indice pari a cento. Dopo un aumento del dieci per cento arriva a centodieci. Nell'anno successivo cresce del cinque per cento e raggiunge centoquindici virgola cinque. L'inflazione è diminuita, ma acquistare il paniere costa ancora più di prima. Questa distinzione spiega perché una notizia positiva sul rallentamento dell'inflazione non coincide sempre con la sensazione di spendere meno.
+
+Il \textbf{livello} e il \textbf{tasso di variazione} rispondono a domande diverse. Il livello dice dove si trova un indicatore; il tasso dice quanto rapidamente cambia. Confonderli produce errori anche in altri argomenti, come la crescita della popolazione o della produzione. Leggere l'inflazione aiuta quindi a comprendere un linguaggio quantitativo più generale.
+
+\subsection*{Quando aumenta la domanda}
+Una possibile pressione sui prezzi nasce quando la domanda complessiva cresce più rapidamente della capacità di produrre. Famiglie, imprese e amministrazioni possono aumentare le proprie spese. Se le imprese hanno impianti e lavoratori disponibili, possono rispondere producendo di più. Se invece incontrano limiti, una parte della pressione può tradursi in prezzi più elevati.
+
+Immaginiamo molte famiglie che vogliano acquistare lo stesso tipo di elettrodomestico, mentre le fabbriche non riescono ad aumentare subito le consegne. I venditori possono aumentare i prezzi. L'esempio riguarda un mercato specifico; per comprendere l'inflazione generale dobbiamo osservare se pressioni simili interessano molte componenti dell'economia.
+
+La relazione dipende dunque dalla capacità produttiva. Un aumento della spesa non provoca sempre e soltanto inflazione. Può sostenere produzione e occupazione quando esistono risorse inutilizzate. Per descrivere il risultato dobbiamo conoscere le condizioni di partenza, i tempi di adattamento e gli eventuali colli di bottiglia.
+
+\subsection*{Quando aumentano i costi o diminuisce l'offerta}
+Un'altra pressione nasce da difficoltà nella produzione o da aumenti dei costi. Se energia e trasporti diventano più costosi, molte imprese affrontano spese maggiori. Possono assorbirne una parte riducendo i margini oppure trasferirne una parte ai clienti. Il risultato dipende dalla concorrenza, dai contratti e dalla possibilità di modificare la produzione.
+
+Anche un raccolto insufficiente o un'interruzione dei trasporti può ridurre l'offerta di alcuni prodotti. La parola \textbf{shock} indica un cambiamento improvviso che modifica le condizioni economiche. Uno shock dell'offerta può rendere più difficile produrre e, contemporaneamente, aumentare i prezzi. In questo caso il problema non è soltanto una spesa troppo elevata.
+
+Consideriamo un panificio. Se la farina costa di più, il panettiere può aumentare il prezzo del pane, ridurre altri costi o accettare un profitto minore. Non sappiamo in anticipo quale combinazione sceglierà. Il passaggio dal costo al prezzo finale non è necessariamente immediato né completo.
+
+\subsection*{Moneta, aspettative e persistenza}
+La quantità di moneta e le condizioni del credito influenzano la spesa, ma il collegamento con i prezzi non è un semplice interruttore. Contano anche la produzione, la domanda di moneta e il modo in cui famiglie e imprese utilizzano i finanziamenti. Non basta dire che la banca centrale stampa banconote per spiegare ogni episodio inflazionistico.
+
+Le \textbf{aspettative} riguardano ciò che le persone prevedono. Se un'impresa si aspetta costi più alti, può modificare oggi prezzi e contratti. Se i lavoratori prevedono una perdita di potere d'acquisto, possono chiedere aumenti salariali. Gli accordi raggiunti dipendono dalle condizioni economiche e dai rapporti contrattuali.
+
+Le aspettative possono contribuire alla persistenza dell'inflazione, ma non dobbiamo trasformare ogni richiesta di adeguamento del reddito in una causa unica. L'analisi deve distinguere lo shock iniziale, le reazioni successive e i meccanismi che mantengono il fenomeno. Le cause possono combinarsi e cambiare nel tempo.
+
+\subsection*{Il ruolo del cambio}
+Un paese che importa prodotti deve considerare anche il \textbf{tasso di cambio}, cioè il prezzo di una moneta espresso in un'altra. Se servono più lire egiziane per acquistare la stessa quantità di valuta estera, un prodotto con prezzo estero invariato può diventare più costoso in lire egiziane. Questo è un possibile canale dell'inflazione importata.
+
+Supponiamo, con numeri inventati, che un componente costi dieci dollari. A un cambio di trenta lire per dollaro costa trecento lire, prima delle altre spese. A quaranta lire per dollaro costa quattrocento. Il produttore estero non ha modificato il prezzo in dollari, ma è cambiato il costo in moneta locale.
+
+Non tutti i prezzi interni si muovono nella stessa proporzione. Contano le scorte acquistate prima, i contratti, la quota di componenti importati e le decisioni delle imprese. Il cambio è quindi un collegamento importante, ma non una spiegazione sufficiente per ogni prezzo.
+
+\subsection*{Chi subisce la perdita di potere d'acquisto}
+L'inflazione non ha gli stessi effetti su tutte le famiglie. Se un reddito monetario resta fermo mentre aumentano i prezzi dei prodotti acquistati, il suo potere d'acquisto diminuisce. Se il reddito cresce, bisogna confrontare il suo aumento con quello del costo della vita. Un aumento nominale può essere accompagnato da una diminuzione reale.
+
+Due famiglie possono inoltre avere panieri differenti. Una spende una quota elevata per alimenti e trasporti; un'altra destina più risorse ad altri beni e servizi. Se i primi prezzi aumentano maggiormente, la prima famiglia può sperimentare una pressione più forte del dato medio. L'indice generale resta utile, ma non descrive esattamente ogni esperienza individuale.
+
+Anche creditori e debitori possono essere coinvolti in modo diverso. Se un debito è fissato in termini nominali e l'inflazione è maggiore di quella prevista, il valore reale del rimborso può diminuire. L'effetto concreto dipende però dai redditi del debitore e dalle clausole del contratto. Un debito a tasso variabile o espresso in valuta estera presenta condizioni differenti.
+
+\subsection*{Un reddito che aumenta meno dei prezzi}
+Immaginiamo una lavoratrice con un reddito mensile di diecimila lire. Nell'anno successivo il reddito sale a diecimilacinquecento: l'aumento nominale è cinque per cento. Se il costo del paniere rilevante aumenta del dieci per cento, la somma maggiore non permette di conservare tutti gli acquisti precedenti. Il reddito monetario è cresciuto, ma il potere d'acquisto è diminuito.
+
+Per mantenere lo stesso rapporto con quel paniere sarebbero necessarie undicimila lire. Non dobbiamo però concludere che ogni famiglia abbia esattamente lo stesso bisogno di adeguamento: il paniere e le condizioni individuali possono differire. Il calcolo mostra una relazione sotto ipotesi esplicite.
+
+\subsection*{Prezzi osservati e ricordi}
+Le persone ricordano spesso i prezzi degli acquisti frequenti: pane, trasporti o bevande. Possono conoscere meno precisamente il costo di un bene comprato raramente. Per questo una conversazione sul costo della vita può partire da esperienze diverse. Il dato statistico e l'esperienza individuale rispondono a domande collegate ma non identiche.
+
+Un esercizio utile consiste nel registrare per alcune settimane il prezzo dello stesso prodotto, nello stesso formato e nello stesso luogo. Se cambia la quantità contenuta nella confezione, dobbiamo confrontare il prezzo per unità. Una confezione allo stesso prezzo ma più piccola non offre la stessa quantità. La lettura dell'etichetta diventa quindi parte della lettura economica.
+
+Questa osservazione non costruisce da sola un indice nazionale, perché riguarda pochi prodotti e un campione limitato. Permette però di imparare a raccogliere informazioni confrontabili. Separare osservazione locale e conclusione generale è una competenza necessaria per leggere sia le statistiche sia le esperienze quotidiane.
+
+\subsection*{Leggere una notizia sull'inflazione}
+Una notizia completa dovrebbe permettere di identificare il paese, il periodo, l'indice utilizzato e la base del confronto. Dovrebbe inoltre distinguere il dato osservato dalle previsioni. «L'inflazione è stata» e «l'inflazione potrebbe essere» non esprimono lo stesso grado di conoscenza.
+
+Per interpretare una spiegazione cerchiamo i passaggi: quale prezzo o quale componente cambia? Attraverso quali costi o comportamenti influenza gli altri? Quanto è diffuso l'effetto? Quali condizioni potrebbero ridurlo? Queste domande sono più utili della ricerca di una causa unica valida in ogni situazione.
+
+Nella prossima lettura vedremo come le banche centrali cercano di influenzare le condizioni monetarie. Le loro decisioni non possono produrre direttamente grano, energia o navi. Possono però modificare tassi, credito e aspettative. Comprendere ciò che uno strumento può fare e ciò che richiede altri interventi è essenziale per leggere il dibattito economico.
+
+
+
+\begin{center}\begin{minipage}{\linewidth}\centering\small
+\begin{tabular}{lrrr}\toprule
+Voce & Quantità & Prezzo 1 & Prezzo 2\\\midrule
+Pane & 10 & 10 & 12\\
+Latte & 2 & 20 & 25\\
+Viaggio & 1 & 60 & 60\\\midrule
+Costo paniere & & 200 & 230\\\bottomrule
+\end{tabular}
+\captionof{table}{Paniere didattico immaginario; prezzi in LE.}
+\end{minipage}\end{center}
+\begin{center}\begin{minipage}{\linewidth}\centering\begin{tikzpicture}\begin{axis}[width=.98\linewidth,height=4.6cm,xmin=0,xmax=2,ymin=95,ymax=120,xtick={0,1,2},xlabel={Anno},ylabel={Indice dei prezzi},grid=major,tick label style={font=\scriptsize},label style={font=\small}]
+\addplot[accent,thick,mark=*] coordinates {(0,100)(1,110)(2,115.5)};
+\end{axis}\end{tikzpicture}
+\captionof{figure}{Disinflazione: prima +10\%, poi +5\%. Il livello dei prezzi continua a salire. Esempio didattico.}
+\end{minipage}\end{center}
+
+
+\attivita
+\begin{enumerate}
+
+\item Ricostruisci il costo dei due panieri dell’esempio.
+
+\item Perché la media semplice delle variazioni dei tre prezzi non basta?
+
+\item Distingui inflazione, disinflazione e deflazione.
+
+\item In quali condizioni una maggiore domanda può aumentare soprattutto la produzione?
+
+\item Spiega il passaggio dal cambio al costo del componente importato.
+
+\item Perché due famiglie possono sperimentare aumenti diversi del costo della vita?
+
+\end{enumerate}
+\lessico
+
+\voce{paniere}{insieme di beni e servizi osservati}{سلة}
+
+\voce{potere d’acquisto}{quantità acquistabile con una somma}{قوة شرائية}
+
+\voce{indice}{misura rispetto a una base di confronto}{رقم قياسي}
+
+\voce{disinflazione}{rallentamento dell’aumento generale dei prezzi}{تباطؤ التضخم}
+
+\voce{deflazione}{diminuzione del livello generale dei prezzi}{انكماش الأسعار}
+
+\voce{aspettativa}{previsione che orienta una decisione}{توقع}
+
+\voce{cambio}{prezzo di una moneta in un’altra}{سعر الصرف}
+
+\lingua
+Confronta «i prezzi diminuiscono» e «i prezzi aumentano più lentamente». Scrivi poi quattro frasi distinguendo livello e variazione.
+\scrittura
+Scrivi 250 parole per spiegare un aumento del costo del pane, indicando almeno due cause possibili e distinguendo ipotesi e informazioni osservate.
+
+\end{lettura}
+% FINE LETTURA 12
+
+% =================================================================
+% INIZIO LETTURA 13 - circa 1821 parole di testo
+
+\begin{lettura}{1}{Le banche centrali e i tassi di interesse}
+
+
+\subsection*{Un'istituzione diversa da una banca commerciale}
+Quando una famiglia apre un conto o un'impresa chiede un prestito, si rivolge generalmente a una banca commerciale. Una \textbf{banca centrale} svolge funzioni differenti: opera al centro del sistema monetario e interviene sulle condizioni in cui circolano moneta e credito. Non è semplicemente una banca commerciale più grande e non decide direttamente ogni prezzo dell'economia.
+
+Per comprendere il suo ruolo dobbiamo collegare tre letture precedenti. Abbiamo visto che le banche offrono pagamenti e credito, che i tassi influenzano il costo dei finanziamenti e che l'inflazione riguarda il livello generale dei prezzi. La banca centrale agisce su questi collegamenti attraverso strumenti specifici. Gli effetti passano per le decisioni di banche, famiglie e imprese.
+
+Le funzioni e gli obiettivi sono definiti dal quadro istituzionale. Non tutte le banche centrali hanno esattamente lo stesso mandato. Per sapere che cosa deve fare una particolare istituzione bisogna leggere i suoi documenti. Il nome «banca centrale» identifica una funzione generale, ma non rende identiche tutte le regole nazionali.
+
+\subsection*{Prezzi stabili non significa prezzi immobili}
+La \textbf{stabilità dei prezzi} riguarda un andamento contenuto e prevedibile del livello generale dei prezzi. Non significa fissare il prezzo di ogni prodotto. In un'economia i prezzi relativi possono cambiare: un bene può diventare più costoso perché è più richiesto, mentre un altro può costare meno grazie a un'innovazione.
+
+Nell'area euro, la Banca centrale europea mira a un'inflazione del due per cento nel medio termine. L'obiettivo riguarda l'indice generale e non ogni singolo prezzo. Il riferimento al medio termine riconosce che gli shock e gli effetti delle decisioni richiedono tempo. Il due per cento non è un tasso di interesse e non è una previsione valida automaticamente per ogni anno.\fonte{bceobiettivo}
+
+Anche la Banca centrale d'Egitto indica tra i propri obiettivi la stabilità dei prezzi e la solidità del sistema monetario e bancario, nel quadro della politica economica generale dello Stato. Per conoscere obiettivi numerici e decisioni di un particolare periodo occorre consultare i documenti riferiti a quel periodo.\fonte{cbe}
+
+\subsection*{Moneta della banca centrale e depositi bancari}
+Abbiamo imparato che esistono banconote e depositi. Le banche commerciali utilizzano inoltre conti presso la banca centrale per regolare pagamenti tra loro. I saldi di questi conti sono chiamati \textbf{riserve}. Non sono la stessa cosa del capitale della banca e non coincidono con tutti i risparmi delle famiglie.
+
+Immaginiamo che una cliente della banca A paghi un fornitore con un conto presso la banca B. Il pagamento modifica i depositi dei clienti e richiede un regolamento tra le due banche. Questa dimensione aiuta a comprendere perché una banca deve gestire la propria liquidità anche quando concede prestiti tramite accrediti contabili.
+
+Le banche non possono ignorare perdite, pagamenti e regole. Un prestito che non viene restituito può ridurre le risorse capaci di assorbire perdite; un pagamento verso un'altra banca richiede liquidità. Sono problemi collegati, ma differenti. La banca centrale opera in questo sistema attraverso le condizioni applicate alle proprie operazioni e altri strumenti previsti dal suo mandato.
+
+\subsection*{I tassi di politica monetaria}
+Un \textbf{tasso di politica monetaria} è un tasso fissato dalla banca centrale per determinate operazioni. Può riguardare, per esempio, depositi o finanziamenti delle banche presso di essa. Questi tassi influenzano altri tassi a breve termine e, attraverso vari passaggi, le condizioni del credito nell'economia.\fonte{bcemonetaria}
+
+Il tasso applicato a un prestito a un'impresa non coincide automaticamente con quello della banca centrale. Include valutazioni sulla durata, sul rischio del debitore, sui costi e sulle condizioni di concorrenza. Due imprese possono quindi ricevere offerte diverse anche nello stesso giorno e nello stesso paese.
+
+Per questo, quando una notizia dice che «i tassi aumentano», dobbiamo chiedere quali tassi. Può riferirsi a una decisione ufficiale, ai prestiti per le famiglie oppure al rendimento dei titoli di Stato. Le serie possono muoversi in modo collegato, ma hanno significati diversi e possono reagire con tempi differenti.
+
+\subsection*{Dal tasso al prestito}
+Supponiamo che il costo di un nuovo finanziamento aumenti. Un'impresa che valutava l'acquisto di una macchina deve ricalcolare il progetto. Se i ricavi attesi restano invariati e il costo del debito cresce, alcuni investimenti possono diventare meno convenienti. L'impresa può rinviare l'acquisto, ridurre il progetto o cercare altre risorse.
+
+Anche una famiglia può rinviare una spesa finanziata a debito. Il passaggio non è però uguale per tutti i contratti. Chi ha un prestito a tasso fisso può mantenere le condizioni già stabilite; chi ha un tasso variabile può subire una modifica secondo le clausole previste. I nuovi prestiti e quelli già esistenti vanno quindi distinti.
+
+Un aumento dei tassi può rendere più interessante conservare alcune forme di risparmio remunerato. Tuttavia, la scelta dipende dalle necessità della famiglia, dal rischio e dall'inflazione attesa. Non tutte le persone possono ridurre i consumi: alcune destinano quasi tutto il reddito alle spese essenziali.
+
+\subsection*{Dal credito alla domanda}
+Se molte decisioni di spesa vengono ridotte o rinviate, la \textbf{domanda complessiva} può rallentare. Le imprese possono ricevere meno ordini e trovare più difficile aumentare i prezzi. Questa è una parte del meccanismo attraverso cui una politica monetaria più restrittiva può ridurre le pressioni inflazionistiche.
+
+La parola \textbf{restrittiva} indica un orientamento che rende le condizioni monetarie e finanziarie meno favorevoli all'espansione della spesa. Una politica \textbf{espansiva} cerca invece di sostenerle. Il significato concreto dipende dal contesto: lo stesso tasso nominale può risultare più o meno restrittivo a seconda dell'inflazione attesa e delle altre condizioni economiche.
+
+Se la domanda rallenta, possono diminuire anche produzione e opportunità di lavoro. Il controllo dell'inflazione può quindi comportare costi nel breve periodo. Una banca centrale deve considerare intensità, durata e origine delle pressioni sui prezzi. Non dispone di uno strumento capace di aumentare automaticamente ogni beneficio e ridurre ogni costo.
+
+\subsection*{Aspettative e comunicazione}
+Le decisioni economiche guardano al futuro. Un'impresa che firma un contratto pluriennale considera costi e prezzi attesi. Una famiglia che assume un debito considera entrate e rate future. Per questo la \textbf{comunicazione} della banca centrale può influenzare le aspettative, oltre all'effetto immediato dei tassi.
+
+Se l'istituzione spiega obiettivi, dati e ragioni delle decisioni, gli operatori possono comprendere meglio come potrebbe reagire a condizioni nuove. Questo non significa promettere una sequenza immutabile di tassi. Una decisione può cambiare quando cambiano le informazioni. La credibilità riguarda anche la coerenza tra mandato, spiegazioni e comportamento.
+
+Una previsione è diversa da un impegno. «Prevediamo una riduzione dell'inflazione» descrive uno scenario atteso; «abbiamo deciso un nuovo tasso» descrive un'azione. Nel leggere un comunicato dobbiamo distinguere queste parti. Le parole «se», «potrebbe» e «nel caso in cui» indicano condizioni, non semplici esitazioni linguistiche.
+
+\subsection*{Il canale del cambio}
+I tassi possono influenzare anche i movimenti di risorse finanziarie tra paesi e il cambio. Un rendimento più elevato può attirare investitori, ma contano pure rischio, aspettative e possibilità di trasferire le risorse. Non esiste una relazione certa in cui ogni aumento dei tassi rafforzi sempre la moneta.
+
+Se una moneta si rafforza, alcuni beni importati possono diventare meno costosi in moneta nazionale. Se si indebolisce, può avvenire il contrario. Il passaggio ai prezzi al consumo dipende dalla quota importata, dai contratti e dalle decisioni delle imprese. Ritroviamo così il collegamento tra cambio e inflazione studiato nella lettura precedente.
+
+Un'impresa esportatrice può essere coinvolta in modo diverso da un'impresa che importa molti componenti. La stessa variazione del cambio modifica ricavi e costi in modi differenti. Per valutare l'effetto complessivo bisogna quindi conoscere la struttura delle attività e non soltanto la direzione del movimento della moneta.
+
+\subsection*{Che cosa la banca centrale non produce}
+Una banca centrale non può fabbricare direttamente gas, grano o componenti elettronici. Se uno shock riduce la disponibilità di un bene essenziale, modificare i tassi non elimina materialmente quella scarsità. Può però influenzare la domanda, le aspettative e il modo in cui lo shock si trasmette al resto dell'economia.
+
+Per affrontare problemi produttivi possono essere necessari altri strumenti: riparare infrastrutture, diversificare fornitori, migliorare trasporti o sostenere capacità tecniche. Questi interventi appartengono a politiche differenti e hanno tempi diversi. La distinzione aiuta a comprendere perché la politica monetaria non sia l'unica politica economica.
+
+Anche le decisioni fiscali, cioè su entrate e spese pubbliche, possono influenzare domanda e prezzi. Una riduzione di un'imposta e una modifica di un tasso sono operazioni differenti. Possono avere effetti che si rafforzano oppure si compensano. Per leggere il quadro complessivo dobbiamo riconoscere quale istituzione utilizza quale strumento.
+
+\subsection*{I tempi della trasmissione}
+La \textbf{trasmissione monetaria} è il percorso attraverso cui una decisione influenza condizioni finanziarie, spesa e prezzi. Non avviene tutta nello stesso giorno. Alcuni mercati reagiscono rapidamente; contratti e progetti già avviati possono modificarsi più lentamente. Il ritardo rende più difficile valutare una decisione soltanto dai dati del mese successivo.
+
+Immaginiamo un'impresa che abbia già ordinato un impianto e ottenuto un finanziamento a tasso fisso. Un nuovo aumento dei tassi può non cambiare subito quel progetto. Può però influenzare il prossimo investimento o le decisioni di altri clienti. Gli effetti si accumulano attraverso molte scelte individuali.
+
+Nel frattempo possono intervenire nuovi eventi: un miglioramento dei trasporti, una variazione dei prezzi energetici o una crisi estera. Perciò osservare inflazione e tassi nello stesso periodo non basta a ricostruire una causa unica. La lettura economica deve considerare sequenze, ritardi e condizioni esterne.
+
+\subsection*{Un caso immaginario da ricostruire}
+In una piccola economia, molte imprese lavorano quasi al massimo della capacità e i prezzi aumentano rapidamente. La banca centrale alza un proprio tasso. Le banche rivedono gradualmente le condizioni dei nuovi prestiti. Alcune imprese rinviano investimenti e alcune famiglie rimandano acquisti. La domanda rallenta e le pressioni sui prezzi possono ridursi.
+
+Ora cambiamo la situazione iniziale. Una tempesta interrompe l'arrivo di componenti essenziali, mentre la domanda non cresce. I prezzi aumentano perché produrre è più difficile. Alzare i tassi non riapre il porto. Può incidere su altri meccanismi, ma comporta una valutazione diversa rispetto al primo caso. Le due storie mostrano perché l'origine del problema conta.
+
+Questi esempi non forniscono una ricetta per una decisione reale. Servono a leggere il collegamento tra problema, strumento e risultato atteso. Una spiegazione completa deve indicare attraverso quali passaggi dovrebbe funzionare l'intervento e quali condizioni potrebbero limitarlo.
+
+\subsection*{Una decisione comune, effetti differenti}
+Immaginiamo due imprese che vendano prodotti simili. Una finanzia gli investimenti soprattutto con risorse accumulate; l'altra dipende da nuovi prestiti. Un aumento del costo del credito può incidere in modo diverso sulle loro decisioni. Anche la durata dei contratti e la situazione dei clienti possono modificare il risultato.
+
+Questa differenza aiuta a leggere il linguaggio delle medie. Una politica può frenare la domanda complessiva senza ridurre ogni singola spesa. Una banca può aumentare un tasso senza modificare nello stesso momento tutte le condizioni. Quando riassumiamo un testo, conserviamo quindi parole come «in generale», «gradualmente» e «può». Non sono decorazioni: delimitano ciò che l'autore sta affermando e impediscono di trasformare una relazione complessiva in una regola individuale assoluta.
+
+\subsection*{Leggere un comunicato}
+Quando incontriamo un comunicato, cerchiamo prima la decisione effettiva: quale tasso è stato modificato e da quando? Poi distinguiamo le ragioni, i dati osservati e lo scenario futuro. Infine individuiamo i rischi indicati dall'istituzione. In questo modo un testo tecnico diventa una sequenza di informazioni riconoscibili.
+
+Possiamo riassumerlo con una struttura semplice: «L'istituzione ha deciso… perché osserva…; si attende… ma segnala…». Questa struttura conserva la differenza tra azione, motivazione, previsione e incertezza. È una competenza di lettura utile anche per documenti che riguardano ambiente, investimenti pubblici e cooperazione internazionale.
+
+
+\attivita
+\begin{enumerate}
+
+\item Distingui banca centrale e banca commerciale.
+
+\item Il 2 per cento citato per la BCE è un tasso di interesse?
+
+\item Ricostruisci i passaggi dal tasso al prestito e dal prestito alla domanda.
+
+\item Perché prestiti a tasso fisso e variabile possono reagire diversamente?
+
+\item Quale limite incontra la politica monetaria nel caso del porto chiuso?
+
+\item Perché gli effetti non sono immediati?
+
+\end{enumerate}
+\lessico
+
+\voce{mandato}{compiti e obiettivi assegnati a un’istituzione}{تفويض}
+
+\voce{riserve}{saldi delle banche presso la banca centrale}{احتياطيات}
+
+\voce{restrittivo}{che frena l’espansione monetaria e della domanda}{انكماشي}
+
+\voce{espansivo}{che sostiene condizioni favorevoli alla spesa}{توسعي}
+
+\voce{trasmissione}{passaggio degli effetti attraverso più relazioni}{انتقال}
+
+\voce{credibilità}{fiducia nella coerenza di un soggetto}{مصداقية}
+
+\voce{previsione}{descrizione di un esito futuro atteso}{تنبؤ}
+
+\lingua
+Dividi un paragrafo in quattro categorie: decisione, motivazione, previsione e condizione. Scrivi poi un riassunto usando «ha deciso», «poiché», «si attende», «se».
+\scrittura
+Confronta in 250--300 parole i due casi immaginari della lettura. Spiega perché la stessa variazione dei prezzi può richiedere analisi differenti.
+
+\end{lettura}
+% FINE LETTURA 13
+
+% =================================================================
+% INIZIO LETTURA 14 - circa 2051 parole di testo
+
+\begin{lettura}{1}{Crescita, produttività e innovazione}
+
+
+\subsection*{Produrre di più nel tempo}
+Quando parliamo di \textbf{crescita economica} ci riferiamo a un aumento della produzione, generalmente misurato attraverso il PIL reale. La parola «reale» ricorda che vogliamo distinguere le quantità e la qualità della produzione dai semplici aumenti dei prezzi. Se il valore monetario sale soltanto perché i prezzi aumentano, non possiamo concludere che il paese produca più beni e servizi.
+
+Anche la crescita totale va distinta da quella per abitante. Se produzione e popolazione aumentano nella stessa proporzione, la produzione media per persona resta invariata. Per comprendere l'evoluzione delle possibilità materiali di una società è quindi utile osservare entrambe le dimensioni, senza dimenticare la distribuzione.
+
+Il benessere rimane un concetto più ampio. Una produzione maggiore può offrire risorse per servizi e consumi, ma non garantisce da sola salute, tempo libero o qualità ambientale. La domanda economica non è soltanto «quanto produciamo?», ma anche «come produciamo, che cosa otteniamo e come vengono distribuiti benefici e costi?».
+
+\subsection*{Lavoro, capitale e organizzazione}
+Per produrre utilizziamo lavoro, strumenti e risorse naturali. Il \textbf{capitale produttivo} comprende beni durevoli impiegati nella produzione, come macchine, edifici e reti. Il capitale finanziario, invece, riguarda risorse e strumenti di finanziamento. Le due espressioni sono collegate, ma non coincidono.
+
+Un laboratorio può aumentare la produzione assumendo più persone o acquistando più macchine. Può anche migliorare l'organizzazione con le stesse risorse. Se i materiali arrivano in ritardo e gli operai aspettano, una parte del tempo disponibile non viene utilizzata produttivamente. Ridurre l'attesa può aumentare il risultato senza allungare l'orario di lavoro.
+
+La produzione dipende inoltre dalla combinazione delle risorse. Una macchina sofisticata può essere poco utile se nessuno sa utilizzarla o se manca elettricità affidabile. Competenze, infrastrutture e manutenzione sono quindi complementari agli investimenti materiali. La semplice presenza di uno strumento non coincide con la sua utilizzazione efficace.
+
+\subsection*{Che cosa misura la produttività}
+La \textbf{produttività} mette in relazione il prodotto ottenuto e le risorse impiegate. Una misura semplice è la produzione per ora di lavoro. Se un laboratorio realizza quaranta oggetti in venti ore, produce in media due oggetti per ora. Se con le stesse venti ore ne realizza sessanta, la produttività del lavoro sale a tre oggetti per ora.
+
+Questo aumento non significa necessariamente che i lavoratori si muovano più velocemente o si impegnino di più. Può dipendere da strumenti migliori, materiali più adatti o procedure più chiare. Attribuire tutta la produttività alla persona ignora il contesto in cui lavora.
+
+Anche il confronto richiede attenzione alla qualità. Produrre più oggetti difettosi non equivale a produrre più beni utilizzabili. Se il risultato comprende prodotti diversi, contare i pezzi può non essere sufficiente. Per confronti più ampi si utilizzano misure di valore reale, pur con difficoltà di misurazione.
+
+\subsection*{Un laboratorio immaginario}
+Consideriamo un laboratorio che produce piccoli supporti metallici. In una giornata di otto ore, quattro lavoratori realizzano centoventotto pezzi utilizzabili. Le ore complessive di lavoro sono trentadue: quattro persone per otto ore. La produttività media è quattro pezzi per ora di lavoro.
+
+Il responsabile modifica la disposizione degli strumenti e introduce un dispositivo che riduce gli errori. Con le stesse persone e lo stesso orario si ottengono centosessanta pezzi utilizzabili. La produttività sale a cinque pezzi per ora, con un aumento del venticinque per cento. I dati sono inventati per comprendere la relazione.
+
+Per valutare il progetto dobbiamo però considerare anche il costo del dispositivo, la formazione e la manutenzione. Un aumento della produttività tecnica può essere interessante, ma la convenienza economica dipende da costi e benefici nel tempo. Inoltre, vendere più pezzi richiede clienti: capacità produttiva e domanda non sono sinonimi.
+
+\subsection*{Innovazione di prodotto}
+Un'\textbf{innovazione di prodotto} introduce un bene o servizio nuovo oppure migliora in modo significativo uno esistente. Un dispositivo che consuma meno energia e svolge nuove funzioni può rappresentare un'innovazione di prodotto. Anche un servizio di prenotazione più accessibile può modificare il modo in cui viene soddisfatto un bisogno.
+
+L'innovazione non coincide sempre con un oggetto completamente nuovo per il mondo. Un miglioramento può essere importante per gli utenti che lo adottano. Tuttavia, cambiare soltanto il colore di una confezione non ha necessariamente lo stesso significato di introdurre una funzione utile. Per descrivere l'innovazione dobbiamo spiegare che cosa cambia.
+
+Un nuovo prodotto può creare un mercato, sostituire prodotti precedenti oppure affiancarli. La domanda dipende da prezzo, utilità, abitudini e possibilità di accesso. Una tecnologia disponibile non viene automaticamente adottata da tutti. Le persone devono conoscerla, comprenderla e poter sostenere i costi.
+
+\subsection*{Innovazione di processo}
+Un'\textbf{innovazione di processo} modifica il modo in cui si produce o si organizza un'attività. Può ridurre tempi, errori e consumo di materiali. Un sistema che individua un difetto prima della fase finale permette, per esempio, di evitare lavorazioni inutili. Il prodotto può restare simile, mentre cambia il percorso necessario a ottenerlo.
+
+Le due forme di innovazione possono combinarsi. Un nuovo programma informatico è un prodotto per chi lo vende e può diventare uno strumento di processo per chi lo utilizza. La classificazione dipende quindi dal punto di vista e dalla funzione osservata.
+
+Anche procedure semplici possono essere innovative per un'organizzazione. Se un'officina registra gli interventi e organizza meglio le scorte, può ridurre gli acquisti urgenti e i tempi di attesa. Non ogni miglioramento richiede una macchina costosa. La conoscenza dell'attività e la collaborazione dei lavoratori possono essere decisive.
+
+\subsection*{Invenzione, adozione e diffusione}
+Un'\textbf{invenzione} introduce una soluzione o un'idea tecnica. Per produrre effetti economici deve spesso essere sviluppata, adottata e diffusa. Tra la prima dimostrazione e l'utilizzo quotidiano possono passare anni. Servono prove, adattamenti, finanziamenti e persone capaci di impiegare la soluzione.
+
+La \textbf{diffusione} indica l'estensione dell'utilizzo tra imprese, persone o territori. Un'impresa può imparare da un fornitore, da un lavoratore formato altrove o da una collaborazione. Le conoscenze circolano attraverso relazioni concrete, non soltanto attraverso la disponibilità di un manuale.
+
+La capacità di adottare una tecnologia dipende anche da competenze precedenti. Un programma avanzato può essere difficile da utilizzare se i dati sono incompleti o le procedure non sono organizzate. Per questo la formazione continua e la manutenzione delle capacità possono accompagnare l'acquisto di strumenti.
+
+\subsection*{Automazione e compiti}
+L'\textbf{automazione} affida a sistemi tecnici attività prima svolte, in tutto o in parte, dalle persone. Può riguardare movimenti ripetitivi, controlli o elaborazioni di dati. Per comprenderne gli effetti è utile distinguere una professione dall'insieme dei compiti che la compongono.
+
+Un tecnico può leggere misure, individuare problemi, parlare con il cliente e controllare la sicurezza. Un nuovo sistema può automatizzare soltanto una parte di questi compiti. Alcune competenze possono diventare meno richieste, mentre altre acquistano importanza. Non ogni automazione elimina quindi un'intera professione, ma non è neppure corretto escludere possibili perdite di posti di lavoro.
+
+Il risultato dipende da come cambia la domanda, da quali nuove attività emergono e dalla possibilità di formare i lavoratori. Una maggiore efficienza può ridurre i costi e ampliare le vendite; può anche ridurre il lavoro necessario per una produzione invariata. Sono meccanismi diversi che devono essere osservati nel contesto.
+
+\subsection*{Il costo relativo delle risorse}
+Un'impresa sceglie tra tecniche produttive considerando i costi e la disponibilità delle risorse. Una macchina può richiedere un investimento iniziale elevato ma ridurre alcune spese successive. Il lavoro umano può offrire flessibilità, capacità di adattamento e competenze non facilmente sostituibili.
+
+Se il costo del finanziamento aumenta, acquistare una macchina può diventare meno conveniente. Se l'energia è inaffidabile, una tecnica dipendente da un'alimentazione continua può presentare rischi. Perciò il rapporto tra lavoro e capitale dipende anche da infrastrutture e condizioni finanziarie, non soltanto dal salario.
+
+Due imprese in paesi differenti possono utilizzare tecniche diverse per realizzare prodotti simili. Questa differenza non dimostra automaticamente che una sia più capace dell'altra. Le condizioni economiche possono rendere conveniente una combinazione diversa. Per confrontarle bisogna considerare costi, qualità, tempi e vincoli.
+
+\subsection*{Istruzione e capacità produttiva}
+Le competenze aiutano a utilizzare strumenti, interpretare problemi e adattare procedure. L'istruzione può contribuire alla capacità produttiva, ma il titolo di studio da solo non descrive tutto ciò che una persona sa fare. Contano qualità dell'apprendimento, esperienza e possibilità di applicare le conoscenze.
+
+Anche leggere un manuale tecnico è una competenza economica. Se un lavoratore comprende un'istruzione, può ridurre errori e riconoscere rischi. Il vocabolario specialistico serve a comunicare in modo preciso. Le letture di questo libretto collegano quindi l'apprendimento linguistico alla capacità di comprendere ambienti di lavoro e decisioni collettive.
+
+La formazione può avere benefici che vanno oltre la singola persona. Un lavoratore condivide conoscenze con colleghi e può migliorare l'organizzazione. Tuttavia, chi sostiene i costi della formazione non riceve necessariamente tutti i benefici. Ritroviamo così il tema degli effetti che superano una singola relazione economica.
+
+\subsection*{Infrastrutture e istituzioni}
+Un'infrastruttura è una struttura o rete che sostiene molte attività: trasporti, energia, acqua e comunicazioni ne sono esempi. Il suo valore dipende anche dalle connessioni. Un tratto ferroviario isolato può essere meno utile di una rete che collega luoghi di produzione e consumo.
+
+Anche le istituzioni influenzano le possibilità di investimento. Contratti comprensibili, procedure affidabili e tempi prevedibili possono ridurre l'incertezza. Questo non significa che basti una sola regola per produrre crescita. Le condizioni si combinano e possono rafforzarsi o limitarsi reciprocamente.
+
+Un'impresa può avere una buona idea ma non trovare finanziamenti; può ottenere finanziamenti ma non disporre di energia; può produrre bene ma non raggiungere i clienti. Per capire lo sviluppo bisogna seguire l'intera catena di condizioni, evitando di cercare una spiegazione unica per ogni paese.
+
+\subsection*{Ricerca e incertezza}
+La \textbf{ricerca} cerca nuove conoscenze e soluzioni. Il risultato non è sempre prevedibile: molti tentativi non producono immediatamente un'applicazione. Un'organizzazione deve quindi sostenere costi prima di sapere se otterrà un beneficio. Questa incertezza distingue la ricerca da un acquisto di risultati già disponibili.
+
+Imprese, università e istituzioni pubbliche possono svolgere ruoli diversi. Una conoscenza può essere condivisa ampiamente oppure protetta attraverso diritti specifici. La protezione può offrire incentivi, mentre la diffusione può ampliare l'utilizzo. Le politiche devono considerare entrambi gli aspetti.
+
+Anche un risultato non previsto può essere utile in un altro contesto. Per questo collaborazione e circolazione delle idee possono avere valore. Non dobbiamo però confondere una possibilità con una garanzia: investire in ricerca richiede scelte, valutazioni e capacità di apprendere anche dagli insuccessi.
+
+\subsection*{Crescita e distribuzione dei benefici}
+Se un'impresa produce di più con le stesse risorse, il beneficio può assumere forme diverse: prezzi più bassi, salari maggiori, profitti più alti o nuovi investimenti. La ripartizione dipende da mercato, contratti e decisioni. Non esiste un passaggio automatico da maggiore produttività a benefici identici per tutti.
+
+Anche i territori possono beneficiare in modi diversi dell'innovazione. Un'area con competenze e infrastrutture può attirare attività, mentre un'altra può perdere occupazione. Le politiche di formazione e collegamento possono influenzare queste differenze, ma richiedono tempo e risorse.
+
+Per valutare una trasformazione tecnologica dobbiamo quindi osservare sia il risultato complessivo sia le persone coinvolte. Un aumento della produzione totale può convivere con difficoltà per alcuni gruppi. Riconoscere questa possibilità permette di discutere gli adattamenti necessari senza negare il valore dell'innovazione.
+
+\subsection*{La dimensione ambientale}
+Produrre di più può richiedere più energia e materiali, ma le tecnologie possono anche ridurre il consumo per unità di prodotto. Le due variazioni vanno distinte. Se ogni oggetto richiede meno energia ma il numero degli oggetti aumenta molto, il consumo totale può comunque crescere.
+
+Immaginiamo che il consumo per pezzo scenda da dieci a otto unità, mentre la produzione passi da cento a centocinquanta pezzi. Il consumo totale passa da mille a milleduecento unità. L'efficienza migliora, ma il totale aumenta. È un esempio didattico di come intensità e quantità complessiva possano muoversi diversamente.
+
+Questo collegamento prepara la prossima lettura. Lo sviluppo sostenibile richiede di osservare produzione, distribuzione e limiti ambientali insieme. Una tecnologia va descritta attraverso il problema che affronta, le risorse che utilizza e le conseguenze che produce durante il suo impiego.
+
+\subsection*{Il tempo risparmiato}
+Un miglioramento produttivo può anche liberare tempo. Se un'attività richiede meno ore, quelle ore possono essere dedicate ad altri compiti, a una produzione maggiore o al riposo. La scelta dipende dall'organizzazione e dagli accordi. Per valutare il beneficio dobbiamo quindi osservare come viene utilizzato il tempo risparmiato, non soltanto contarlo. Lo stesso cambiamento tecnico può tradursi in risultati sociali differenti.
+
+\subsection*{Leggere il lungo periodo}
+La crescita di lungo periodo nasce da cambiamenti che si accumulano: strumenti, competenze, organizzazioni e reti. Una decisione può avere effetti dopo molti anni e dipendere da altre decisioni. Perciò una singola variazione annuale non descrive tutto il percorso di sviluppo.
+
+Nel leggere un testo cerchiamo i meccanismi: quale risorsa aumenta? Quale processo migliora? Quale ostacolo viene ridotto? Poi chiediamo come i benefici vengono distribuiti e quali nuovi problemi emergono. Questa sequenza permette di comprendere l'innovazione come un processo economico e sociale, non soltanto come un elenco di oggetti moderni.
+
+
+
+\begin{center}\begin{minipage}{\linewidth}\centering\small\begin{tabular}{lrr}\toprule
+Laboratorio immaginario & Prima & Dopo\\\midrule
+Ore di lavoro totali & 32 & 32\\
+Pezzi utilizzabili & 128 & 160\\
+Pezzi per ora & 4 & 5\\\bottomrule
+\end{tabular}
+\captionof{table}{Stesse ore di lavoro, produttività maggiore del 25\%.}
+\end{minipage}\end{center}
+
+
+\attivita
+\begin{enumerate}
+
+\item Calcola la produttività del laboratorio prima e dopo la modifica.
+
+\item Perché maggiore produttività non significa necessariamente maggiore sforzo individuale?
+
+\item Distingui innovazione di prodotto e di processo.
+
+\item Perché gli effetti di un’invenzione possono richiedere tempo?
+
+\item Distingui professione e compito nel caso dell’automazione.
+
+\item Ricostruisci il calcolo energetico dell’ultima parte.
+
+\end{enumerate}
+\lessico
+
+\voce{produttività}{prodotto ottenuto rispetto alle risorse impiegate}{إنتاجية}
+
+\voce{innovazione}{introduzione di prodotti o processi migliorati}{ابتكار}
+
+\voce{adozione}{inizio dell’utilizzo di una soluzione}{تبنّي}
+
+\voce{diffusione}{estensione dell’utilizzo}{انتشار}
+
+\voce{automazione}{svolgimento tecnico di compiti prima umani}{أتمتة}
+
+\voce{infrastruttura}{rete o struttura a sostegno di molte attività}{بنية تحتية}
+
+\voce{efficienza}{risultato ottenuto in rapporto alle risorse}{كفاءة}
+
+\lingua
+Scrivi quattro relazioni con «a parità di», «per unità di», «nel complesso» e «nel lungo periodo». Indica quali quantità mantieni costanti.
+\scrittura
+In 280--320 parole descrivi un’innovazione possibile in un’officina o a scuola: problema iniziale, cambiamento, risorse richieste, benefici e limiti.
+
+\end{lettura}
+% FINE LETTURA 14
+
+% =================================================================
+% INIZIO LETTURA 15 - circa 2320 parole di testo
+
+\begin{lettura}{1}{Economia, ambiente e sviluppo sostenibile}
+
+
+\subsection*{L'economia dentro l'ambiente}
+Ogni attività economica utilizza elementi dell'ambiente. L'agricoltura richiede terra e acqua; l'industria usa materiali ed energia; i servizi dipendono da edifici, trasporti e strumenti. Anche un'attività digitale utilizza dispositivi e infrastrutture fisiche. L'economia non opera quindi in uno spazio separato dalla natura: trasforma risorse e produce conseguenze sull'ambiente in cui viviamo.
+
+L'ambiente offre inoltre condizioni che non sempre vengono vendute attraverso un mercato. Aria respirabile, stabilità degli ecosistemi e disponibilità di acqua hanno valore per le persone e per la produzione. Il fatto che non esista un prezzo diretto per ogni beneficio non significa che quel beneficio sia privo di valore.
+
+Lo \textbf{sviluppo sostenibile} cerca di collegare miglioramento delle condizioni di vita, equità e conservazione delle possibilità future. La parola «sostenibile» richiede quindi una prospettiva temporale. Una scelta può offrire un vantaggio immediato e creare costi successivi. Per valutarla dobbiamo osservare chi riceve il beneficio, chi sostiene il costo e quando questi effetti si manifestano.
+
+\subsection*{Dal costo privato al costo collettivo}
+Riprendiamo l'esempio del traffico. Chi utilizza un'automobile considera carburante, tempo e manutenzione. Il viaggio può però contribuire anche a rumore, congestione ed emissioni. Una parte di queste conseguenze ricade su persone esterne alla decisione. Quando non è pienamente inclusa nei costi considerati da chi decide, incontriamo un'esternalità.
+
+Il \textbf{costo privato} è sostenuto dal soggetto che compie l'attività. Il \textbf{costo sociale} considera anche effetti sugli altri. La differenza non significa che chi viaggia desideri danneggiare qualcuno. Significa che le condizioni della decisione possono non rendere visibili tutti gli effetti collettivi.
+
+Immaginiamo che un mezzo produca molto rumore in una strada residenziale. Il conducente può non pagare direttamente per il disturbo provocato. Le famiglie vicine, però, possono perdere tranquillità e riposo. Un'analisi economica deve riconoscere anche questa conseguenza, pur quando è difficile esprimerla con un unico numero monetario.
+
+\subsection*{Inquinamento locale e cambiamento climatico}
+L'\textbf{inquinamento atmosferico locale} e il \textbf{cambiamento climatico} sono collegati a varie attività, ma non sono lo stesso fenomeno. Il primo riguarda sostanze presenti nell'aria e conseguenze spesso concentrate in determinate aree. Il secondo riguarda cambiamenti del sistema climatico su periodi lunghi, con effetti distribuiti su scala globale.
+
+La combustione di fonti fossili può contribuire a entrambi, attraverso sostanze e meccanismi differenti. Ridurre alcune combustioni può quindi offrire benefici sia per l'aria locale sia per il clima. Tuttavia, misurare un inquinante in una strada non equivale a misurare direttamente il riscaldamento globale.
+
+Anche \textbf{tempo meteorologico} e \textbf{clima} vanno distinti. Il tempo descrive condizioni di breve periodo, come la temperatura di domani. Il clima riguarda caratteristiche statistiche osservate su periodi lunghi. Una giornata fredda non smentisce da sola una tendenza climatica, così come una sola giornata molto calda non basta a misurarla.
+
+\subsection*{Un dato climatico da leggere bene}
+Nel rapporto di sintesi del 2023, l'IPCC indica che la temperatura superficiale globale nel periodo 2011--2020 è stata circa 1,1 gradi Celsius più alta rispetto al periodo 1850--1900. Il rapporto attribuisce il riscaldamento globale alle attività umane, principalmente attraverso le emissioni di gas serra. Si tratta di una sintesi scientifica riferita a periodi precisi.\fonte{clima}
+
+Il dato non significa che ogni città si sia riscaldata esattamente di 1,1 gradi. È una media globale. Non è neppure una previsione per la temperatura di una particolare giornata al Cairo. Le parole «globale», «periodo» e «rispetto a» sono necessarie per interpretarlo correttamente.
+
+Per leggere un numero climatico dobbiamo quindi chiedere quale variabile viene misurata, quale area viene considerata e quale base viene utilizzata. Sono domande simili a quelle poste per il PIL e l'inflazione. La competenza nel leggere i dati attraversa argomenti diversi.
+
+\subsection*{Emissioni e accumulo}
+Le \textbf{emissioni} descrivono sostanze rilasciate in un periodo. La \textbf{concentrazione} descrive invece la quantità presente in un determinato volume o insieme. La distinzione richiama quella tra flusso e stock incontrata con reddito e patrimonio. Per alcuni gas, gli effetti dipendono anche dall'accumulo nel tempo.
+
+Un esempio semplice può aiutare, senza rappresentare tutti i dettagli fisici. In un contenitore entra acqua attraverso un rubinetto ed esce da uno scarico. Ridurre l'acqua in entrata non significa necessariamente che il livello cominci subito a scendere: dipende anche da quanta ne esce. Allo stesso modo, rallentare un flusso e ridurre uno stock sono obiettivi differenti.
+
+L'esempio del contenitore è un'analogia, non un modello completo dell'atmosfera. Un buon lettore riconosce sia l'utilità sia i limiti di un paragone. L'analogia aiuta a capire una relazione, ma non sostituisce le misure e le conoscenze scientifiche necessarie per descrivere il fenomeno reale.
+
+\subsection*{Mitigazione e adattamento}
+La \textbf{mitigazione} comprende azioni che riducono le cause del cambiamento climatico, per esempio diminuendo emissioni o aumentando assorbimenti. L'\textbf{adattamento} cerca invece di ridurre l'esposizione e la vulnerabilità agli effetti climatici. Sono due orientamenti complementari, non due alternative che si escludono.
+
+Migliorare l'efficienza energetica di un edificio può ridurre l'energia necessaria. Organizzare spazi ombreggiati e procedure per affrontare temperature elevate può ridurre alcuni rischi del caldo. Un intervento può contribuire a entrambi gli obiettivi, ma dobbiamo spiegare attraverso quale meccanismo.
+
+Consideriamo una scuola immaginaria. Una migliore ventilazione e una protezione dal sole possono rendere gli ambienti più utilizzabili. Se permettono anche di ridurre il consumo di elettricità, producono un ulteriore beneficio. Per valutare il progetto occorre però conoscere l'edificio, il clima locale, i materiali e le modalità di utilizzo.
+
+\subsection*{Energia: fonti, potenza e produzione}
+L'energia viene ottenuta da fonti diverse e trasformata per gli usi finali. Le fonti fossili comprendono carbone, petrolio e gas naturale. Tra le fonti rinnovabili troviamo sole, vento e acqua in movimento. Il carattere rinnovabile riguarda la disponibilità della fonte, ma non significa che gli impianti siano privi di materiali, costi o conseguenze ambientali.
+
+Dobbiamo distinguere \textbf{potenza} ed \textbf{energia}. La potenza descrive un ritmo di produzione o consumo; l'energia descrive una quantità accumulata durante un intervallo. Un impianto da un megawatt che funzionasse a quella potenza per un'ora produrrebbe un megawattora. Non è corretto usare le due unità come sinonimi.
+
+La potenza installata non indica da sola la produzione annuale. Contano ore di funzionamento, disponibilità della fonte, manutenzione e condizioni della rete. Un impianto solare non produce alla propria potenza massima durante tutte le ore dell'anno. Per confrontare impianti dobbiamo quindi conoscere l'indicatore utilizzato.
+
+\subsection*{Un caso egiziano: Benban}
+Il parco solare di Benban, nell'area di Assuan, offre un esempio concreto di investimento energetico in Egitto. Una comunicazione della Banca europea per la ricostruzione e lo sviluppo del gennaio 2019 indicava una capacità contrattualizzata del parco pari a 1.465 megawatt. Il dato descrive un riferimento progettuale di quel momento, non una misura della produzione annuale né un aggiornamento in tempo reale.\fonte{benban}
+
+Per il nostro percorso il caso permette di collegare risorsa naturale, infrastruttura e finanziamento. La disponibilità di sole è una condizione utile, ma un progetto richiede anche terreno, impianti, collegamenti alla rete, manutenzione e accordi economici. Un paesaggio soleggiato non si trasforma automaticamente in elettricità utilizzabile.
+
+Possiamo leggere il numero di megawatt senza attribuirgli significati ulteriori. Non indica quanti megawattora siano stati prodotti in un anno, né quanti lavoratori siano occupati stabilmente. Per rispondere a queste domande servono dati diversi. Il caso mostra perché ogni indicatore deve rimanere collegato alla propria definizione.
+
+\subsection*{Efficienza e consumi totali}
+L'\textbf{efficienza energetica} riguarda il servizio ottenuto in rapporto all'energia utilizzata. Una lampada può fornire una certa illuminazione consumando meno elettricità. Questo miglioramento riduce il consumo a parità di servizio, ma il consumo complessivo dipende anche da quante lampade usiamo e per quante ore.
+
+Se una tecnologia rende un servizio meno costoso, le persone possono utilizzarlo di più. Questo possibile aumento dell'utilizzo viene spesso discusso come effetto di rimbalzo. Non significa che ogni miglioramento sia inutile. Significa che il risparmio totale può essere diverso da quello calcolato mantenendo invariati tutti i comportamenti.
+
+Per questo una valutazione deve dichiarare le ipotesi. Se scriviamo «il nuovo sistema riduce i consumi del venti per cento», chiediamo rispetto a quale sistema, con quale utilizzo e in quali condizioni. Una percentuale priva di riferimento non permette di capire il beneficio effettivo.
+
+\subsection*{Regole e incentivi}
+Le politiche ambientali possono utilizzare \textbf{regole}, come limiti o requisiti tecnici. Possono anche usare incentivi economici: rendere più costose alcune attività oppure sostenere alternative meno dannose. Gli strumenti modificano condizioni e convenienze, ma richiedono controlli e capacità di applicazione.
+
+Un'imposta su un'attività inquinante può cercare di far considerare a chi decide una parte del costo collettivo. Un contributo a un investimento può ridurre il costo iniziale di una soluzione. Il primo strumento raccoglie entrate; il secondo richiede risorse. Entrambi possono essere progettati in modi differenti.
+
+Non basta scegliere un nome per garantire un risultato. Un incentivo può essere utilizzato anche da chi avrebbe realizzato comunque l'investimento. Una regola può essere difficile da controllare. Perciò bisogna considerare destinatari, comportamenti e possibilità di verifica, oltre all'obiettivo dichiarato.
+
+\subsection*{Un esempio di scelta pubblica}
+Immaginiamo una città che voglia ridurre traffico e inquinamento. Può migliorare il trasporto pubblico, creare percorsi pedonali oppure modificare condizioni di accesso e parcheggio. Ogni misura agisce su un passaggio diverso: alternative disponibili, sicurezza, tempo e costo dello spostamento.
+
+Se aumentano i costi dell'automobile senza offrire alternative praticabili, alcune persone possono incontrare difficoltà maggiori di altre. Chi lavora lontano o in orari particolari può avere meno possibilità di adattarsi. Una politica ambientale deve quindi osservare anche la distribuzione degli effetti.
+
+Migliorare il trasporto pubblico richiede investimenti, manutenzione e organizzazione. Acquistare veicoli non basta se le linee non collegano i luoghi necessari o gli orari sono inaffidabili. L'esempio riprende una lezione generale: il bene materiale e il servizio effettivamente offerto non coincidono automaticamente.
+
+\subsection*{Chi sostiene i costi della transizione}
+La \textbf{transizione} è un processo di cambiamento tra sistemi di produzione e consumo. Può creare nuove attività e ridurre la domanda di altre. Le persone coinvolte possono avere bisogno di formazione, tempo e sostegno per adattarsi. Il beneficio collettivo di lungo periodo non elimina i costi concentrati nel breve periodo.
+
+Consideriamo un lavoratore specializzato in una tecnologia che viene utilizzata meno. Le competenze possedute possono essere in parte trasferibili, ma non sempre immediatamente. Dire che nasceranno nuovi lavori non dimostra che quella persona possa accedervi senza ostacoli. Contano luogo, requisiti e tempi.
+
+Una discussione sulla \textbf{transizione equa} considera questa distribuzione di opportunità e costi. Non significa bloccare ogni cambiamento. Significa chiedere come renderlo praticabile per i gruppi che affrontano maggiori difficoltà e come utilizzare le risorse disponibili in modo coerente con gli obiettivi.
+
+\subsection*{Materiali e ciclo di vita}
+Per valutare un prodotto possiamo osservare il suo \textbf{ciclo di vita}: estrazione dei materiali, produzione, trasporto, utilizzo e fine dell'utilizzo. Un oggetto può consumare poca energia durante l'uso ma richiedere risorse nella produzione. Concentrarsi su una sola fase può quindi offrire un'immagine incompleta.
+
+Riparare, riutilizzare e riciclare sono operazioni differenti. Riparare prolunga la funzione di un oggetto; riutilizzare gli attribuisce un nuovo impiego; riciclare recupera materiali attraverso un processo. Anche il riciclo richiede energia e organizzazione. Non trasforma automaticamente tutti i rifiuti in nuove risorse senza perdite.
+
+Un'impresa può progettare prodotti più facili da mantenere, mentre una città può organizzare raccolte separate. Le scelte individuali funzionano meglio quando esistono infrastrutture e informazioni. Chiedere alle persone di adottare un comportamento senza rendere disponibili i mezzi necessari può limitarne l'efficacia.
+
+\subsection*{Misurare e confrontare}
+Un indicatore ambientale può riguardare un totale, un valore per abitante oppure un valore per unità prodotta. Un paese popoloso può avere emissioni totali elevate e un valore pro capite diverso da quello di un paese piccolo. Un'impresa può ridurre le emissioni per pezzo e aumentare quelle totali se produce molto di più.
+
+Nessuna misura è sufficiente per ogni domanda. Se studiamo l'efficienza di una tecnica, il valore per unità può essere utile. Se studiamo la pressione complessiva sull'ambiente, dobbiamo osservare anche il totale. Se discutiamo la distribuzione tra persone, il riferimento pro capite può aggiungere informazioni.
+
+Dobbiamo inoltre indicare il periodo. Una riduzione rispetto a un anno eccezionale può essere diversa da una tendenza di lungo periodo. Le fonti devono specificare metodologia e unità. Il compito del lettore è controllare che il numero utilizzato sostenga davvero la frase che lo accompagna.
+
+\subsection*{Cooperare oltre i confini}
+Alcuni effetti ambientali attraversano i confini. Una scelta nazionale può produrre benefici o costi per altri paesi. Nel caso del clima, le decisioni di molti soggetti contribuiscono a un risultato comune. Ritroviamo il problema della cooperazione e degli incentivi a lasciare agli altri il costo dell'intervento.
+
+Gli accordi internazionali cercano di coordinare impegni, informazioni e risorse. La difficoltà riguarda anche differenze nelle capacità economiche, nelle responsabilità e nei bisogni di sviluppo. Un accordo deve trasformare obiettivi generali in azioni, sistemi di verifica e strumenti finanziari.
+
+La prossima lettura approfondirà queste forme di cooperazione. Per ora osserviamo il collegamento: ambiente, economia e istituzioni non sono temi separati. Un progetto tecnico richiede risorse e regole; una regola richiede applicazione; una cooperazione richiede impegni comprensibili e verificabili.
+
+\subsection*{Un controllo prima e dopo}
+Per capire se una scuola riduce i consumi possiamo confrontare periodi precedenti e successivi a un intervento. Dobbiamo però considerare anche temperatura esterna, numero di studenti e ore di utilizzo. Un consumo più basso durante una settimana di chiusura non dimostra l'efficacia della nuova lampada o del nuovo impianto.
+
+Il confronto richiede condizioni il più possibile coerenti e una registrazione delle differenze. Possiamo usare consumi per ora di apertura oppure annotare i cambiamenti importanti. Nessun indicatore elimina ogni difficoltà, ma una misura ben descritta permette di discutere il risultato.
+
+Questo metodo collega scienze, matematica e lingua: misuriamo una quantità, costruiamo un confronto e scriviamo una spiegazione. La frase finale dovrebbe indicare ciò che abbiamo osservato e ciò che non possiamo ancora attribuire con certezza all'intervento.
+
+\subsection*{Una domanda finale sullo sviluppo}
+Per discutere uno sviluppo sostenibile possiamo partire da un bisogno concreto: spostarsi, abitare, produrre o studiare. Poi confrontiamo le soluzioni disponibili considerando risorse, costi, benefici e conseguenze nel tempo. In questo modo evitiamo di trattare la sostenibilità come una parola positiva priva di contenuto.
+
+Un progetto non deve essere descritto soltanto attraverso ciò che promette. Dobbiamo distinguere un obiettivo, una previsione e un risultato misurato. Possiamo apprezzare una possibilità e riconoscere nello stesso tempo le condizioni necessarie perché si realizzi. È lo stesso metodo utilizzato per le riforme economiche e per l'innovazione.
+
+La lettura dell'ambiente ci chiede quindi di collegare scale diverse: una scelta quotidiana, un'organizzazione produttiva, una politica pubblica e un accordo internazionale. Comprendere questi collegamenti permette di utilizzare il vocabolario economico per descrivere problemi reali senza ridurli a una sola causa o a una sola soluzione.
+
+
+
+\begin{center}\begin{minipage}{\linewidth}\centering\small
+\begin{tabularx}{\linewidth}{lX}\toprule
+Dato & Come va letto\\\midrule
+Circa +1,1 $^{\circ}$C & Media globale 2011--2020 rispetto a 1850--1900; IPCC, 2023.\\
+1.465 MW & Capacità contrattualizzata di Benban riportata da EBRD nel gennaio 2019; non energia annua.\\\bottomrule
+\end{tabularx}
+\captionof{table}{Due dati reali con periodi e unità espliciti. Fonti: \ref{src:clima} e \ref{src:benban}.}
+\end{minipage}\end{center}
+
+
+\attivita
+\begin{enumerate}
+
+\item Distingui costo privato e costo sociale.
+
+\item Quali periodo e area descrive il dato di 1,1 gradi?
+
+\item Spiega la differenza tra emissioni e concentrazione attraverso l’analogia.
+
+\item Distingui mitigazione e adattamento.
+
+\item Perché i 1.465 MW citati per Benban non sono una produzione annuale?
+
+\item Perché una politica ambientale può avere effetti distributivi?
+
+\item Distingui riparazione, riutilizzo e riciclo.
+
+\end{enumerate}
+\lessico
+
+\voce{sostenibile}{che considera condizioni presenti e possibilità future}{مستدام}
+
+\voce{emissioni}{sostanze rilasciate in un periodo}{انبعاثات}
+
+\voce{concentrazione}{quantità presente in un volume o insieme}{تركيز}
+
+\voce{mitigazione}{riduzione delle cause del cambiamento climatico}{تخفيف}
+
+\voce{adattamento}{riduzione della vulnerabilità agli effetti}{تكيّف}
+
+\voce{transizione}{processo di passaggio tra sistemi}{انتقال}
+
+\voce{ciclo di vita}{fasi dalla produzione al fine utilizzo}{دورة الحياة}
+
+\lingua
+Individua tre analogie o esempi. Per ciascuno scrivi «Questo esempio aiuta a capire…, ma non dimostra…».
+\scrittura
+Progetta una proposta di 300--350 parole per ridurre consumi o sprechi a scuola. Specifica bisogno, intervento, risorse, persone coinvolte e indicatore da osservare.
+
+\end{lettura}
+% FINE LETTURA 15
+
+% =================================================================
+% INIZIO LETTURA 16 - circa 2568 parole di testo
+
+\begin{lettura}{1}{Perché i paesi cooperano?}
+
+
+\subsection*{Relazioni che attraversano i confini}
+Un oggetto utilizzato a scuola può collegare molti paesi. Le materie prime possono provenire da un territorio, i componenti da un altro e il progetto da un altro ancora. Il prodotto viene trasportato, assicurato e venduto attraverso servizi. Anche quando acquistiamo vicino a casa, possiamo partecipare indirettamente a relazioni economiche internazionali.
+
+I paesi cooperano per ragioni diverse: scambiare prodotti, costruire infrastrutture, affrontare rischi comuni oppure organizzare rapporti politici. La \textbf{cooperazione} consiste nel coordinare azioni tra soggetti che mantengono interessi e responsabilità. Non richiede necessariamente che tutti desiderino esattamente la stessa cosa. Richiede però un accordo sulle azioni da compiere e sulle condizioni della collaborazione.
+
+Per leggere un accordo dobbiamo distinguere il problema iniziale, gli obiettivi, gli strumenti e le istituzioni coinvolte. La parola «unione» può indicare realtà molto diverse. Un accordo commerciale, un mercato comune e uno Stato unitario non sono la stessa forma di organizzazione. Questa distinzione guiderà il confronto tra esempi generali, Repubblica Araba Unita e Unione Europea.
+
+\subsection*{Importare ed esportare}
+Un'\textbf{esportazione} è una vendita di beni o servizi a soggetti esteri; un'\textbf{importazione} è un acquisto dall'estero. Le due parole descrivono la stessa operazione da punti di vista differenti. Se un'impresa egiziana vende un prodotto a un cliente italiano, l'operazione è un'esportazione per l'Egitto e un'importazione per l'Italia.
+
+Anche i servizi possono attraversare i confini. Una prestazione professionale svolta per un cliente estero può essere un'esportazione di servizi. Nel turismo, un visitatore acquista servizi nel paese in cui soggiorna. Per comprendere il commercio internazionale non dobbiamo quindi pensare soltanto a scatole e container.
+
+Importare non significa necessariamente rinunciare alla produzione interna. Un'impresa può acquistare una macchina estera per produrre beni nel proprio paese. Esportare richiede spesso componenti importati. Le due direzioni possono essere complementari all'interno della stessa filiera. Una frase come «le importazioni sono sempre negative» non descrive questa complessità.
+
+\subsection*{Perché scambiare}
+I paesi dispongono di risorse, competenze e condizioni produttive differenti. Lo scambio può permettere di ottenere prodotti difficili o costosi da realizzare localmente, di ampliare la varietà e di raggiungere nuovi clienti. Può anche consentire alle imprese di produrre per un mercato più grande e distribuire alcuni costi su più unità.
+
+Immaginiamo due laboratori. Uno impiega relativamente meno risorse nel produrre tessuti, l'altro nel realizzare strumenti. Una specializzazione parziale e uno scambio possono aumentare le possibilità complessive. L'esempio introduce una logica generale, ma non descrive ogni conseguenza del commercio reale: trasporti, regole, qualità e distribuzione dei benefici contano.
+
+Un vantaggio complessivo non significa che ogni persona benefici nello stesso modo. Alcune imprese trovano nuovi clienti; altre incontrano concorrenti più forti. I lavoratori possono avere bisogno di cambiare attività o formazione. Per questo le politiche commerciali vengono discusse insieme a occupazione, competenze e strumenti di adattamento.
+
+\subsection*{Dipendenza e diversificazione}
+Il commercio collega le economie, ma può anche creare \textbf{dipendenze}. Se un'impresa riceve un componente essenziale da un solo fornitore, un'interruzione può bloccare la produzione. Avere più fornitori, scorte o soluzioni tecniche alternative può ridurre alcune vulnerabilità, ma comporta costi.
+
+La \textbf{diversificazione} consiste nel distribuire fonti, attività o relazioni invece di concentrarle in un solo punto. Non elimina ogni rischio. Fornitori diversi possono dipendere dalla stessa rotta o dalla stessa materia prima. Per capire la solidità di una filiera bisogna quindi osservare anche collegamenti meno visibili.
+
+L'obiettivo non è necessariamente eliminare tutti gli scambi. Un paese può cercare di ridurre una dipendenza specifica mantenendo altri rapporti. Autonomia e cooperazione non sono sempre opposti. Collaborare con più partner può essere uno strumento per ampliare le possibilità di scelta.
+
+\subsection*{Ostacoli e regole comuni}
+Un \textbf{dazio} è un prelievo applicato alle merci che attraversano una frontiera, in particolare alle importazioni. Può influenzare il prezzo e la convenienza dello scambio. Esistono anche ostacoli non tariffari, legati a procedure, requisiti tecnici o autorizzazioni. Alcuni rispondono a obiettivi di sicurezza o tutela; altri possono rendere difficile l'accesso al mercato.
+
+Immaginiamo un produttore che debba dimostrare in ogni paese, attraverso procedure completamente diverse, che il proprio prodotto rispetta un requisito. Il costo delle verifiche può essere elevato. Regole comuni o accordi di riconoscimento possono semplificare il percorso, purché siano definiti controlli e responsabilità.
+
+Cooperare non significa quindi sempre eliminare regole. Può significare costruire regole condivise, rendere confrontabili i documenti e stabilire procedure per risolvere controversie. La prevedibilità può avere valore economico: un'impresa programma meglio quando conosce le condizioni del mercato in cui intende operare.
+
+\subsection*{Forme diverse di integrazione}
+In un accordo di libero scambio i partecipanti riducono determinati ostacoli agli scambi reciproci. Un'unione doganale aggiunge una politica tariffaria comune verso l'esterno. Un mercato comune cerca di facilitare anche il movimento di fattori come lavoro e capitale, oltre agli scambi di beni e servizi.
+
+Un'unione monetaria prevede una moneta condivisa e istituzioni monetarie comuni secondo le regole adottate. Un'unione politica riguarda invece la condivisione o l'unificazione di poteri politici. Queste forme non costituiscono una scala che tutti devono percorrere. Gli accordi reali possono combinare elementi differenti e non avanzano necessariamente nella stessa direzione.
+
+La scelta dipende dagli obiettivi e dalla disponibilità a condividere decisioni. Ridurre un dazio richiede un impegno diverso dal creare una moneta comune o un governo comune. Più ampio è il coordinamento, più diventano importanti rappresentanza, regole decisionali e gestione delle differenze tra partecipanti.
+
+\subsection*{Condividere una decisione}
+La \textbf{sovranità} riguarda l'autorità di prendere decisioni su un territorio e una comunità. Attraverso un accordo, gli Stati possono impegnarsi a seguire regole comuni in determinate materie. Il modo in cui questi impegni vengono assunti e applicati varia secondo il tipo di organizzazione.
+
+Immaginiamo due paesi che vogliano costruire un collegamento ferroviario. Devono stabilire il tracciato, la ripartizione dei costi e gli standard tecnici. Devono anche decidere chi gestirà la manutenzione e come affrontare eventuali disaccordi. L'annuncio del progetto è soltanto l'inizio della cooperazione.
+
+Se i benefici arrivano in tempi diversi, può essere difficile mantenere il sostegno. Un paese può sostenere una spesa prima di ricevere entrate. Un accordo può prevedere compensazioni, fasi e verifiche. La collaborazione richiede quindi una struttura capace di gestire cambiamenti e divergenze, non soltanto una dichiarazione di intenzioni.
+
+\subsection*{Un caso storico: Egitto e Siria}
+Nel 1958 Egitto e Siria si unirono nella \textbf{Repubblica Araba Unita}, guidata da Nasser. L'unione tra i due paesi terminò nel 1961, quando la Siria si separò. L'Egitto continuò a utilizzare il nome Repubblica Araba Unita fino al 1971. È importante distinguere la durata dell'unione dalla durata del nome.\fonte{rauonu}
+
+Il progetto si inseriva nel contesto del nazionalismo arabo e dell'aspirazione all'unità araba. La condivisione di riferimenti culturali e gli obiettivi politici ebbero un ruolo importante. Non si trattò soltanto di un accordo per ridurre dazi o facilitare vendite: venne costituita un'unione politica.\fonte{raucontesto}
+
+Questo caso permette di comprendere che le ragioni della cooperazione possono essere economiche e politiche insieme. L'aspirazione a una maggiore forza collettiva può accompagnarsi alla ricerca di coordinamento. Tuttavia, per descrivere un progetto storico dobbiamo distinguere le motivazioni dichiarate dalla forma concreta assunta dalle istituzioni.
+
+\subsection*{Differenze dentro un progetto comune}
+Egitto e Siria avevano strutture economiche e organizzazioni politiche differenti. Durante l'unione emersero tensioni sul modo in cui erano distribuite le decisioni e sulle trasformazioni economiche. L'accentramento e le diverse posizioni rispetto alle politiche adottate contribuirono alle difficoltà dell'esperienza. Nel settembre 1961 un colpo di Stato in Siria portò alla separazione.\fonte{raudifficolta}
+
+Questa descrizione resta generale. Non attribuisce il risultato a una sola causa e non formula un giudizio sui popoli coinvolti. Una popolazione non ha un unico interesse e un paese comprende gruppi con posizioni diverse. Nella lettura storica dobbiamo evitare di trasformare una decisione di alcune istituzioni in una caratteristica permanente di tutti gli abitanti.
+
+Il caso suggerisce una domanda applicabile anche ad altri accordi: come vengono gestite le differenze tra partecipanti? Condividere un obiettivo non elimina automaticamente differenze nelle risorse, nelle istituzioni e nelle preferenze. Perché una cooperazione duri servono meccanismi che permettano di affrontarle.
+
+\subsection*{Che cosa possiamo confrontare}
+Possiamo confrontare esperienze differenti utilizzando alcune dimensioni comuni: obiettivi, partecipanti, istituzioni, decisioni condivise e gestione dei conflitti. Non dobbiamo però supporre che due organizzazioni con la parola «unione» nel nome siano equivalenti. Il confronto serve a riconoscere somiglianze e differenze, non a cancellarle.
+
+Per la Repubblica Araba Unita abbiamo osservato un progetto di unione politica tra due paesi. Per altri casi potremmo osservare un accordo commerciale o una collaborazione tecnica. Il livello di integrazione modifica i problemi organizzativi: coordinare standard di prodotto e governare un territorio comune richiedono istituzioni differenti.
+
+Anche la durata va interpretata con attenzione. Un'esperienza breve può lasciare conseguenze storiche; una collaborazione duratura può incontrare difficoltà e modificarsi. Il numero di anni non sostituisce l'analisi degli obiettivi e del funzionamento.
+
+\subsection*{L'Unione Europea e il mercato unico}
+L'Unione Europea offre un diverso esempio di integrazione attraverso trattati e istituzioni comuni. Gli Stati membri mantengono la propria esistenza statale e condividono decisioni in ambiti definiti. Il percorso non è equivalente alla Repubblica Araba Unita e non nasce dallo stesso contesto storico.
+
+Una componente economica centrale è il \textbf{mercato unico}, associato alla libera circolazione di beni, servizi, persone e capitali, secondo le regole previste. Il mercato unico è stato avviato nel 1993 e richiede anche norme comuni e coordinamento. La libertà di movimento non significa assenza di ogni requisito o controllo.\fonte{ue}
+
+Per un'impresa, un mercato più ampio può offrire più clienti e fornitori. Per le persone, la possibilità di spostarsi può ampliare opportunità. Gli effetti dipendono però da competenze, informazioni e condizioni concrete. Anche dentro uno spazio integrato restano differenze territoriali e sociali.
+
+\subsection*{Moneta comune e politiche differenti}
+Una parte degli Stati dell'Unione Europea utilizza l'euro. L'area euro e l'Unione Europea non sono quindi due espressioni perfettamente intercambiabili. La politica monetaria comune riguarda l'area euro, mentre molte decisioni di spesa pubblica e tassazione restano nazionali, nel quadro delle regole applicabili.\fonte{bcearea}
+
+Una moneta comune elimina la necessità di cambiare moneta tra i suoi utilizzatori e rende più immediato il confronto di alcuni prezzi. Allo stesso tempo, i partecipanti non possono decidere individualmente un proprio tasso di cambio interno alla moneta comune. La condivisione di uno strumento comporta vantaggi possibili e necessità di coordinamento.
+
+Immaginiamo territori che attraversino fasi economiche differenti. Una politica comune deve considerare un insieme più ampio della singola economia locale. Questo esempio aiuta a capire perché l'integrazione monetaria richieda istituzioni e discussioni su regole e responsabilità. Non basta sostituire il nome stampato sulle banconote.
+
+\subsection*{Infrastrutture e differenze territoriali}
+La cooperazione europea comprende anche interventi che mirano a ridurre differenze di sviluppo e sostenere progetti comuni.\fonte{coesione} Per comprendere il meccanismo possiamo immaginare risorse destinate a trasporti, formazione o ricerca. Un progetto deve avere obiettivi, finanziamenti e modalità di realizzazione; la disponibilità di fondi non coincide automaticamente con un risultato.
+
+La logica è simile a quella già incontrata per gli investimenti pubblici. Un'infrastruttura può collegare territori e rendere accessibili attività. La formazione può ampliare competenze. Per valutarne gli effetti bisogna osservare utilizzo, qualità e durata, oltre alla somma spesa.
+
+In un'organizzazione con più membri emerge inoltre la domanda su come distribuire le risorse. I contributi e i benefici non assumono sempre la stessa forma o lo stesso momento. Una strada costruita in un territorio può essere utilizzata anche da imprese di altri territori. Il beneficio economico può quindi attraversare il luogo in cui viene registrata la spesa.
+
+\subsection*{Le istituzioni economiche internazionali}
+La cooperazione non avviene soltanto attraverso unioni regionali. Il \textbf{Fondo monetario internazionale}, o FMI, si occupa di cooperazione monetaria, analisi e sostegno finanziario ai paesi secondo strumenti e condizioni specifiche. Non è un governo mondiale e non decide ogni politica economica dei suoi membri.\fonte{fmi}
+
+La \textbf{Banca mondiale} sostiene lo sviluppo attraverso finanziamenti e conoscenze, con strumenti che comprendono prestiti, crediti e contributi secondo le istituzioni e i programmi. Un finanziamento per un progetto deve essere distinto da un trasferimento senza obbligo di rimborso. Leggere lo strumento è necessario per capire l'impegno.\fonte{bm}
+
+L'\textbf{Organizzazione mondiale del commercio}, o OMC, riguarda regole e accordi sugli scambi tra membri. Gli accordi vengono negoziati dagli Stati e dagli altri membri dell'organizzazione secondo le procedure previste. L'OMC non è un'impresa che compra e vende merci per tutti.\fonte{omc}
+
+Queste istituzioni hanno funzioni differenti. Le sigle non devono essere imparate come nomi isolati: vanno collegate a problemi e strumenti. Stabilità monetaria, finanziamento dello sviluppo e regole commerciali sono ambiti connessi, ma non identici. Un paese può partecipare contemporaneamente a più forme di cooperazione.
+
+\subsection*{Leggere un finanziamento internazionale}
+Quando leggiamo che un paese «riceve risorse», dobbiamo capire se si tratta di prestito, contributo, investimento o pagamento per un servizio. Un prestito crea un obbligo di rimborso; un investimento può attribuire diritti di proprietà; un contributo segue condizioni diverse. La parola «aiuto» può essere troppo generica.
+
+Dobbiamo inoltre distinguere una somma annunciata, una somma approvata e una somma effettivamente erogata. Un progetto può essere distribuito in fasi. Le erogazioni possono dipendere da verifiche o condizioni. Confondere queste fasi può farci descrivere come già realizzato qualcosa che è ancora previsto.
+
+Anche il \textbf{beneficiario} va identificato. Le risorse possono essere destinate a un'amministrazione, a un'impresa o a un programma. Per comprendere gli effetti sulle famiglie occorre seguire i passaggi: quali attività vengono finanziate, chi le realizza e attraverso quali servizi o redditi raggiungono le persone.
+
+\subsection*{Beni comuni e problemi globali}
+Alcuni problemi richiedono una cooperazione ampia perché gli effetti attraversano i confini. Abbiamo incontrato il clima; possiamo pensare anche a reti di trasporto e scambio di informazioni. Ogni paese può beneficiare del contributo degli altri e, nello stesso tempo, avere un incentivo a ridurre il proprio costo.
+
+Gli accordi cercano di rendere gli impegni più chiari e verificabili. Possono prevedere obiettivi, calendari, informazioni condivise e sostegni per chi dispone di minori risorse. La verifica è importante perché una promessa e un'azione non sono la stessa cosa. Anche la fiducia dipende dalla possibilità di osservare ciò che viene fatto.
+
+Le differenze tra paesi non scompaiono. Alcuni hanno maggiori capacità finanziarie, altri bisogni più urgenti o maggiore esposizione ai rischi. Per costruire un accordo occorre discutere come ripartire responsabilità e sostegno. La cooperazione è quindi un processo di negoziazione, applicazione e adattamento.
+
+\subsection*{Un esercizio conclusivo di negoziazione}
+Immaginiamo due paesi che vogliano condividere un centro di formazione tecnica. Il primo dispone di edifici e insegnanti; il secondo può contribuire con attrezzature e borse di studio. Entrambi vogliono migliorare le competenze, ma devono decidere quanti studenti ammettere, quali titoli rilasciare e come finanziare la manutenzione.
+
+Un accordo può assegnare compiti e prevedere una verifica annuale. Se le iscrizioni sono inferiori al previsto, i partecipanti devono capire se il problema riguarda informazioni, trasporti o contenuti dei corsi. La cooperazione continua quindi dopo la firma: richiede osservazione e adattamento.
+
+Nel descrivere il caso possiamo riprendere molte parole dell'anno: servizio, investimento, capitale, opportunità, costo e risultato. Possiamo anche distinguere tre frasi: «i paesi desiderano formare tecnici», «i paesi finanziano attrezzature», «gli studenti completano il percorso». La prima esprime un obiettivo, la seconda un'azione e la terza un risultato osservabile. Un testo ben costruito spiega come queste dimensioni sono collegate, senza trattarle come equivalenti. È questa precisione che permette di passare dalla conoscenza delle parole alla comprensione di un ragionamento economico.
+
+\subsection*{Ritrovare il percorso dell'anno}
+Siamo partiti da bisogni, beni e servizi. Abbiamo poi osservato produzione, reddito, Stato, credito e riforme. Ora ritroviamo gli stessi concetti nelle relazioni tra paesi. Un accordo internazionale riguarda risorse limitate, scelte, rischi e distribuzione dei benefici, proprio come molte decisioni studiate su scala più piccola.
+
+La scala più ampia rende però importanti nuove istituzioni e nuovi vincoli. Non basta trasferire automaticamente il bilancio di una famiglia al funzionamento di uno Stato o di un'unione. Le analogie aiutano, ma devono essere accompagnate dalle differenze. Una buona lettura conserva entrambe.
+
+Per riassumere un caso di cooperazione possiamo utilizzare cinque domande: chi partecipa, quale problema affronta, che cosa condivide, come decide e come verifica i risultati? La Repubblica Araba Unita, l'Unione Europea e le istituzioni internazionali offrono risposte differenti. Saperle ricostruire significa utilizzare il vocabolario dell'economia per comprendere un testo articolato e discuterlo con precisione.
+
+
+
+\begin{center}\begin{minipage}{\linewidth}\centering\small
+\begin{tabularx}{\linewidth}{lX}\toprule
+Periodo & Repubblica Araba Unita\\\midrule
+1958--1961 & Unione politica tra Egitto e Siria.\\
+1961--1971 & L’Egitto conserva il nome dopo la separazione siriana.\\\bottomrule
+\end{tabularx}
+\captionof{table}{Unione e denominazione hanno durate differenti. Fonte: \ref{src:rauonu}.}
+\end{minipage}\end{center}
+
+
+\attivita
+\begin{enumerate}
+
+\item Descrivi una stessa operazione come esportazione e importazione.
+
+\item Perché un aumento degli scambi non beneficia necessariamente tutti allo stesso modo?
+
+\item Distingui libero scambio, unione doganale e unione politica.
+
+\item Quando esistette l’unione tra Egitto e Siria? Perché compare anche il 1971?
+
+\item Quali dimensioni permettono un confronto senza equiparare RAU e UE?
+
+\item Distingui FMI, Banca mondiale e OMC.
+
+\item Perché annuncio, approvazione ed erogazione sono fasi diverse?
+
+\end{enumerate}
+\lessico
+
+\voce{esportazione}{vendita a soggetti esteri}{تصدير}
+
+\voce{importazione}{acquisto dall’estero}{استيراد}
+
+\voce{dazio}{prelievo sulle merci alla frontiera}{رسم جمركي}
+
+\voce{integrazione}{collegamento attraverso regole e istituzioni comuni}{تكامل}
+
+\voce{sovranità}{autorità di decisione su una comunità e un territorio}{سيادة}
+
+\voce{diversificazione}{distribuzione tra più fonti o attività}{تنويع}
+
+\voce{erogazione}{versamento effettivo di risorse}{صرف الأموال}
+
+\voce{negoziazione}{ricerca di un accordo tra parti}{تفاوض}
+
+\lingua
+Scrivi un confronto usando «entrambi», «a differenza di», «mentre» e «in questo caso». Confronta le medesime dimensioni per i due soggetti.
+\scrittura
+Produci un testo di 350--400 parole: presenta due forme di cooperazione, confrontale con le cinque domande finali e concludi indicando una difficoltà organizzativa comune.
+
+\end{lettura}
+% FINE LETTURA 16
+\clearpage\section*{Fonti e riferimenti}\addcontentsline{toc}{section}{Fonti e riferimenti}
+I riferimenti sostengono definizioni, dati e passaggi storici specifici; esempi immaginari, esercizi e formulazioni didattiche sono originali. Per le fonti storiche si utilizza soltanto il contesto pertinente al periodo descritto. Consultazione: settembre 2026.
+\begin{enumerate}[label={[\arabic*]},itemsep=8pt]
+\item\label{src:pil} Banca mondiale, glossario del PIL pro capite. Definizione contabile e distinzione tra produzione e popolazione.\par\href{https://databank.worldbank.org/metadataglossary/world-development-indicators/series/NY.GDP.PCAP.CN}{\small Apri la fonte}.
+\item\label{src:moneta} Bank of England, How is money created?, 2019. Depositi, prestiti e vincoli bancari.\par\href{https://www.bankofengland.co.uk/explainers/how-is-money-created}{\small Apri la fonte}.
+\item\label{src:luca} Vangelo secondo Luca, 6,34--35. Prestito e generosità nel contesto del discorso del capitolo 6.\par\href{https://www.biblegateway.com/passage/?search=Luke+6&version=NRSVUE}{\small Apri la fonte}.
+\item\label{src:catechismo} Catechismo della Chiesa Cattolica, n. 2269. Riferimento cattolico alle conseguenze umane delle pratiche usurarie.\par\href{https://www.vatican.va/content/catechism/en/part_three/section_two/chapter_two/article_5/i_respect_for_human_life.html}{\small Apri la fonte}.
+\item\label{src:corano} Corano, sura 2, versetto 275. Testo arabo e traduzioni; distinzione tra commercio e ribā.\par\href{https://quran.com/al-baqarah/275}{\small Apri la fonte}.
+\item\label{src:islam} FMI, An Overview of Islamic Finance, Working Paper 15/120, 2015. Forme contrattuali e principi della finanza islamica.\par\href{https://www.imf.org/-/media/Websites/IMF/imported-full-text-pdf/external/pubs/ft/wp/2015/_wp15120.ashx}{\small Apri la fonte}.
+\item\label{src:egittostato} Helen Chapin Metz (a cura di), Egypt: A Country Study, 1990, The Role of Government. Edizione GPO per la Library of Congress, riproduzione online.\par\href{https://countrystudies.us/egypt/75.htm}{\small Apri la fonte}.
+\item\label{src:terra} Egypt: A Country Study, Land Ownership and Reform. Riforma agraria e proprietà della terra.\par\href{https://countrystudies.us/egypt/85.htm}{\small Apri la fonte}.
+\item\label{src:nasser} Egypt: A Country Study, Nasser and Arab Socialism. Nazionalizzazioni e settore pubblico.\par\href{https://countrystudies.us/egypt/34.htm}{\small Apri la fonte}.
+\item\label{src:sadat} Egypt: A Country Study, Egypt’s New Direction. Apertura economica del 1974 e obiettivi dell’infitāḥ.\par\href{https://countrystudies.us/egypt/43.htm}{\small Apri la fonte}.
+\item\label{src:inflazione} Banca centrale europea, What is inflation? Definizione, paniere e potere d’acquisto. Esempi numerici del libretto originali.\par\href{https://www.ecb.europa.eu/ecb-and-you/explainers/tell-me-more/html/what_is_inflation.en.html}{\small Apri la fonte}.
+\item\label{src:bceobiettivo} Banca centrale europea, Measuring inflation and consumer prices. Obiettivo del 2 per cento nel medio termine.\par\href{https://www.ecb.europa.eu/stats/macroeconomic_and_sectoral/hicp/html/index.en.html}{\small Apri la fonte}.
+\item\label{src:cbe} Central Bank of Egypt, Monetary Policy Framework. Mandato relativo a prezzi e sistema monetario e bancario.\par\href{https://www.cbe.org.eg/en/monetary-policy/monetary-policy-framework}{\small Apri la fonte}.
+\item\label{src:bcemonetaria} Banca centrale europea, Monetary policy. Compiti e strumenti della politica monetaria.\par\href{https://www.ecb.europa.eu/ecb/orga/tasks/monpol/html/index.en.html}{\small Apri la fonte}.
+\item\label{src:clima} IPCC, Climate Change 2023: Synthesis Report, Summary for Policymakers, A.1. Riscaldamento globale nel 2011--2020 rispetto al 1850--1900.\par\href{https://www.unep.org/resources/report/climate-change-2023-synthesis-report}{\small Apri la fonte}.
+\item\label{src:benban} EBRD, First EBRD funded Egyptian solar plant begins generation, 28 gennaio 2019. Capacità contrattualizzata del parco: 1.465 MW.\par\href{https://www.ebrd.com/home/news-and-events/news/2019/first-ebrd-funded-egyptian-solar-plant-begins-generation.html}{\small Apri la fonte}.
+\item\label{src:rauonu} Nazioni Unite, United Arab Republic, voce della Biblioteca digitale. Distinzione tra unione 1958--1961 e nome conservato dall’Egitto fino al 1971.\par\href{https://digitallibrary.un.org/record/1284346?ln=en}{\small Apri la fonte}.
+\item\label{src:raucontesto} EBSCO Research Starters, Syria and Egypt Form the United Arab Republic. Contesto dell’unione politica.\par\href{https://www.ebsco.com/research-starters/politics-and-government/syria-and-egypt-form-united-arab-republic}{\small Apri la fonte}.
+\item\label{src:raudifficolta} Egypt: A Country Study, Egypt and the Arab World. Unione con la Siria e separazione.\par\href{https://countrystudies.us/egypt/33.htm}{\small Apri la fonte}.
+\item\label{src:ue} Consiglio dell’Unione Europea, The EU single market. Quattro libertà e avvio nel 1993.\par\href{https://www.consilium.europa.eu/en/policies/deeper-single-market/}{\small Apri la fonte}.
+\item\label{src:bcearea} Banca centrale europea, ECB, ESCB and the Eurosystem. Distinzione tra UE e area euro.\par\href{https://www.ecb.europa.eu/ecb/orga/escb/html/index.en.html}{\small Apri la fonte}.
+\item\label{src:fmi} Fondo monetario internazionale, What is the IMF? Funzioni dell’istituzione.\par\href{https://www.imf.org/en/about/factsheets/imf-at-a-glance}{\small Apri la fonte}.
+\item\label{src:bm} Banca mondiale, What We Do. Finanziamento e conoscenze per lo sviluppo.\par\href{https://www.worldbank.org/ext/en/what-we-do}{\small Apri la fonte}.
+\item\label{src:omc} Organizzazione mondiale del commercio, What is the WTO? Regole e accordi commerciali.\par\href{https://www.wto.org/english/thewto_e/whatis_e/whatis_e.htm}{\small Apri la fonte}.
+\item\label{src:coesione} Commissione europea, Cohesion Policy. Riduzione delle differenze territoriali.\par\href{https://ec.europa.eu/regional_policy/policy/what/investment-policy_en}{\small Apri la fonte}.
+\end{enumerate}
+\end{document}
