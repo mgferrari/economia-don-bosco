@@ -1,0 +1,36 @@
+name: Pubblica le letture
+on:
+  push:
+    branches: [main]
+    paths: ['Economia_letture_progressive.tex', 'scripts/**', 'web/**', '.github/workflows/pages.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+concurrency:
+  group: pages
+  cancel-in-progress: false
+jobs:
+  build:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/configure-pages@v5
+      - name: Installa convertitori
+        run: sudo apt-get update && sudo apt-get install -y pandoc texlive-xetex texlive-pictures texlive-latex-extra poppler-utils fonts-lmodern
+      - name: Genera e verifica tutte le letture
+        run: python3 scripts/build_site.py
+      - uses: actions/upload-pages-artifact@v4
+        with:
+          path: docs
+  deploy:
+    needs: build
+    runs-on: ubuntu-24.04
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Pubblica
+        id: deployment
+        uses: actions/deploy-pages@v4
