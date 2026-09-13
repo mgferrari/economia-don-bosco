@@ -124,6 +124,11 @@ def main():
     bibliography = '<ol>'+''.join('<li id="src-'+key+'">'+convert(body,refs)+'</li>' for key,body in entries)+'</ol>'
     page('fonti.html','Fonti e riferimenti',bibliography)
     shutil.copyfile(ROOT/'web/style.css',OUT/'style.css')
+    # Remove only obsolete generated chapter pages after a successful conversion.
+    expected = {f'lettura-{i:02}.html' for i in range(1, len(chapters)+1)}
+    for old_page in OUT.glob('lettura-*.html'):
+        if re.fullmatch(r'lettura-\d+\.html', old_page.name) and old_page.name not in expected:
+            old_page.unlink()
     (OUT/'.nojekyll').write_text('')
     # Audit every internal target and asset before publishing.
     from html.parser import HTMLParser
