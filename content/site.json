@@ -1,0 +1,78 @@
+{
+  "title": "Economia: leggere e capire",
+  "chapters": [
+    {
+      "number": 1,
+      "title": "Bisogni, beni e servizi",
+      "file": "01.html",
+      "part": "Primo trimestre — Le parole fondamentali dell’economia"
+    },
+    {
+      "number": 2,
+      "title": "La produzione e i settori economici",
+      "file": "02.html"
+    },
+    {
+      "number": 3,
+      "title": "Reddito, patrimonio e risparmio",
+      "file": "03.html"
+    },
+    {
+      "number": 4,
+      "title": "La ricchezza di un paese: il PIL",
+      "file": "04.html"
+    },
+    {
+      "number": 5,
+      "title": "Beni pubblici e ruolo dello Stato",
+      "file": "05.html"
+    },
+    {
+      "number": 6,
+      "title": "Le disuguaglianze economiche",
+      "file": "06.html",
+      "part": "Secondo trimestre — Ricchezza, sistemi economici e finanza"
+    },
+    {
+      "number": 7,
+      "title": "Capitalismo, socialismo e sistemi economici",
+      "file": "07.html"
+    },
+    {
+      "number": 8,
+      "title": "La moneta, le banche e il credito",
+      "file": "08.html"
+    },
+    {
+      "number": 9,
+      "title": "Interesse, rischio e rendimento",
+      "file": "09.html"
+    },
+    {
+      "number": 10,
+      "title": "Inflazione e potere d’acquisto",
+      "file": "10.html",
+      "part": "Terzo trimestre — Comprendere fenomeni economici più complessi"
+    },
+    {
+      "number": 11,
+      "title": "Le banche centrali e i tassi di interesse",
+      "file": "11.html"
+    },
+    {
+      "number": 12,
+      "title": "Crescita, produttività e innovazione",
+      "file": "12.html"
+    },
+    {
+      "number": 13,
+      "title": "Economia, ambiente e sviluppo sostenibile",
+      "file": "13.html"
+    },
+    {
+      "number": 14,
+      "title": "Perché i paesi cooperano?",
+      "file": "14.html"
+    }
+  ]
+}

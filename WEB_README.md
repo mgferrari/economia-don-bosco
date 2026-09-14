@@ -1,6 +1,6 @@
-# Sito delle letture
+# Sito e PDF delle letture
 
-Unica fonte dei contenuti: `Economia_letture_progressive.tex`. Non modificare a mano le pagine HTML generate.
+Le fonti dei contenuti sono i file HTML in `content/`. Non modificare a mano le pagine in `docs/`, perché vengono generate automaticamente.
 
 ## Attivazione una tantum
 
@@ -8,12 +8,30 @@ Unica fonte dei contenuti: `Economia_letture_progressive.tex`. Non modificare a 
 2. Settings → Pages → Build and deployment → Source → GitHub Actions.
 3. Actions → Pubblica le letture → Run workflow (main).
 
-In seguito ogni modifica al LaTeX, al convertitore o allo stile pubblica automaticamente il sito, solo se la conversione e le verifiche riescono. L'ultima pubblicazione riuscita resta disponibile durante la generazione.
+In seguito ogni modifica ai contenuti HTML, al generatore o allo stile pubblica automaticamente sito e PDF, solo se tutte le verifiche riescono. L'ultima pubblicazione riuscita resta disponibile durante la generazione.
 
-## Conversione locale
+## Struttura
 
-Dipendenze: Python 3, Pandoc, XeLaTeX (standalone, TikZ, pgfplots e Latin Modern), pdftocairo.
+- `content/chapters/`: i quattordici capitoli, modificabili direttamente in HTML;
+- `content/site.json`: ordine, numero e titolo dei capitoli;
+- `content/sources.html`: bibliografia;
+- `content/front-matter.html`: istruzioni iniziali del libretto;
+- `web/style.css`: stile del sito;
+- `web/print.css`: impaginazione A4 del PDF;
+- `web/assets/`: grafici e immagini originali;
+- `docs/`: sito e PDF generati.
 
-Eseguire `python3 scripts/build_site.py`. Aprire `docs/index.html`, oppure servire `docs` con un server statico. Le formule usano MathML nativo; non occorrono CDN. L'arabo usa direzione RTL. I diagrammi TikZ vengono compilati individualmente in SVG, con shell escape disabilitato: non viene compilato il PDF del libretto.
+Le citazioni nei capitoli usano la forma `<sup><a data-source="chiave"></a></sup>`. La chiave deve corrispondere a un elemento `id="src-chiave"` in `content/sources.html`; numero e collegamento vengono aggiunti automaticamente.
 
-Il convertitore gestisce la struttura di questo libretto, non ogni possibile documento LaTeX. Nuovi comandi non supportati bloccano la conversione anziché essere ignorati. Verificare sempre nuovi tipi di tabella o diagramma. L'HTML conserva i contenuti, non l'impaginazione a due colonne. La cronologia Git conserva le versioni precedenti.
+## Generazione locale
+
+Creare un ambiente Python e installare `requirements.txt`. Poi eseguire:
+
+```bash
+python3 scripts/build_site.py
+python3 scripts/build_pdf.py
+```
+
+Aprire `docs/index.html` per il sito oppure `docs/economia-leggere-e-capire.pdf` per il libretto. Le formule usano MathML nativo, i grafici sono SVG e non occorrono servizi esterni.
+
+Il precedente sorgente LaTeX è conservato soltanto in `archive/` come copia storica. Non partecipa più alla generazione.
