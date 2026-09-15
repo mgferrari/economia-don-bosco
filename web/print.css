@@ -112,6 +112,19 @@ th { border-top: 1pt solid var(--accent); background: #f2f6f8; }
 tr, img, .diagram, math[display="block"] { break-inside: avoid; }
 img { max-width: 100%; height: auto; }
 .diagram { display: block; margin: 4mm auto 2mm; }
+.greenhouse-diagram { width: 100%; height: auto; font: 7pt sans-serif; }
+.greenhouse-diagram path { fill: none; stroke-linecap: round; }
+.greenhouse-diagram .sun-arrow { stroke: #d99b23; stroke-width: 8; }
+.greenhouse-diagram .heat-arrow { stroke: #b44335; stroke-width: 8; }
+.greenhouse-diagram .return-arrow { stroke: #28708d; stroke-width: 8; }
+.greenhouse-diagram .faded { opacity: .45; }
+.greenhouse-diagram .atmosphere { stroke: #73a9bd; stroke-width: 18; opacity: .35; }
+.greenhouse-diagram .surface { stroke: #47795a; stroke-width: 12; }
+.sector-chart { margin: 3mm 0; padding: 3mm; border: .4pt solid var(--line); break-inside: avoid; font: 7.5pt/1.3 sans-serif; }
+.sector-chart figcaption { font-weight: bold; margin-bottom: 2mm; }
+.bar-row { display: grid; grid-template-columns: 36mm 1fr; align-items: center; gap: 2mm; margin: 1.5mm 0; }
+.bar-track { background: #e7eef1; min-height: 5mm; }
+.bar-track b { display: block; min-width: 9mm; padding: .7mm 1mm; background: var(--accent); color: white; text-align: right; white-space: nowrap; }
 .caption { color: var(--muted); font: 8pt/1.35 sans-serif; }
 .math.display { display: block; text-align: center; padding: 2mm 0; overflow-wrap: anywhere; }
 math { font-size: 1.02em; }
