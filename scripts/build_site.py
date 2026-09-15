@@ -14,7 +14,6 @@ CONTENT = ROOT / "content"
 CHAPTERS = CONTENT / "chapters"
 WEB = ROOT / "web"
 OUT = ROOT / "docs"
-PDF_NAME = "economia-leggere-e-capire.pdf"
 
 
 def load_manifest():
@@ -67,13 +66,17 @@ def navigation(chapters):
         for c in chapters
     )
     links.append('<a href="fonti.html">Fonti e riferimenti</a>')
-    links.append(f'<a class="pdf-link" href="{PDF_NAME}">Scarica il PDF</a>')
     return "".join(links)
 
 
 def page(title, body, nav, number=None, pager=""):
     eyebrow = (
         f"LETTURA {number:02}" if number else "DON BOSCO · MATERIALI DI ECONOMIA"
+    )
+    print_control = (
+        '<button class="print-page" type="button" onclick="window.print()">'
+        'Stampa questa lettura</button>'
+        if number else ""
     )
     return f'''<!doctype html>
 <html lang="it">
@@ -82,6 +85,7 @@ def page(title, body, nav, number=None, pager=""):
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>{html.escape(title)} · Economia</title>
   <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="page-actions.css">
 </head>
 <body>
   <a class="skip" href="#lettura">Vai al testo</a>
@@ -92,7 +96,7 @@ def page(title, body, nav, number=None, pager=""):
     </details>
   </aside>
   <main id="lettura">
-    <header><p class="eyebrow">{eyebrow}</p><h1>{html.escape(title)}</h1></header>
+    <header><p class="eyebrow">{eyebrow}</p><h1>{html.escape(title)}</h1>{print_control}</header>
     <article>{body}</article>
     {pager}
     <footer>Materiali di Marco Giovanni Ferrari · Versione di lavoro<br>
@@ -183,9 +187,6 @@ class LinkAudit(HTMLParser):
             value = values.get(name)
             if not value or value.startswith(("http:", "https:", "#", "mailto:")):
                 continue
-            if value == PDF_NAME:
-                # The PDF is created immediately after this build step.
-                continue
             target = OUT / value.split("#", 1)[0]
             if not target.is_file():
                 raise ValueError(f"Missing target {value} in {self.current.name}")
@@ -212,7 +213,6 @@ def main():
 
     intro = (
         '<p>Un percorso di lettura, lessico economico e comprensione del testo.</p>'
-        f'<p><a class="download" href="{PDF_NAME}">Scarica il libretto completo in PDF</a></p>'
         '<ol class="contents">'
         + "".join(
             f'<li><a href="lettura-{c["number"]:02}.html">'
@@ -223,11 +223,12 @@ def main():
     )
     (OUT / "index.html").write_text(page("Letture di economia", intro, nav))
     (OUT / "fonti.html").write_text(page("Fonti e riferimenti", sources, nav))
-    (OUT / "libretto.html").write_text(
-        printable_document(manifest, chapters, bodies, sources, references)
-    )
+    for obsolete in (OUT / "libretto.html", OUT / "economia-leggere-e-capire.pdf"):
+        if obsolete.exists():
+            obsolete.unlink()
 
     shutil.copyfile(WEB / "style.css", OUT / "style.css")
+    shutil.copyfile(WEB / "page-actions.css", OUT / "page-actions.css")
     shutil.copyfile(WEB / "print.css", OUT / "print.css")
     if (OUT / "assets").exists():
         shutil.rmtree(OUT / "assets")
