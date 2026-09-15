@@ -20,13 +20,8 @@ jobs:
       - uses: actions/setup-python@v6
         with:
           python-version: '3.12'
-          cache: pip
-      - name: Installa il generatore PDF
-        run: pip install -r requirements.txt
-      - name: Genera sito e PDF
-        run: |
-          python3 scripts/build_site.py
-          python3 scripts/build_pdf.py
+      - name: Genera il sito
+        run: python3 scripts/build_site.py
       - uses: actions/upload-pages-artifact@v4
         with:
           path: docs
